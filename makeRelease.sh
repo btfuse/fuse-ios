@@ -44,7 +44,15 @@ rm -f ./build/NBSFuse-debug.xcframework.zip
 zip ./build/NBSFuse.xcframework.zip -r ./build/NBSFuse.xcframework
 zip ./build/NBSFuse-debug.xcframework.zip -r ./build/NBSFuse-debug.xcframework
 
-CHECKSUM="$(shasum -a 1 build/NBSFuse.xcframework.zip  | cut -d ' ' -f 1)"
+rm -rf build/dist
+mkdir -p build/dist/NBSFuse
+cp -r build/NBSFuse.xcframework build/dist/NBSFuse/
+cp -r build/NBSFuse-debug.xcframework build/dist/NBSFuse/
+
+rm -f build/NBSFuse.zip
+zip build/NBSFuse.zip -r ./build/dist
+
+CHECKSUM="$(shasum -a 1 build/NBSFuse.zip  | cut -d ' ' -f 1)"
 
 # Generate the podspec. Unfortunately due to how podspecs work, they need access to any files
 # they reference, so we can't read from VERSION in the podspec itself.
@@ -52,17 +60,6 @@ echo "# This is a generated file, do not modify directory\n\n" > NBSFuse.podspec
 echo "$(cat NBSFuse.template.podspec)" >> NBSFuse.podspec
 sed -i '' "s/:VERSION:/$VERSION/g" NBSFuse.podspec
 sed -i '' "s/:CHECKSUM:/$CHECKSUM/g" NBSFuse.podspec
-
-rm -rf build/dist
-mkdir -p build/dist/NBSFuse
-cp -r build/NBSFuse.xcframework build/dist/NBSFuse/
-cp -r build/NBSFuse-debug.xcframework build/dist/NBSFuse/
-cp NBSFuse.podspec build/dist/NBSFuse/
-
-cd build
-rm -f NBSFuse.zip
-zip NBSFuse.zip -r ./dist
-cd ..
 
 git add VERSION
 git commit -m "iOS Release: $VERSION"
