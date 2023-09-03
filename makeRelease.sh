@@ -48,6 +48,7 @@ rm -rf build/dist
 mkdir -p build/dist/NBSFuse
 cp -r build/NBSFuse.xcframework build/dist/NBSFuse/
 cp -r build/NBSFuse-debug.xcframework build/dist/NBSFuse/
+cp LICENSE build/dist/
 
 rm -f build/NBSFuse.zip
 cd build/dist
