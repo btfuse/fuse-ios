@@ -50,7 +50,10 @@ cp -r build/NBSFuse.xcframework build/dist/NBSFuse/
 cp -r build/NBSFuse-debug.xcframework build/dist/NBSFuse/
 
 rm -f build/NBSFuse.zip
-zip build/NBSFuse.zip -r ./build/dist/NBSFuse
+cd build/dist
+zip NBSFuse.zip -r NBSFuse
+cd ../..
+mv build/dist/NBSFuse.zip build/
 
 CHECKSUM="$(shasum -a 1 build/NBSFuse.zip  | cut -d ' ' -f 1)"
 

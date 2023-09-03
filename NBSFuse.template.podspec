@@ -19,5 +19,5 @@ A native-first framework for building hybrid native-web applications.
 
   s.ios.deployment_target = '13.0'
 
-  s.vendored_frameworks = 'NBSFuse.xcframework'
+  s.vendored_frameworks = 'NBSFuse/NBSFuse.xcframework'
 end
