@@ -13,7 +13,7 @@ A native-first framework for building hybrid native-web applications.
   s.license          = { :type => 'Apache-2.0', :file => 'LICENSE' }
   s.author           = { 'Norman Breau' => 'norman@nbsolutions.ca' }
   s.source           = {
-    :http => 'https://github.com/nbsfuse/fuse-ios/releases/download/:VERSION:/NBSFuse.xcframework.tar.gz',
+    :http => 'https://github.com/nbsfuse/fuse-ios/releases/download/:VERSION:/NBSFuse.xcframework.zip',
     sha1 => ':CHECKSUM:'
   }
 
