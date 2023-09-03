@@ -14,6 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+REPO="fuse-ios"
+
 cd ..
 source compiler/_assertCleanWorkspace.sh
 source compiler/_assertMac.sh
