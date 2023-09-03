@@ -49,15 +49,6 @@ echo "$(cat NBSFuse.template.podspec)" >> NBSFuse.podspec
 sed -i '' "s/:VERSION:/$VERSION/g" NBSFuse.podspec
 sed -i '' "s/:CHECKSUM:/$CHECKSUM/g" NBSFuse.podspec
 
-# cd ios/fuse-ios-dist
-# git add .
-# git commit -m "iOS Dist: $VERSION"
-# git tag -a "$VERSION" -m "iOS Dist: $VERSION"
-# git push
-# git push --tags
-# cd ../..
-
-# git add IOS_VERSION ios/fuse-ios-dist
 git commit -m "iOS Release: $VERSION"
 git push
 git tag -a $VERSION -m "iOS Release: $VERSION"
