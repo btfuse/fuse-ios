@@ -14,8 +14,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+cd ..
 source compiler/_assertCleanWorkspace.sh
 source compiler/_assertMac.sh
+cd fuse-ios
 
 VERSION="$1"
 
