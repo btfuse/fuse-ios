@@ -14,7 +14,7 @@ A native-first framework for building hybrid native-web applications.
   s.author           = { 'Norman Breau' => 'norman@nbsolutions.ca' }
   s.source           = {
     :http => 'https://github.com/nbsfuse/fuse-ios/releases/download/:VERSION:/NBSFuse.xcframework.zip',
-    sha1 => ':CHECKSUM:'
+    :sha1 => ':CHECKSUM:'
   }
 
   s.ios.deployment_target = '13.0'
