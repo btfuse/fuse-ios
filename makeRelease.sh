@@ -53,6 +53,17 @@ echo "$(cat NBSFuse.template.podspec)" >> NBSFuse.podspec
 sed -i '' "s/:VERSION:/$VERSION/g" NBSFuse.podspec
 sed -i '' "s/:CHECKSUM:/$CHECKSUM/g" NBSFuse.podspec
 
+rm -rf build/dist
+mkdir -p build/dist/NBSFuse
+cp -r build/NBSFuse.xcframework build/dist/NBSFuse/
+cp -r build/NBSFuse-debug.xcframework build/dist/NBSFuse/
+cp NBSFuse.podspec build/dist/NBSFuse/
+
+cd build
+rm -f NBSFuse.zip
+zip NBSFuse.zip -r ./dist
+cd ..
+
 git add VERSION
 git commit -m "iOS Release: $VERSION"
 git push
@@ -60,6 +71,7 @@ git tag -a $VERSION -m "iOS Release: $VERSION"
 git push --tags
 
 gh release create $VERSION \
+    ./build/NBSFuse.zip \
     ./build/NBSFuse.xcframework.zip \
     ./build/NBSFuse-debug.xcframework.zip \
     --verify-tag --generate-notes
