@@ -15,6 +15,8 @@
 		941862A52A996F7900CCFEE1 /* NBSFuseAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 941862A42A996F7900CCFEE1 /* NBSFuseAPIResponse.m */; };
 		941862AB2A9FE5F700CCFEE1 /* NBSFuseError.h in Headers */ = {isa = PBXBuildFile; fileRef = 941862AA2A9FE5F700CCFEE1 /* NBSFuseError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		941862AD2A9FE65E00CCFEE1 /* NBSFuseError.m in Sources */ = {isa = PBXBuildFile; fileRef = 941862AC2A9FE65E00CCFEE1 /* NBSFuseError.m */; };
+		9489EB982AA54FA40087424D /* NBSFuseRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = 9489EB972AA54FA40087424D /* NBSFuseRuntime.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9489EB9A2AA54FED0087424D /* NBSFuseRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 9489EB992AA54FED0087424D /* NBSFuseRuntime.m */; };
 		94A886B72A714F6D0098530D /* NBSFuse.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A8865C2A702C6C0098530D /* NBSFuse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94A886B82A714F6D0098530D /* NBSFuseContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A886632A702D240098530D /* NBSFuseContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94A886B92A714F6D0098530D /* NBSFuseSchemeHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A886682A702F020098530D /* NBSFuseSchemeHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -33,6 +35,8 @@
 		941862A42A996F7900CCFEE1 /* NBSFuseAPIResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseAPIResponse.m; sourceTree = "<group>"; };
 		941862AA2A9FE5F700CCFEE1 /* NBSFuseError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseError.h; sourceTree = "<group>"; };
 		941862AC2A9FE65E00CCFEE1 /* NBSFuseError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseError.m; sourceTree = "<group>"; };
+		9489EB972AA54FA40087424D /* NBSFuseRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseRuntime.h; sourceTree = "<group>"; };
+		9489EB992AA54FED0087424D /* NBSFuseRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseRuntime.m; sourceTree = "<group>"; };
 		94A8865C2A702C6C0098530D /* NBSFuse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuse.h; sourceTree = "<group>"; };
 		94A886632A702D240098530D /* NBSFuseContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseContext.h; sourceTree = "<group>"; };
 		94A886662A702D6A0098530D /* NBSFuseContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseContext.m; sourceTree = "<group>"; };
@@ -54,6 +58,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9489EB9B2AA5507B0087424D /* plugins */ = {
+			isa = PBXGroup;
+			children = (
+				9489EB972AA54FA40087424D /* NBSFuseRuntime.h */,
+			);
+			path = plugins;
+			sourceTree = "<group>";
+		};
+		9489EB9C2AA5508C0087424D /* plugins */ = {
+			isa = PBXGroup;
+			children = (
+				9489EB992AA54FED0087424D /* NBSFuseRuntime.m */,
+			);
+			path = plugins;
+			sourceTree = "<group>";
+		};
 		94A8864F2A702C6C0098530D = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +95,7 @@
 		94A8865B2A702C6C0098530D /* NBSFuse */ = {
 			isa = PBXGroup;
 			children = (
+				9489EB9B2AA5507B0087424D /* plugins */,
 				94A8865C2A702C6C0098530D /* NBSFuse.h */,
 				94A886632A702D240098530D /* NBSFuseContext.h */,
 				94A886682A702F020098530D /* NBSFuseSchemeHandler.h */,
@@ -90,6 +111,7 @@
 		94A886652A702D3A0098530D /* src */ = {
 			isa = PBXGroup;
 			children = (
+				9489EB9C2AA5508C0087424D /* plugins */,
 				94A886662A702D6A0098530D /* NBSFuseContext.m */,
 				94A8866A2A702F430098530D /* NBSFuseSchemeHandler.m */,
 				94A886DD2A716A0C0098530D /* NBSFusePlugin.m */,
@@ -120,6 +142,7 @@
 				9418629B2A99564600CCFEE1 /* NBSFuseAPIRouter.h in Headers */,
 				94A886B92A714F6D0098530D /* NBSFuseSchemeHandler.h in Headers */,
 				941862AB2A9FE5F700CCFEE1 /* NBSFuseError.h in Headers */,
+				9489EB982AA54FA40087424D /* NBSFuseRuntime.h in Headers */,
 				9418629F2A995BDC00CCFEE1 /* NBSFuseAPIPacket.h in Headers */,
 				941862A32A99617100CCFEE1 /* NBSFuseAPIResponse.h in Headers */,
 				94A886B82A714F6D0098530D /* NBSFuseContext.h in Headers */,
@@ -194,6 +217,7 @@
 				941862AD2A9FE65E00CCFEE1 /* NBSFuseError.m in Sources */,
 				94A886BB2A714F6D0098530D /* NBSFuseSchemeHandler.m in Sources */,
 				9418629D2A9956F100CCFEE1 /* NBSFuseAPIRouter.m in Sources */,
+				9489EB9A2AA54FED0087424D /* NBSFuseRuntime.m in Sources */,
 				941862A52A996F7900CCFEE1 /* NBSFuseAPIResponse.m in Sources */,
 				94A886BC2A714F6D0098530D /* NBSFuseContext.m in Sources */,
 			);

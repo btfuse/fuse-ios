@@ -20,6 +20,7 @@ limitations under the License.
 
 #import <Foundation/Foundation.h>
 #import <NBSFuse/NBSFuseAPIResponse.h>
+#import <NBSFuse/NBSFuseError.h>
 
 typedef void (^NBSFusePluginAPIHandle)(NSData* data, NBSFuseAPIResponse* response);
 
@@ -45,6 +46,12 @@ typedef void (^NBSFusePluginAPIHandle)(NSData* data, NBSFuseAPIResponse* respons
 - (void) attachHandler:(NSString*) path callback:(NBSFusePluginAPIHandle)callback;
 
 - (NBSFuseContext*) getContext;
+
+// Convenience methods, if you don't need to chunk data
+- (void) send:(NBSFuseAPIResponse*) response withString:(NSString*) data;
+- (void) send:(NBSFuseAPIResponse*) response withData:(NSDate*) data withType:(NSString*) type;
+- (void) send:(NBSFuseAPIResponse*) response withJSON:(NSDictionary*) data;
+- (void) sendError:(NBSFuseAPIResponse*) response withError:(NBSFuseError*) error;
 
 @end
 

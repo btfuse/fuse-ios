@@ -22,6 +22,7 @@ limitations under the License.
 #import <NBSFuseAPIRouter.h>
 #import <NBSFuse/NBSFuseAPIPacket.h>
 #import <NBSFuse/NBSFuseAPIResponse.h>
+#import <NBSFuse/NBSFuseRuntime.h>
 
 @implementation NBSFuseContext
 
@@ -40,6 +41,8 @@ limitations under the License.
     self.$webview = [[WKWebView alloc] initWithFrame:view.bounds configuration:configuration];
 
     [view addSubview: self.$webview];
+    
+    [self registerPlugin:[[NBSFuseRuntime alloc] init: self]];
     
     NSURL* url = [NSURL URLWithString:@"nbsfuse://localhost/assets/index.html"];
     NSURLRequest* request = [NSURLRequest requestWithURL:url];

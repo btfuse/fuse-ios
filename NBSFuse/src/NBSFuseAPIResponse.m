@@ -34,7 +34,7 @@ limitations under the License.
     return self;
 }
 
-- (void)setStatus:(NBSFuseAPIResponseStatus)status {
+- (void)setStatus:(NSUInteger)status {
     self.$status = status;
 }
 
@@ -47,17 +47,17 @@ limitations under the License.
 }
 
 - (void) didFinishHeaders {
-    int statusCode = 0;
-    switch (self.$status) {
-        case NBSFuseAPIResponseStatusOk:
-            statusCode = 200;
-            break;
-        case NBSFuseAPIResponseStatusError:
-            statusCode = 400;
-            break;
-    }
-    
-    NSURLResponse* response = [[NSURLResponse alloc] initWithURL:self.$requestURL MIMEType:self.$contentType expectedContentLength:self.$contentLength textEncodingName:@"utf-8"];
+//    NSURLResponse* response = [[NSURLResponse alloc] initWithURL:self.$requestURL MIMEType:self.$contentType expectedContentLength:self.$contentLength textEncodingName:@"utf-8"];
+    NSHTTPURLResponse* response = [
+        [NSHTTPURLResponse alloc]
+        initWithURL:self.$requestURL
+        statusCode:self.$status
+        HTTPVersion:@"HTTP/1.1"
+        headerFields: @{
+            @"Content-Type": self.$contentType,
+            @"Content-Length": [NSString stringWithFormat:@"%lu", self.$contentLength]
+        }
+    ];
     [self.$task didReceiveResponse: response];
     self.$hasSentHeaders = true;
 }
@@ -74,6 +74,23 @@ limitations under the License.
 
 - (void) didFinish {
     [self.$task didFinish];
+}
+
+- (void) didInternalError {
+    [self setStatus:NBSFuseAPIResponseStatusInternalError];
+    [self setContentType:@"text/plain"];
+    NSString* msg = @"Internal Error. See native logs for more details";
+    [self setContentLength:[msg length]];
+    [self didFinishHeaders];
+    [self pushData: [msg dataUsingEncoding:NSUTF8StringEncoding]];
+    [self didFinish];
+}
+
+- (void) finishHeaders:(NSUInteger) status withContentType:(NSString*) contentType withContentLength:(NSUInteger) contentLength {
+    [self setStatus:status];
+    [self setContentType:contentType];
+    [self setContentLength:contentLength];
+    [self didFinishHeaders];
 }
 
 @end

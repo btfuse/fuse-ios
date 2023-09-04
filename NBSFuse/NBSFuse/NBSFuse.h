@@ -32,3 +32,6 @@ FOUNDATION_EXPORT const unsigned char NBSFuseVersionString[];
 #import <NBSFuse/NBSFuseAPIPacket.h>
 #import <NBSFuse/NBSFuseAPIResponse.h>
 #import <NBSFuse/NBSFuseError.h>
+
+// Core Plugins
+#import <NBSFuse/NBSFuseRuntime.h>

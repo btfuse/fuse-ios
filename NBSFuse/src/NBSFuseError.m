@@ -30,6 +30,16 @@ limitations under the License.
     return self;
 }
 
+- (instancetype)init:(NSString *)domain withCode:(NSInteger)code withError:(NSError *)error {
+    self = [self init];
+    
+    self.$domain = domain;
+    self.$message = [error localizedDescription];
+    self.$code = code;
+    
+    return self;
+}
+
 - (NSInteger)getCode {
     return self.$code;
 }

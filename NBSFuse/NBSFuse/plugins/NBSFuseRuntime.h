@@ -15,24 +15,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-#ifndef NBSFuseError_h
-#define NBSFuseError_h
+#ifndef NBSFuseRuntime_h
+#define NBSFuseRuntime_h
 
-@interface NBSFuseError: NSObject
+#import <Foundation/Foundation.h>
+#import <NBSFuse/NBSFusePlugin.h>
 
-@property (nonatomic, assign) NSInteger $code;
-@property (nonatomic, strong) NSString* $domain;
-@property (nonatomic, strong) NSString* $message;
+@interface NBSFuseRuntime : NBSFusePlugin
 
-- (instancetype) init:(NSString*) domain withCode:(NSInteger) code withMessage:(NSString*) message;
-- (instancetype) init:(NSString*) domain withCode:(NSInteger) code withError:(NSError*) error;
+- (NSString*) getID;
 
-- (NSString*) getDomain;
-- (NSString*) getMessage;
-- (NSInteger) getCode;
-
-- (NSString*) serialize: (NSError*)error;
+- (NSDictionary*) getInfo;
 
 @end
 
-#endif /* NBSError_h */
+#endif /* NBSFuseRuntime_h */

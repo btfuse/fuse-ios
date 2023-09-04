@@ -20,9 +20,10 @@ limitations under the License.
 
 #import <WebKit/WebKit.h>
 
-typedef NS_ENUM(NSInteger, NBSFuseAPIResponseStatus) {
-    NBSFuseAPIResponseStatusOk,
-    NBSFuseAPIResponseStatusError
+typedef NS_ENUM(NSUInteger, NBSFuseAPIResponseStatus) {
+    NBSFuseAPIResponseStatusOk = 200,
+    NBSFuseAPIResponseStatusError = 400,
+    NBSFuseAPIResponseStatusInternalError = 500
 };
 
 @interface NBSFuseAPIResponse: NSObject
@@ -32,19 +33,22 @@ typedef NS_ENUM(NSInteger, NBSFuseAPIResponseStatus) {
 @property (nonatomic, assign) id<WKURLSchemeTask> $task;
 @property (nonatomic, strong) NSString* $contentType;
 @property (nonatomic, assign) NSUInteger $contentLength;
-@property (nonatomic, assign) NBSFuseAPIResponseStatus $status;
+@property (nonatomic, assign) NSUInteger $status;
 
 - (instancetype) init: (id<WKURLSchemeTask>) task withURL:(NSURL*) requestURL;
 
 // Header APIs
-- (void) setStatus:(NBSFuseAPIResponseStatus) status;
+- (void) setStatus:(NSUInteger) status;
 - (void) setContentLength:(NSUInteger) length;
 - (void) setContentType:(NSString*) contentType;
 - (void) didFinishHeaders;
+- (void) finishHeaders:(NSUInteger) status withContentType:(NSString*) contentType withContentLength:(NSUInteger) contentLength;
 
 // Data APIs
 - (void) pushData:(NSData*) data;
 - (void) didFinish;
+
+- (void) didInternalError;
 
 @end
 
