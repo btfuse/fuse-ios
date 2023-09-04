@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <NBSFuseWebviewUIDelegation.h>
+#import <NBSFuse/NBSFuseLocalization.h>
 
 @implementation NBSFuseWebviewUIDelegation
 
@@ -15,7 +16,6 @@
             initiatedByFrame:(WKFrameInfo*) frame
             completionHandler:(void (^)(void)) completionHandler
 {
-    NSBundle* bundle = [NSBundle bundleForClass: [NBSFuseWebviewUIDelegation class]];
     
     UIAlertController* alertController = [ UIAlertController
         alertControllerWithTitle: nil
@@ -27,7 +27,7 @@
         alertController
         addAction: [
             UIAlertAction
-            actionWithTitle: [bundle localizedStringForKey:@"FUSE_DIALOG_OK_BUTTON_LABEL" value:@"" table: nil]
+            actionWithTitle: [NBSFuseLocalization lookup:@"FUSE_DIALOG_OK_BUTTON_LABEL"]
             style: UIAlertActionStyleDefault
             handler: ^(UIAlertAction * _Nonnull action) {
                 completionHandler();
@@ -43,8 +43,6 @@
             initiatedByFrame:(WKFrameInfo*) frame
             completionHandler:(void (^)(BOOL)) completionHandler
 {
-    NSBundle* bundle = [NSBundle bundleForClass: [NBSFuseWebviewUIDelegation class]];
-    
     UIAlertController* alertController = [
         UIAlertController
         alertControllerWithTitle: nil
@@ -56,7 +54,7 @@
         alertController
         addAction: [
             UIAlertAction
-            actionWithTitle: [bundle localizedStringForKey:@"FUSE_DIALOG_CANCEL_BUTTON_LABEL" value:@"" table: nil]
+            actionWithTitle: [NBSFuseLocalization lookup:@"FUSE_DIALOG_CANCEL_BUTTON_LABEL"]
             style: UIAlertActionStyleDefault
             handler: ^(UIAlertAction* _Nonnull action) {
                 completionHandler(false);
@@ -68,7 +66,7 @@
         alertController
         addAction: [
             UIAlertAction
-            actionWithTitle: [bundle localizedStringForKey:@"FUSE_DIALOG_OK_BUTTON_LABEL" value:@"" table: nil]
+            actionWithTitle: [NBSFuseLocalization lookup:@"FUSE_DIALOG_OK_BUTTON_LABEL"]
             style: UIAlertActionStyleDefault
             handler: ^(UIAlertAction* _Nonnull action) {
                 completionHandler(true);
@@ -85,8 +83,6 @@
             initiatedByFrame:(WKFrameInfo*) frame
             completionHandler:(void (^)(NSString* _Nullable)) completionHandler
 {
-    NSBundle* bundle = [NSBundle bundleForClass: [NBSFuseWebviewUIDelegation class]];
-    
     UIAlertController* alertController = [
         UIAlertController alertControllerWithTitle: nil
         message: prompt
@@ -104,7 +100,7 @@
         alertController
         addAction: [
             UIAlertAction
-            actionWithTitle: [bundle localizedStringForKey:@"FUSE_DIALOG_CANCEL_BUTTON_LABEL	" value:@"" table: nil]
+            actionWithTitle: [NBSFuseLocalization lookup:@"FUSE_DIALOG_CANCEL_BUTTON_LABEL"]
             style: UIAlertActionStyleDefault
             handler: ^(UIAlertAction * _Nonnull action) {
                 completionHandler(nil);
@@ -116,7 +112,7 @@
         alertController
             addAction: [
                 UIAlertAction
-                actionWithTitle: [bundle localizedStringForKey:@"FUSE_DIALOG_OK_BUTTON_LABEL" value:@"" table: nil]
+                actionWithTitle: [NBSFuseLocalization lookup:@"FUSE_DIALOG_OK_BUTTON_LABEL"]
                 style: UIAlertActionStyleDefault
                 handler: ^(UIAlertAction * _Nonnull action) {
                     completionHandler(alertController.textFields.firstObject.text);

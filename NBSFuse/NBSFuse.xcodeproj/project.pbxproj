@@ -22,6 +22,8 @@
 		9489EBA32AA621A70087424D /* NBSFuseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9489EBA22AA621A70087424D /* NBSFuseViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9489EBA52AA623B70087424D /* NBSFuseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9489EBA42AA623B70087424D /* NBSFuseViewController.m */; };
 		9489EBAE2AA6445C0087424D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9489EBB02AA6445C0087424D /* Localizable.strings */; };
+		9489EBB82AA659D70087424D /* NBSFuseLocalization.h in Headers */ = {isa = PBXBuildFile; fileRef = 9489EBB72AA659D70087424D /* NBSFuseLocalization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9489EBBA2AA65A990087424D /* NBSFuseLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 9489EBB92AA65A990087424D /* NBSFuseLocalization.m */; };
 		94A886B72A714F6D0098530D /* NBSFuse.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A8865C2A702C6C0098530D /* NBSFuse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94A886B82A714F6D0098530D /* NBSFuseContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A886632A702D240098530D /* NBSFuseContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94A886B92A714F6D0098530D /* NBSFuseSchemeHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A886682A702F020098530D /* NBSFuseSchemeHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -47,6 +49,8 @@
 		9489EBA22AA621A70087424D /* NBSFuseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseViewController.h; sourceTree = "<group>"; };
 		9489EBA42AA623B70087424D /* NBSFuseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseViewController.m; sourceTree = "<group>"; };
 		9489EBAF2AA6445C0087424D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9489EBB72AA659D70087424D /* NBSFuseLocalization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseLocalization.h; sourceTree = "<group>"; };
+		9489EBB92AA65A990087424D /* NBSFuseLocalization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseLocalization.m; sourceTree = "<group>"; };
 		94A8865C2A702C6C0098530D /* NBSFuse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuse.h; sourceTree = "<group>"; };
 		94A886632A702D240098530D /* NBSFuseContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseContext.h; sourceTree = "<group>"; };
 		94A886662A702D6A0098530D /* NBSFuseContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseContext.m; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 				941862AA2A9FE5F700CCFEE1 /* NBSFuseError.h */,
 				9489EB9E2AA61A1C0087424D /* NBSFuseWebviewUIDelegation.h */,
 				9489EBA22AA621A70087424D /* NBSFuseViewController.h */,
+				9489EBB72AA659D70087424D /* NBSFuseLocalization.h */,
 			);
 			path = NBSFuse;
 			sourceTree = "<group>";
@@ -142,6 +147,7 @@
 				941862AC2A9FE65E00CCFEE1 /* NBSFuseError.m */,
 				9489EBA02AA61A770087424D /* NBSFuseWebviewUIDelegation.m */,
 				9489EBA42AA623B70087424D /* NBSFuseViewController.m */,
+				9489EBB92AA65A990087424D /* NBSFuseLocalization.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -166,6 +172,7 @@
 				9489EBA32AA621A70087424D /* NBSFuseViewController.h in Headers */,
 				9418629B2A99564600CCFEE1 /* NBSFuseAPIRouter.h in Headers */,
 				94A886B92A714F6D0098530D /* NBSFuseSchemeHandler.h in Headers */,
+				9489EBB82AA659D70087424D /* NBSFuseLocalization.h in Headers */,
 				941862AB2A9FE5F700CCFEE1 /* NBSFuseError.h in Headers */,
 				9489EB982AA54FA40087424D /* NBSFuseRuntime.h in Headers */,
 				9418629F2A995BDC00CCFEE1 /* NBSFuseAPIPacket.h in Headers */,
@@ -247,6 +254,7 @@
 				9489EB9A2AA54FED0087424D /* NBSFuseRuntime.m in Sources */,
 				9489EBA52AA623B70087424D /* NBSFuseViewController.m in Sources */,
 				941862A52A996F7900CCFEE1 /* NBSFuseAPIResponse.m in Sources */,
+				9489EBBA2AA65A990087424D /* NBSFuseLocalization.m in Sources */,
 				94A886BC2A714F6D0098530D /* NBSFuseContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
