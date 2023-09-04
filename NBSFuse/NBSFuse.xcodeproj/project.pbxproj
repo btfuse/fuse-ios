@@ -21,6 +21,7 @@
 		9489EBA12AA61A770087424D /* NBSFuseWebviewUIDelegation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9489EBA02AA61A770087424D /* NBSFuseWebviewUIDelegation.m */; };
 		9489EBA32AA621A70087424D /* NBSFuseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9489EBA22AA621A70087424D /* NBSFuseViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9489EBA52AA623B70087424D /* NBSFuseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9489EBA42AA623B70087424D /* NBSFuseViewController.m */; };
+		9489EBAE2AA6445C0087424D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9489EBB02AA6445C0087424D /* Localizable.strings */; };
 		94A886B72A714F6D0098530D /* NBSFuse.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A8865C2A702C6C0098530D /* NBSFuse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94A886B82A714F6D0098530D /* NBSFuseContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A886632A702D240098530D /* NBSFuseContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94A886B92A714F6D0098530D /* NBSFuseSchemeHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A886682A702F020098530D /* NBSFuseSchemeHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -45,6 +46,7 @@
 		9489EBA02AA61A770087424D /* NBSFuseWebviewUIDelegation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseWebviewUIDelegation.m; sourceTree = "<group>"; };
 		9489EBA22AA621A70087424D /* NBSFuseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseViewController.h; sourceTree = "<group>"; };
 		9489EBA42AA623B70087424D /* NBSFuseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseViewController.m; sourceTree = "<group>"; };
+		9489EBAF2AA6445C0087424D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		94A8865C2A702C6C0098530D /* NBSFuse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuse.h; sourceTree = "<group>"; };
 		94A886632A702D240098530D /* NBSFuseContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseContext.h; sourceTree = "<group>"; };
 		94A886662A702D6A0098530D /* NBSFuseContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseContext.m; sourceTree = "<group>"; };
@@ -82,9 +84,18 @@
 			path = plugins;
 			sourceTree = "<group>";
 		};
+		9489EBA62AA640ED0087424D /* localization */ = {
+			isa = PBXGroup;
+			children = (
+				9489EBB02AA6445C0087424D /* Localizable.strings */,
+			);
+			name = localization;
+			sourceTree = "<group>";
+		};
 		94A8864F2A702C6C0098530D = {
 			isa = PBXGroup;
 			children = (
+				9489EBA62AA640ED0087424D /* localization */,
 				94A886652A702D3A0098530D /* src */,
 				94A8865B2A702C6C0098530D /* NBSFuse */,
 				94A8865A2A702C6C0098530D /* Products */,
@@ -216,6 +227,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9489EBAE2AA6445C0087424D /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +252,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9489EBB02AA6445C0087424D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9489EBAF2AA6445C0087424D /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		94A8865E2A702C6C0098530D /* Debug */ = {

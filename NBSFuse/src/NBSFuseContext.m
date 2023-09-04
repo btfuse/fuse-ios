@@ -59,11 +59,12 @@ limitations under the License.
 
 - (void) execCallback:(NSString*) callbackID withData:(NSString*) data {
     NSString* js = [[NSString alloc] initWithFormat:@"window.__nbsfuse_doCallback(%@,%@);", callbackID, data];
-    [self.$webview evaluateJavaScript:js completionHandler:nil];
+    WKWebView* webview = [self.$viewController getWebview];
+    [webview evaluateJavaScript:js completionHandler:nil];
 }
 
-- (WKWebView*)getWebview {
-    return self.$webview;
+- (WKWebView*) getWebview {
+    return [self.$viewController getWebview];
 }
 
 - (NBSFuseAPIRouter*) getAPIRouter {

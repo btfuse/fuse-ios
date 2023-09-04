@@ -27,7 +27,7 @@ limitations under the License.
 
 @interface NBSFuseContext: NSObject
 
-@property (nonatomic, strong) WKWebView* $webview;
+//@property (nonatomic, strong) WKWebView* $webview;
 @property (nonatomic, strong) NSMutableDictionary<NSString*, NBSFusePlugin*>* $pluginMap;
 @property (nonatomic, strong) NBSFuseAPIRouter* $apiRouter;
 @property (nonatomic, strong) NBSFuseViewController* $viewController;
