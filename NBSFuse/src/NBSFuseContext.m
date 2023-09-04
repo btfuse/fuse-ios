@@ -23,32 +23,38 @@ limitations under the License.
 #import <NBSFuse/NBSFuseAPIPacket.h>
 #import <NBSFuse/NBSFuseAPIResponse.h>
 #import <NBSFuse/NBSFuseRuntime.h>
+#import <NBSFuse/NBSFuseViewController.h>
 
 @implementation NBSFuseContext
 
-- (instancetype)init:(UIView*)view {
+- (instancetype)init {
     self = [super init];
     
     self.$apiRouter = [[NBSFuseAPIRouter alloc] init: self];
-    
     self.$pluginMap = [[NSMutableDictionary alloc] init];
+    self.$viewController = [[NBSFuseViewController alloc] init: self];
     
-    WKWebViewConfiguration* configuration = [[WKWebViewConfiguration alloc] init];
-    
-    //TODO: pass the configuration object to a overridable method to give a chance for application-level configuration
-    [configuration setURLSchemeHandler:[[NBSFuseSchemeHandler alloc] init: self] forURLScheme: @"nbsfuse"];
-    
-    self.$webview = [[WKWebView alloc] initWithFrame:view.bounds configuration:configuration];
-
-    [view addSubview: self.$webview];
+//    WKWebViewConfiguration* configuration = [[WKWebViewConfiguration alloc] init];
+//
+//    //TODO: pass the configuration object to a overridable method to give a chance for application-level configuration
+//    [configuration setURLSchemeHandler:[[NBSFuseSchemeHandler alloc] init: self] forURLScheme: @"nbsfuse"];
+//
+//    self.$webview = [[WKWebView alloc] initWithFrame:view.bounds configuration:configuration];
+//    self.$webview.UIDelegate = self.$webviewUIDelegation;
+//
+//    [view addSubview: self.$webview];
     
     [self registerPlugin:[[NBSFuseRuntime alloc] init: self]];
     
-    NSURL* url = [NSURL URLWithString:@"nbsfuse://localhost/assets/index.html"];
-    NSURLRequest* request = [NSURLRequest requestWithURL:url];
-    [self.$webview loadRequest:request];
+//    NSURL* url = [NSURL URLWithString:@"nbsfuse://localhost/assets/index.html"];
+//    NSURLRequest* request = [NSURLRequest requestWithURL:url];
+//    [self.$webview loadRequest:request];
     
     return self;
+}
+
+- (NBSFuseViewController*) getViewController {
+    return self.$viewController;
 }
 
 - (void) execCallback:(NSString*) callbackID withData:(NSString*) data {

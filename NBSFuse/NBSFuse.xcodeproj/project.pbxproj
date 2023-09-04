@@ -17,6 +17,10 @@
 		941862AD2A9FE65E00CCFEE1 /* NBSFuseError.m in Sources */ = {isa = PBXBuildFile; fileRef = 941862AC2A9FE65E00CCFEE1 /* NBSFuseError.m */; };
 		9489EB982AA54FA40087424D /* NBSFuseRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = 9489EB972AA54FA40087424D /* NBSFuseRuntime.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9489EB9A2AA54FED0087424D /* NBSFuseRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 9489EB992AA54FED0087424D /* NBSFuseRuntime.m */; };
+		9489EB9F2AA61A1C0087424D /* NBSFuseWebviewUIDelegation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9489EB9E2AA61A1C0087424D /* NBSFuseWebviewUIDelegation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9489EBA12AA61A770087424D /* NBSFuseWebviewUIDelegation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9489EBA02AA61A770087424D /* NBSFuseWebviewUIDelegation.m */; };
+		9489EBA32AA621A70087424D /* NBSFuseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9489EBA22AA621A70087424D /* NBSFuseViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9489EBA52AA623B70087424D /* NBSFuseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9489EBA42AA623B70087424D /* NBSFuseViewController.m */; };
 		94A886B72A714F6D0098530D /* NBSFuse.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A8865C2A702C6C0098530D /* NBSFuse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94A886B82A714F6D0098530D /* NBSFuseContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A886632A702D240098530D /* NBSFuseContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94A886B92A714F6D0098530D /* NBSFuseSchemeHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A886682A702F020098530D /* NBSFuseSchemeHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -37,6 +41,10 @@
 		941862AC2A9FE65E00CCFEE1 /* NBSFuseError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseError.m; sourceTree = "<group>"; };
 		9489EB972AA54FA40087424D /* NBSFuseRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseRuntime.h; sourceTree = "<group>"; };
 		9489EB992AA54FED0087424D /* NBSFuseRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseRuntime.m; sourceTree = "<group>"; };
+		9489EB9E2AA61A1C0087424D /* NBSFuseWebviewUIDelegation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseWebviewUIDelegation.h; sourceTree = "<group>"; };
+		9489EBA02AA61A770087424D /* NBSFuseWebviewUIDelegation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseWebviewUIDelegation.m; sourceTree = "<group>"; };
+		9489EBA22AA621A70087424D /* NBSFuseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseViewController.h; sourceTree = "<group>"; };
+		9489EBA42AA623B70087424D /* NBSFuseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseViewController.m; sourceTree = "<group>"; };
 		94A8865C2A702C6C0098530D /* NBSFuse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuse.h; sourceTree = "<group>"; };
 		94A886632A702D240098530D /* NBSFuseContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseContext.h; sourceTree = "<group>"; };
 		94A886662A702D6A0098530D /* NBSFuseContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseContext.m; sourceTree = "<group>"; };
@@ -104,6 +112,8 @@
 				9418629E2A995BDC00CCFEE1 /* NBSFuseAPIPacket.h */,
 				941862A22A99617100CCFEE1 /* NBSFuseAPIResponse.h */,
 				941862AA2A9FE5F700CCFEE1 /* NBSFuseError.h */,
+				9489EB9E2AA61A1C0087424D /* NBSFuseWebviewUIDelegation.h */,
+				9489EBA22AA621A70087424D /* NBSFuseViewController.h */,
 			);
 			path = NBSFuse;
 			sourceTree = "<group>";
@@ -119,6 +129,8 @@
 				941862A02A995C4F00CCFEE1 /* NBSFuseAPIPacket.m */,
 				941862A42A996F7900CCFEE1 /* NBSFuseAPIResponse.m */,
 				941862AC2A9FE65E00CCFEE1 /* NBSFuseError.m */,
+				9489EBA02AA61A770087424D /* NBSFuseWebviewUIDelegation.m */,
+				9489EBA42AA623B70087424D /* NBSFuseViewController.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -138,7 +150,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				94A886DC2A7169920098530D /* NBSFusePlugin.h in Headers */,
+				9489EB9F2AA61A1C0087424D /* NBSFuseWebviewUIDelegation.h in Headers */,
 				94A886B72A714F6D0098530D /* NBSFuse.h in Headers */,
+				9489EBA32AA621A70087424D /* NBSFuseViewController.h in Headers */,
 				9418629B2A99564600CCFEE1 /* NBSFuseAPIRouter.h in Headers */,
 				94A886B92A714F6D0098530D /* NBSFuseSchemeHandler.h in Headers */,
 				941862AB2A9FE5F700CCFEE1 /* NBSFuseError.h in Headers */,
@@ -215,9 +229,11 @@
 				941862A12A995C4F00CCFEE1 /* NBSFuseAPIPacket.m in Sources */,
 				94A886DE2A716A0C0098530D /* NBSFusePlugin.m in Sources */,
 				941862AD2A9FE65E00CCFEE1 /* NBSFuseError.m in Sources */,
+				9489EBA12AA61A770087424D /* NBSFuseWebviewUIDelegation.m in Sources */,
 				94A886BB2A714F6D0098530D /* NBSFuseSchemeHandler.m in Sources */,
 				9418629D2A9956F100CCFEE1 /* NBSFuseAPIRouter.m in Sources */,
 				9489EB9A2AA54FED0087424D /* NBSFuseRuntime.m in Sources */,
+				9489EBA52AA623B70087424D /* NBSFuseViewController.m in Sources */,
 				941862A52A996F7900CCFEE1 /* NBSFuseAPIResponse.m in Sources */,
 				94A886BC2A714F6D0098530D /* NBSFuseContext.m in Sources */,
 			);

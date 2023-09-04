@@ -21,6 +21,7 @@ limitations under the License.
 #import <Foundation/Foundation.h>
 #import <WebKit/WebKit.h>
 
+@class NBSFuseViewController;
 @class NBSFusePlugin;
 @class NBSFuseAPIRouter;
 
@@ -29,9 +30,11 @@ limitations under the License.
 @property (nonatomic, strong) WKWebView* $webview;
 @property (nonatomic, strong) NSMutableDictionary<NSString*, NBSFusePlugin*>* $pluginMap;
 @property (nonatomic, strong) NBSFuseAPIRouter* $apiRouter;
+@property (nonatomic, strong) NBSFuseViewController* $viewController;
 
-- (instancetype) init:(UIView*)view;
+- (instancetype) init;
 - (WKWebView*) getWebview;
+- (NBSFuseViewController*) getViewController;
 - (void) registerPlugin:(NBSFusePlugin*)plugin;
 - (NBSFusePlugin*) getPlugin:(NSString*)pluginID;
 - (NBSFuseAPIRouter*) getAPIRouter;

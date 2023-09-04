@@ -23,8 +23,6 @@ FOUNDATION_EXPORT double NBSFuseVersionNumber;
 //! Project version string for NBSFuse.
 FOUNDATION_EXPORT const unsigned char NBSFuseVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <NBSFuse/PublicHeader.h>
-
 #import <NBSFuse/NBSFuseContext.h>
 #import <NBSFuse/NBSFusePlugin.h>
 #import <NBSFuse/NBSFuseSchemeHandler.h>
@@ -32,6 +30,8 @@ FOUNDATION_EXPORT const unsigned char NBSFuseVersionString[];
 #import <NBSFuse/NBSFuseAPIPacket.h>
 #import <NBSFuse/NBSFuseAPIResponse.h>
 #import <NBSFuse/NBSFuseError.h>
+#import <NBSFuse/NBSFuseWebviewUIDelegation.h>
+#import <NBSFuse/NBSFuseViewController.h>
 
 // Core Plugins
 #import <NBSFuse/NBSFuseRuntime.h>
