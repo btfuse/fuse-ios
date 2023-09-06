@@ -26,11 +26,61 @@ limitations under the License.
     return @"FuseRuntime";
 }
 
+- (instancetype) init:(NBSFuseContext*) context {
+    self = [super init:context];
+    
+    self.$resumeHandlers = [[NSMutableArray alloc] init];
+    self.$pauseHandlers = [[NSMutableArray alloc] init];
+    
+    // Register for background and foreground notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onPause) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onResume) name:UIApplicationWillEnterForegroundNotification object:nil];
+    
+    return self;
+}
+
 - (void) initHandles {
     __weak NBSFuseRuntime* weakSelf = self;
     
     [self attachHandler:@"/info" callback:^void(NSData *data, NBSFuseAPIResponse* response) {
         [weakSelf getInfo:data withResponse:response];
+        [weakSelf send:response];
+    }];
+    
+    [self attachHandler:@"/registerPauseHandler" callback:^(NSData* data, NBSFuseAPIResponse* response) {
+        [weakSelf.$pauseHandlers addObject:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
+        [weakSelf send:response];
+    }];
+    
+    [self attachHandler:@"/unregisterPauseHandler" callback:^(NSData* data, NBSFuseAPIResponse* response) {
+        NSString* targetValue = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSInteger indexToRemove = [weakSelf.$pauseHandlers indexOfObjectPassingTest: ^BOOL (NSString* obj, NSUInteger idx, BOOL* stop) {
+            return [obj isEqualToString: targetValue];
+        }];
+        
+        if (indexToRemove != NSNotFound) {
+            [weakSelf.$pauseHandlers removeObjectAtIndex:indexToRemove];
+        }
+        
+        [weakSelf send:response];
+    }];
+    
+    [self attachHandler:@"/registerResumeHandler" callback:^(NSData* data, NBSFuseAPIResponse* response) {
+        [weakSelf.$resumeHandlers addObject:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
+        [weakSelf send:response];
+    }];
+    
+    [self attachHandler:@"/unregisterResumeHandler" callback:^(NSData* data, NBSFuseAPIResponse* response) {
+        NSString* targetValue = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSInteger indexToRemove = [weakSelf.$resumeHandlers indexOfObjectPassingTest: ^BOOL (NSString* obj, NSUInteger idx, BOOL* stop) {
+            return [obj isEqualToString: targetValue];
+        }];
+        
+        if (indexToRemove != NSNotFound) {
+            [weakSelf.$resumeHandlers removeObjectAtIndex:indexToRemove];
+        }
+        
+        [weakSelf send:response];
     }];
 }
 
@@ -47,6 +97,22 @@ limitations under the License.
     return @{
         @"version": version
     };
+}
+
+- (void) onPause {
+    @synchronized (self.$pauseHandlers) {
+        for (id callbackID in self.$pauseHandlers) {
+            [[self getContext] execCallback:callbackID];
+        }
+    }
+}
+
+- (void) onResume {
+    @synchronized (self.$resumeHandlers) {
+        for (id callbackID in self.$resumeHandlers) {
+            [[self getContext] execCallback:callbackID];
+        }
+    }
 }
 
 @end

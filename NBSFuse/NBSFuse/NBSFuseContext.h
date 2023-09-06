@@ -39,6 +39,7 @@ limitations under the License.
 - (NBSFusePlugin*) getPlugin:(NSString*)pluginID;
 - (NBSFuseAPIRouter*) getAPIRouter;
 - (void) execCallback:(NSString*) callbackID withData:(NSString*) data;
+- (void) execCallback:(NSString*) callbackID;
 
 @end
 

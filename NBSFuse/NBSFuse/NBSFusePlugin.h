@@ -38,7 +38,7 @@ typedef void (^NBSFusePluginAPIHandle)(NSData* data, NBSFuseAPIResponse* respons
 @property (nonatomic, strong) NSMutableDictionary<NSString*, NBSFusePluginAPIHandle>* $handles;
 @property (nonatomic, weak) NBSFuseContext* $context;
 
-- (instancetype) init:(NBSFuseContext*)context;
+- (instancetype) init:(NBSFuseContext*) context;
 
 - (void) route:(NSString*)path data:(NSData*)data withResponse:(NBSFuseAPIResponse*) response;
 
@@ -51,6 +51,7 @@ typedef void (^NBSFusePluginAPIHandle)(NSData* data, NBSFuseAPIResponse* respons
 - (void) send:(NBSFuseAPIResponse*) response withString:(NSString*) data;
 - (void) send:(NBSFuseAPIResponse*) response withData:(NSDate*) data withType:(NSString*) type;
 - (void) send:(NBSFuseAPIResponse*) response withJSON:(NSDictionary*) data;
+- (void) send:(NBSFuseAPIResponse*) response;
 - (void) sendError:(NBSFuseAPIResponse*) response withError:(NBSFuseError*) error;
 
 @end

@@ -102,6 +102,11 @@ limitations under the License.
     [response didFinish];
 }
 
+- (void) send:(NBSFuseAPIResponse*) response {
+    [response finishHeaders:NBSFuseAPIResponseStatusOk withContentType:@"text/plain" withContentLength:0];
+    [response didFinish];
+}
+
 - (void) sendError:(NBSFuseAPIResponse*) response withError:(NBSFuseError*) error {
     NSError* serializationError = nil;
     NSString* data = [error serialize:serializationError];

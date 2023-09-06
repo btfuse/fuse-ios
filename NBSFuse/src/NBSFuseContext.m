@@ -34,21 +34,7 @@ limitations under the License.
     self.$pluginMap = [[NSMutableDictionary alloc] init];
     self.$viewController = [[NBSFuseViewController alloc] init: self];
     
-//    WKWebViewConfiguration* configuration = [[WKWebViewConfiguration alloc] init];
-//
-//    //TODO: pass the configuration object to a overridable method to give a chance for application-level configuration
-//    [configuration setURLSchemeHandler:[[NBSFuseSchemeHandler alloc] init: self] forURLScheme: @"nbsfuse"];
-//
-//    self.$webview = [[WKWebView alloc] initWithFrame:view.bounds configuration:configuration];
-//    self.$webview.UIDelegate = self.$webviewUIDelegation;
-//
-//    [view addSubview: self.$webview];
-    
     [self registerPlugin:[[NBSFuseRuntime alloc] init: self]];
-    
-//    NSURL* url = [NSURL URLWithString:@"nbsfuse://localhost/assets/index.html"];
-//    NSURLRequest* request = [NSURLRequest requestWithURL:url];
-//    [self.$webview loadRequest:request];
     
     return self;
 }
@@ -59,6 +45,12 @@ limitations under the License.
 
 - (void) execCallback:(NSString*) callbackID withData:(NSString*) data {
     NSString* js = [[NSString alloc] initWithFormat:@"window.__nbsfuse_doCallback(%@,%@);", callbackID, data];
+    WKWebView* webview = [self.$viewController getWebview];
+    [webview evaluateJavaScript:js completionHandler:nil];
+}
+
+- (void) execCallback:(NSString*) callbackID {
+    NSString* js = [[NSString alloc] initWithFormat:@"window.__nbsfuse_doCallback(%@);", callbackID];
     WKWebView* webview = [self.$viewController getWebview];
     [webview evaluateJavaScript:js completionHandler:nil];
 }

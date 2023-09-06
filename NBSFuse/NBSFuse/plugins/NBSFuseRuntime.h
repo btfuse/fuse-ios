@@ -23,9 +23,15 @@ limitations under the License.
 
 @interface NBSFuseRuntime : NBSFusePlugin
 
+@property (atomic, strong) NSMutableArray* $pauseHandlers;
+@property (atomic, strong) NSMutableArray* $resumeHandlers;
+
 - (NSString*) getID;
 
 - (NSDictionary*) getInfo;
+
+- (void) onPause;
+- (void) onResume;
 
 @end
 
