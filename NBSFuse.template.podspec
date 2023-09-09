@@ -14,7 +14,8 @@ A native-first framework for building hybrid native-web applications.
   s.author           = { 'Norman Breau' => 'norman@nbsolutions.ca' }
   s.ios.deployment_target = '13.0'
 
-  s.default_subspecs = 'bin'
+  s.default_subspec = 'bin'
+  s.default_subspecs = :none
 
   s.subspec 'src' do |source|
     source.source = {
