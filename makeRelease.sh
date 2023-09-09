@@ -55,14 +55,19 @@ zip NBSFuse.zip -r NBSFuse
 cd ../..
 mv build/dist/NBSFuse.zip build/
 
-CHECKSUM="$(shasum -a 1 build/NBSFuse.zip  | cut -d ' ' -f 1)"
+CHECKSUM="$(shasum -a 1 build/NBSFuse.xcframework.zip  | cut -d ' ' -f 1)"
 
 # Generate the podspec. Unfortunately due to how podspecs work, they need access to any files
 # they reference, so we can't read from VERSION in the podspec itself.
-echo "# This is a generated file, do not modify directory\n\n" > NBSFuse.podspec
-echo "$(cat NBSFuse.template.podspec)" >> NBSFuse.podspec
-sed -i '' "s/:VERSION:/$VERSION/g" NBSFuse.podspec
-sed -i '' "s/:CHECKSUM:/$CHECKSUM/g" NBSFuse.podspec
+echo "// This is a generated file, do not modify directory\n\n" > NBSFuse.podspec
+echo "$(cat Package.template.swift)" >> Package.swift
+sed -i '' "s/:VERSION:/$VERSION/g" Package.swift
+sed -i '' "s/:CHECKSUM:/$CHECKSUM/g" Package.swift
+
+# echo "# This is a generated file, do not modify directory\n\n" > NBSFuse.podspec
+# echo "$(cat NBSFuse.template.podspec)" >> NBSFuse.podspec
+# sed -i '' "s/:VERSION:/$VERSION/g" NBSFuse.podspec
+# sed -i '' "s/:CHECKSUM:/$CHECKSUM/g" NBSFuse.podspec
 
 git add VERSION
 git commit -m "iOS Release: $VERSION"
@@ -71,8 +76,9 @@ git tag -a $VERSION -m "iOS Release: $VERSION"
 git push --tags
 
 gh release create $VERSION \
+    ./Package.swift \
     ./build/NBSFuse.zip \
     ./build/NBSFuse.xcframework.zip \
     --verify-tag --generate-notes
 
-pod repo push nbs NBSFuse.podspec
+# pod repo push nbs NBSFuse.podspec
