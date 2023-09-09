@@ -39,15 +39,12 @@ cd ..
 cd fuse-ios
 
 rm -f ./build/NBSFuse.xcframework.zip
-rm -f ./build/NBSFuse-debug.xcframework.zip
 
 zip ./build/NBSFuse.xcframework.zip -r ./build/NBSFuse.xcframework
-zip ./build/NBSFuse-debug.xcframework.zip -r ./build/NBSFuse-debug.xcframework
 
 rm -rf build/dist
 mkdir -p build/dist/NBSFuse
 cp -r build/NBSFuse.xcframework build/dist/NBSFuse/
-cp -r build/NBSFuse-debug.xcframework build/dist/NBSFuse/
 cp LICENSE build/dist/NBSFuse/
 mkdir -p build/dist/NBSFuse/Headers
 cp -r NBSFuse/NBSFuse/* build/dist/NBSFuse/Headers/
@@ -76,7 +73,6 @@ git push --tags
 gh release create $VERSION \
     ./build/NBSFuse.zip \
     ./build/NBSFuse.xcframework.zip \
-    ./build/NBSFuse-debug.xcframework.zip \
     --verify-tag --generate-notes
 
 pod repo push nbs NBSFuse.podspec

@@ -12,15 +12,22 @@ A native-first framework for building hybrid native-web applications.
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'Apache-2.0', :file => 'NBSFuse/LICENSE' }
   s.author           = { 'Norman Breau' => 'norman@nbsolutions.ca' }
-  s.source           = {
-    :http => 'https://github.com/nbsfuse/fuse-ios/releases/download/:VERSION:/NBSFuse.zip',
-    :sha1 => ':CHECKSUM:'
-  }
-
   s.ios.deployment_target = '13.0'
 
-  s.source_files = 'NBSFuse/NBSFuse.xcframework/**/*'
-  s.vendored_frameworks = 'NBSFuse/NBSFuse.xcframework'
-  # s.source_files = 'NBSFuse/**/*.h'
-  # s.public_header_files = 'NBSFuse/Headers/*'
+  s.subsec 'src' do |source|
+    source.source = {
+      :git => 'https://github.com/nbsfuse/fuse-ios.git'
+      :tag => ':VERSION:'
+    }
+    source.source_files = 'NBSFuse/**/*.{h,m}'
+    source.public_header_files = 'NBSFuse/NBSFuse/*.h'
+  end
+
+  s.subspec 'bin' do |binary|
+    binary.source = {
+      :http => 'https://github.com/nbsfuse/fuse-ios/releases/download/:VERSION:/NBSFuse.zip',
+      :sha1 => ':CHECKSUM:'
+    }
+    binary.vendored_frameworks = 'NBSFuse/NBSFuse.xcframework'
+  end
 end
