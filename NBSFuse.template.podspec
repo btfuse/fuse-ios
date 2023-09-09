@@ -16,7 +16,7 @@ A native-first framework for building hybrid native-web applications.
 
   s.subsec 'src' do |source|
     source.source = {
-      :git => 'https://github.com/nbsfuse/fuse-ios.git'
+      :git => 'https://github.com/nbsfuse/fuse-ios.git',
       :tag => ':VERSION:'
     }
     source.source_files = 'NBSFuse/**/*.{h,m}'
