@@ -14,7 +14,7 @@ A native-first framework for building hybrid native-web applications.
   s.author           = { 'Norman Breau' => 'norman@nbsolutions.ca' }
   s.ios.deployment_target = '13.0'
 
-  s.subsec 'src' do |source|
+  s.subspec 'src' do |source|
     source.source = {
       :git => 'https://github.com/nbsfuse/fuse-ios.git',
       :tag => ':VERSION:'
