@@ -56,13 +56,15 @@ cd ../..
 mv build/dist/NBSFuse.zip build/
 
 CHECKSUM="$(shasum -a 1 build/NBSFuse.xcframework.zip  | cut -d ' ' -f 1)"
+echo "$CHECKSUM" > build/NBSFuse.xcframework.checksum
 
+# Neither SwiftPM or CocoaPods wants to play ball, so I'm just not going to use them
 # Generate the podspec. Unfortunately due to how podspecs work, they need access to any files
 # they reference, so we can't read from VERSION in the podspec itself.
-echo "// This is a generated file, do not modify directly\n\n" > Package.swift
-echo "$(cat Package.template.swift)" >> Package.swift
-sed -i '' "s/:VERSION:/$VERSION/g" Package.swift
-sed -i '' "s/:CHECKSUM:/$CHECKSUM/g" Package.swift
+# echo "// This is a generated file, do not modify directly\n\n" > Package.swift
+# echo "$(cat Package.template.swift)" >> Package.swift
+# sed -i '' "s/:VERSION:/$VERSION/g" Package.swift
+# sed -i '' "s/:CHECKSUM:/$CHECKSUM/g" Package.swift
 
 # echo "# This is a generated file, do not modify directory\n\n" > NBSFuse.podspec
 # echo "$(cat NBSFuse.template.podspec)" >> NBSFuse.podspec
@@ -76,9 +78,8 @@ git tag -a $VERSION -m "iOS Release: $VERSION"
 git push --tags
 
 gh release create $VERSION \
-    ./Package.swift \
-    ./build/NBSFuse.zip \
     ./build/NBSFuse.xcframework.zip \
+    ./build/NBSFuse.xcframework.checksum
     --verify-tag --generate-notes
 
 # pod repo push nbs NBSFuse.podspec
