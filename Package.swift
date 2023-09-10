@@ -20,3 +20,24 @@ let package = Package(
         )
     ]
 )
+
+import PackageDescription
+
+let package = Package(
+    name: "NBSFuse",
+    platforms: [ .iOS("13.0") ],
+    products: [
+        .library(
+            name: "NBSFuse",
+            targets: ["NBSFuse"]
+        )
+    ],
+    dependencies: [],
+    targets: [
+        .binaryTarget(
+            name: "NBSFuse",
+            path: "https://github.com/nbsfuse/fuse-ios/releases/download/0.2.16/NBSFuse.xcframework.zip",
+            checksum: "08c851e1ae26244364d464bce116a7f02822323c"
+        )
+    ]
+)
