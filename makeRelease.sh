@@ -69,7 +69,7 @@ sed -i '' "s/:CHECKSUM:/$CHECKSUM/g" Package.swift
 # sed -i '' "s/:VERSION:/$VERSION/g" NBSFuse.podspec
 # sed -i '' "s/:CHECKSUM:/$CHECKSUM/g" NBSFuse.podspec
 
-git add VERSION
+git add VERSION Package.swift
 git commit -m "iOS Release: $VERSION"
 git push
 git tag -a $VERSION -m "iOS Release: $VERSION"
