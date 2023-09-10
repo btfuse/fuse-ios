@@ -1,7 +1,6 @@
-// This is a generated file, do not modify directory
-
-
 // swift-tools-version: 5.8
+
+// This is a generated file, do not modify directory
 
 /*
 Copyright 2023 Norman Breau
