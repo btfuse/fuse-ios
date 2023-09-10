@@ -79,7 +79,7 @@ git push --tags
 
 gh release create $VERSION \
     ./build/NBSFuse.xcframework.zip \
-    ./build/NBSFuse.xcframework.checksum
+    ./build/NBSFuse.xcframework.checksum \
     --verify-tag --generate-notes
 
 # pod repo push nbs NBSFuse.podspec
