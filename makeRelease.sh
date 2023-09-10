@@ -59,7 +59,7 @@ CHECKSUM="$(shasum -a 1 build/NBSFuse.xcframework.zip  | cut -d ' ' -f 1)"
 
 # Generate the podspec. Unfortunately due to how podspecs work, they need access to any files
 # they reference, so we can't read from VERSION in the podspec itself.
-echo "// This is a generated file, do not modify directory\n\n" > NBSFuse.podspec
+echo "// This is a generated file, do not modify directory\n\n" > Package.swift
 echo "$(cat Package.template.swift)" >> Package.swift
 sed -i '' "s/:VERSION:/$VERSION/g" Package.swift
 sed -i '' "s/:CHECKSUM:/$CHECKSUM/g" Package.swift
