@@ -13,6 +13,10 @@ let package = Package(
     ],
     dependencies: [],
     targets: [
+        .target(
+            name: "NBSFuse",
+            dependencies: []
+        ),
         .binaryTarget(
             name: "NBSFuse",
             path: "https://github.com/nbsfuse/fuse-ios/releases/download/0.2.17/NBSFuse.xcframework.zip",
