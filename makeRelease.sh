@@ -73,7 +73,7 @@ echo "$CHECKSUM" > build/NBSFuse.xcframework.checksum
 # sed -i '' "s/:VERSION:/$VERSION/g" NBSFuse.podspec
 # sed -i '' "s/:CHECKSUM:/$CHECKSUM/g" NBSFuse.podspec
 
-git add VERSION Package.swift
+git add VERSION
 git commit -m "iOS Release: $VERSION"
 git push
 git tag -a $VERSION -m "iOS Release: $VERSION"
