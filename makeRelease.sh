@@ -40,7 +40,9 @@ cd fuse-ios
 
 rm -f ./build/NBSFuse.xcframework.zip
 
-zip ./build/NBSFuse.xcframework.zip -r ./build/NBSFuse.xcframework
+cd build
+zip ./NBSFuse.xcframework.zip -r ./NBSFuse.xcframework
+cd ..
 
 rm -rf build/dist
 mkdir -p build/dist/NBSFuse
