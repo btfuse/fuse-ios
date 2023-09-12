@@ -93,4 +93,78 @@ limitations under the License.
     [self didFinishHeaders];
 }
 
+- (void) sendData:(NSData*) data {
+    [self finishHeaders:NBSFuseAPIResponseStatusOk withContentType:@"application/octet-stream" withContentLength: data.length];
+    [self pushData: data];
+    [self didFinish];
+}
+
+- (void) sendData:(NSData*) data withType:(NSString*) type {
+    [self finishHeaders:NBSFuseAPIResponseStatusOk withContentType:type withContentLength: data.length];
+    [self pushData: data];
+    [self didFinish];
+}
+
+- (void) sendJSON:(NSDictionary*) data {
+    NSError* serializationError;
+    NSData* serialized = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:&serializationError];
+    if (serializationError != nil) {
+        NSLog(@"Error domain: %@", serializationError.domain);
+        NSLog(@"Error code: %ld", (long)serializationError.code);
+        NSLog(@"Error description: %@", serializationError.localizedDescription);
+        
+        if (serializationError.localizedFailureReason) {
+            NSLog(@"Failure reason: %@", serializationError.localizedFailureReason);
+        }
+        
+        if (serializationError.localizedRecoverySuggestion) {
+            NSLog(@"Recovery suggestion: %@", serializationError.localizedRecoverySuggestion);
+        }
+        
+        NSLog(@"Error user info: %@", serializationError.userInfo);
+        [self didInternalError];
+        return;
+    }
+    [self finishHeaders:NBSFuseAPIResponseStatusOk withContentType:@"application/json" withContentLength: serialized.length];
+    [self pushData:serialized];
+    [self didFinish];
+}
+
+- (void) sendString:(NSString*) data {
+    [self finishHeaders:NBSFuseAPIResponseStatusOk withContentType:@"text/plain" withContentLength:[data length]];
+    [self pushData: [data dataUsingEncoding:NSUTF8StringEncoding]];
+    [self didFinish];
+}
+
+- (void) sendNoContent {
+    [self finishHeaders:NBSFuseAPIResponseStatusOk withContentType:@"text/plain" withContentLength:0];
+    [self didFinish];
+}
+
+- (void) sendError:(NBSFuseError*) error {
+    NSError* serializationError = nil;
+    NSString* data = [error serialize:serializationError];
+    if (serializationError != nil) {
+        NSLog(@"Error domain: %@", serializationError.domain);
+        NSLog(@"Error code: %ld", (long)serializationError.code);
+        NSLog(@"Error description: %@", serializationError.localizedDescription);
+        
+        if (serializationError.localizedFailureReason) {
+            NSLog(@"Failure reason: %@", serializationError.localizedFailureReason);
+        }
+        
+        if (serializationError.localizedRecoverySuggestion) {
+            NSLog(@"Recovery suggestion: %@", serializationError.localizedRecoverySuggestion);
+        }
+        
+        NSLog(@"Error user info: %@", serializationError.userInfo);
+        [self didInternalError];
+        return;
+    }
+    
+    [self finishHeaders:NBSFuseAPIResponseStatusError withContentType:@"application/json" withContentLength:[data length]];
+    [self pushData: [data dataUsingEncoding:NSUTF8StringEncoding]];
+    [self didFinish];
+}
+
 @end

@@ -19,6 +19,7 @@ limitations under the License.
 #define NBSFuseAPIResponse_h
 
 #import <WebKit/WebKit.h>
+#import <NBSFuse/NBSFuseError.h>
 
 typedef NS_ENUM(NSUInteger, NBSFuseAPIResponseStatus) {
     NBSFuseAPIResponseStatusOk = 200,
@@ -49,6 +50,14 @@ typedef NS_ENUM(NSUInteger, NBSFuseAPIResponseStatus) {
 - (void) didFinish;
 
 - (void) didInternalError;
+
+// Convenience methods, if you don't need to chunk data
+- (void) sendString:(NSString*) data;
+- (void) sendData:(NSData*) data;
+- (void) sendData:(NSDate*) data withType:(NSString*) type;
+- (void) sendJSON:(NSDictionary*) data;
+- (void) sendNoContent;
+- (void) sendError:(NBSFuseError*) error;
 
 @end
 

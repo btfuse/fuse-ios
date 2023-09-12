@@ -43,13 +43,12 @@ limitations under the License.
     __weak NBSFuseRuntime* weakSelf = self;
     
     [self attachHandler:@"/info" callback:^void(NSData *data, NBSFuseAPIResponse* response) {
-        [weakSelf getInfo:data withResponse:response];
-        [weakSelf send:response];
+        [response sendJSON:[weakSelf getInfo]];
     }];
     
     [self attachHandler:@"/registerPauseHandler" callback:^(NSData* data, NBSFuseAPIResponse* response) {
         [weakSelf.$pauseHandlers addObject:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
-        [weakSelf send:response];
+        [response sendNoContent];
     }];
     
     [self attachHandler:@"/unregisterPauseHandler" callback:^(NSData* data, NBSFuseAPIResponse* response) {
@@ -62,12 +61,12 @@ limitations under the License.
             [weakSelf.$pauseHandlers removeObjectAtIndex:indexToRemove];
         }
         
-        [weakSelf send:response];
+        [response sendNoContent];
     }];
     
     [self attachHandler:@"/registerResumeHandler" callback:^(NSData* data, NBSFuseAPIResponse* response) {
         [weakSelf.$resumeHandlers addObject:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
-        [weakSelf send:response];
+        [response sendNoContent];
     }];
     
     [self attachHandler:@"/unregisterResumeHandler" callback:^(NSData* data, NBSFuseAPIResponse* response) {
@@ -80,13 +79,8 @@ limitations under the License.
             [weakSelf.$resumeHandlers removeObjectAtIndex:indexToRemove];
         }
         
-        [weakSelf send:response];
+        [response sendNoContent];
     }];
-}
-
-- (void) getInfo:(NSData*)data withResponse:(NBSFuseAPIResponse*) response {
-    NSDictionary* runtimeData = [self getInfo];
-    [self send:response withJSON: runtimeData];
 }
 
 - (NSDictionary*) getInfo {

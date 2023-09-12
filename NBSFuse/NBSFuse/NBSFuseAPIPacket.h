@@ -24,6 +24,7 @@ limitations under the License.
 
 @property (nonatomic, strong) NSString* $route;
 @property (nonatomic, strong) NSData* $data;
+@property (nonatomic, strong) NSDictionary* $headers;
 
 - (instancetype) init:(NSString*) route withData:(NSData*) data;
 

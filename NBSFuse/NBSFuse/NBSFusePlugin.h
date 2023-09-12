@@ -47,13 +47,6 @@ typedef void (^NBSFusePluginAPIHandle)(NSData* data, NBSFuseAPIResponse* respons
 
 - (NBSFuseContext*) getContext;
 
-// Convenience methods, if you don't need to chunk data
-- (void) send:(NBSFuseAPIResponse*) response withString:(NSString*) data;
-- (void) send:(NBSFuseAPIResponse*) response withData:(NSDate*) data withType:(NSString*) type;
-- (void) send:(NBSFuseAPIResponse*) response withJSON:(NSDictionary*) data;
-- (void) send:(NBSFuseAPIResponse*) response;
-- (void) sendError:(NBSFuseAPIResponse*) response withError:(NBSFuseError*) error;
-
 @end
 
 #endif /* NBSFusePlugih_h */
