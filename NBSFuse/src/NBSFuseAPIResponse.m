@@ -22,7 +22,7 @@ limitations under the License.
 @implementation NBSFuseAPIResponse
 
 - (instancetype)init:(id<WKURLSchemeTask>)task withURL:(NSURL *)requestURL {
-    self = [self init];
+    self = [super init];
     
     self.$task = task;
     self.$requestURL = requestURL;

@@ -23,49 +23,48 @@ limitations under the License.
 
 @implementation NBSFuseViewController
 
-- (instancetype) init:(NBSFuseContext*) context {
-    self = [super init];
+- (void) viewDidLoad {
+    [super viewDidLoad];
     
-    self.$context = context;
+    $context = [[NBSFuseContext alloc] init: self];
     
-    self.$webviewUIDelegation = [[NBSFuseWebviewUIDelegation alloc] init];
+    $webviewUIDelegation = [[NBSFuseWebviewUIDelegation alloc] init];
     
     WKWebViewConfiguration* configuration = [[WKWebViewConfiguration alloc] init];
     
     //TODO: pass the configuration object to a overridable method to give a chance for application-level configuration
     [configuration setURLSchemeHandler: [
-        [NBSFuseSchemeHandler alloc] init: context]
+        [NBSFuseSchemeHandler alloc] init: $context]
         forURLScheme: @"nbsfuse"
     ];
     
-    self.$webview = [[WKWebView alloc] initWithFrame: CGRectZero configuration: configuration];
-    self.$webview.UIDelegate = self.$webviewUIDelegation;
+    $webview = [[WKWebView alloc] initWithFrame: CGRectZero configuration: configuration];
+    $webview.UIDelegate = $webviewUIDelegation;
     
-    return self;
-}
-
-- (WKWebView*) getWebview {
-    return self.$webview;
-}
-
-- (void) viewDidLoad {
-    [super viewDidLoad];
-    
-    [self addChildViewController: self.$webviewUIDelegation];
-    [self.view addSubview: self.$webviewUIDelegation.view];
+    [self addChildViewController: $webviewUIDelegation];
+    [self.view addSubview: $webviewUIDelegation.view];
     
     // Calculate or determine the desired frame
     CGRect webviewFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     
     // Set the frame for the WKWebView
-    self.$webview.frame = webviewFrame;
+    $webview.frame = webviewFrame;
     
     // Add the WKWebView as a subview
-    [self.view addSubview:self.$webview];
+    [self.view addSubview:$webview];
     
     NSURL* url = [NSURL URLWithString:@"nbsfuse://localhost/assets/index.html"];
     NSURLRequest* request = [NSURLRequest requestWithURL:url];
-    [self.$webview loadRequest:request];
+    [$webview loadRequest:request];
+}
+
+
+- (WKWebView*) getWebview {
+    return $webview;
+}
+
+- (NBSFuseContext*) getContext {
+    return $context;
 }
 
 @end

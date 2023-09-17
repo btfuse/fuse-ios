@@ -38,7 +38,8 @@ typedef void (^NBSFusePluginAPIHandle)(NSData* data, NBSFuseAPIResponse* respons
 @property (nonatomic, strong) NSMutableDictionary<NSString*, NBSFusePluginAPIHandle>* $handles;
 @property (nonatomic, weak) NBSFuseContext* $context;
 
-- (instancetype) init:(NBSFuseContext*) context;
+- (instancetype) init NS_UNAVAILABLE;
+- (instancetype) init:(NBSFuseContext*) context NS_DESIGNATED_INITIALIZER;
 
 - (void) route:(NSString*)path data:(NSData*)data withResponse:(NBSFuseAPIResponse*) response;
 

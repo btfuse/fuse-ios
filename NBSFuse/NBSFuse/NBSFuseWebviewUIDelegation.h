@@ -25,4 +25,4 @@ limitations under the License.
 
 @end
 
-#endif /* NBSFuseWebviewUIDelegation_h */
+#endif

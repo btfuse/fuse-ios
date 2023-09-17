@@ -5,6 +5,9 @@
       location = "container:"
       name = "plugins">
       <FileRef
+         location = "group:../plugins/permission/ios/permissionplugin/permissionplugin.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:../plugins/echo/ios/echo.xcodeproj">
       </FileRef>
    </Group>

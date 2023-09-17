@@ -27,12 +27,24 @@ limitations under the License.
 
 @implementation NBSFuseContext
 
-- (instancetype)init {
+//- (instancetype)init {
+//    self = [super init];
+//
+//    $apiRouter = [[NBSFuseAPIRouter alloc] init: self];
+//    $pluginMap = [[NSMutableDictionary alloc] init];
+////    $viewController = [[NBSFuseViewController alloc] init: self];
+//
+//    [self registerPlugin:[[NBSFuseRuntime alloc] init: self]];
+//
+//    return self;
+//}
+
+- (instancetype) init:(NBSFuseViewController*) controller {
     self = [super init];
     
-    self.$apiRouter = [[NBSFuseAPIRouter alloc] init: self];
-    self.$pluginMap = [[NSMutableDictionary alloc] init];
-    self.$viewController = [[NBSFuseViewController alloc] init: self];
+    $apiRouter = [[NBSFuseAPIRouter alloc] init: self];
+    $pluginMap = [[NSMutableDictionary alloc] init];
+    $viewController = controller;
     
     [self registerPlugin:[[NBSFuseRuntime alloc] init: self]];
     
@@ -40,40 +52,40 @@ limitations under the License.
 }
 
 - (NBSFuseViewController*) getViewController {
-    return self.$viewController;
+    return $viewController;
 }
 
 - (void) execCallback:(NSString*) callbackID withData:(NSString*) data {
     NSString* js = [[NSString alloc] initWithFormat:@"window.__nbsfuse_doCallback(%@,%@);", callbackID, data];
-    WKWebView* webview = [self.$viewController getWebview];
+    WKWebView* webview = [$viewController getWebview];
     [webview evaluateJavaScript:js completionHandler:nil];
 }
 
 - (void) execCallback:(NSString*) callbackID {
     NSString* js = [[NSString alloc] initWithFormat:@"window.__nbsfuse_doCallback(%@);", callbackID];
-    WKWebView* webview = [self.$viewController getWebview];
+    WKWebView* webview = [$viewController getWebview];
     [webview evaluateJavaScript:js completionHandler:nil];
 }
 
 - (WKWebView*) getWebview {
-    return [self.$viewController getWebview];
+    return [$viewController getWebview];
 }
 
 - (NBSFuseAPIRouter*) getAPIRouter {
-    return self.$apiRouter;
+    return $apiRouter;
 }
 
 - (void) registerPlugin:(NBSFusePlugin *)plugin {
-    if ([self.$pluginMap objectForKey:[plugin getID]] != nil) {
+    if ([$pluginMap objectForKey:[plugin getID]] != nil) {
         NSLog(@"A plugin is already registered for %@", [plugin getID]);
         return;
     }
     
-    [self.$pluginMap setObject:plugin forKey:[plugin getID]];
+    [$pluginMap setObject:plugin forKey:[plugin getID]];
 }
 
 - (NBSFusePlugin*) getPlugin:(NSString*)pluginID {
-    return [self.$pluginMap objectForKey:pluginID];
+    return [$pluginMap objectForKey:pluginID];
 }
 
 @end

@@ -26,12 +26,14 @@ limitations under the License.
 - (instancetype) init: (NBSFuseContext*) context {
     self = [super init];
     
-    self.$context = context;
+    $context = context;
     
     return self;
 }
 
-//NSString* buildError(NSInteger code, NSString* message)
+- (NBSFuseContext*) getContext {
+    return $context;
+}
 
 - (void) execute:(NBSFuseAPIPacket*) packet withResponse:(NBSFuseAPIResponse*) response {
     // TODO:
@@ -54,7 +56,7 @@ limitations under the License.
     }
     
     NSString* pluginID = [parts objectAtIndex: 2];
-    NBSFusePlugin* plugin = [self.$context getPlugin: pluginID];
+    NBSFusePlugin* plugin = [$context getPlugin: pluginID];
     if (plugin == nil) {
         [response setStatus:NBSFuseAPIResponseStatusError];
         [response setContentType:@"application/json"];

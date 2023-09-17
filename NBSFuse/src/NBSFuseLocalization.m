@@ -20,10 +20,6 @@ limitations under the License.
 
 @implementation NBSFuseLocalization : NSObject
 
-- (instancetype) init {
-    @throw [NSException exceptionWithName:@"CannotInstantiateException" reason:@"NBSFuseLocalization is a static class" userInfo: nil];
-}
-
 + (NSString*) lookup: (NSString*) key {
     NSBundle* mainBundle = [NSBundle mainBundle];
     NSBundle* bundle = [NSBundle bundleForClass: [NBSFuseLocalization class]];

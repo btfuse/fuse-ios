@@ -25,16 +25,22 @@ limitations under the License.
 
 @class NBSFuseContext;
 
-@interface NBSFuseViewController: UIViewController
+@interface NBSFuseViewController: UIViewController {
+    @private
+    NBSFuseContext* $context;
+    WKWebView* $webview;
+    NBSFuseWebviewUIDelegation* $webviewUIDelegation;
+}
 
-@property (nonatomic, weak) NBSFuseContext* $context;
-@property (nonatomic, strong) WKWebView* $webview;
-@property (nonatomic, strong) NBSFuseWebviewUIDelegation* $webviewUIDelegation;
+- (NBSFuseContext*) getContext;
 
-- (instancetype) init:(NBSFuseContext*) context;
+//- (instancetype) init NS_DESIGNATED_INITIALIZER;
+//- (instancetype) initWithCoder:(NSCoder*) coder NS_DESIGNATED_INITIALIZER;
+//- (instancetype) initWithNibName:(NSString*) nibNameOrNil bundle:(NSBundle*) nibBundleOrNil;
+//- (instancetype) init:(NBSFuseContext*) context NS_DESIGNATED_INITIALIZER;
 
 - (WKWebView*) getWebview;
 
 @end
 
-#endif /* NBSFuseViewController_h */
+#endif

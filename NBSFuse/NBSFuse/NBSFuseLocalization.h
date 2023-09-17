@@ -31,4 +31,4 @@ limitations under the License.
 @end
 
 
-#endif /* NBSFuseLocalization_h */
+#endif

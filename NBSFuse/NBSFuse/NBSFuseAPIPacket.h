@@ -20,16 +20,25 @@ limitations under the License.
 
 #import <Foundation/Foundation.h>
 
-@interface NBSFuseAPIPacket: NSObject
+@interface NBSFuseAPIPacket: NSObject {
+    @private
+    NSString* $route;
+    NSData* $data;
+    NSDictionary* $headers;
+}
 
-@property (nonatomic, strong) NSString* $route;
-@property (nonatomic, strong) NSData* $data;
-@property (nonatomic, strong) NSDictionary* $headers;
-
-- (instancetype) init:(NSString*) route withData:(NSData*) data;
+- (instancetype) init NS_UNAVAILABLE;
+- (instancetype) init:(NSString*) route withHeaders:(NSDictionary*) headers withData:(NSData*) data NS_DESIGNATED_INITIALIZER;
 
 - (NSString*) getRoute;
 - (NSData*) getData;
+- (unsigned long) getContentLength;
+- (NSString*) getContentType;
+
+- (NSString*) readAsString;
+- (NSData*) readAsBinary;
+- (NSDictionary*) readAsJSONObject:(NSError*) error;
+- (NSArray*) readAsJSONArray:(NSError*) error;
 
 @end
 

@@ -15,24 +15,26 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-#ifndef NBSFuseAPIRouter_h
-#define NBSFuseAPIRouter_h
+#import <Foundation/Foundation.h>
+#import <NBSFuse/NBSFusePermissionRequest.h>
 
-#import <NBSFuse/NBSFuseAPIPacket.h>
-#import <NBSFuse/NBSFuseAPIResponse.h>
+@implementation NBSFusePermissionRequest
 
-@class NBSFuseContext;
-
-@interface NBSFuseAPIRouter: NSObject {
-    __weak NBSFuseContext* $context;
+- (instancetype) init:(NSArray<NSNumber*>*) permissionSet justified:(BOOL) justified {
+    self = [super init];
+    
+    $permissionSet = permissionSet;
+    $isJustified = justified;
+    
+    return self;
 }
 
-- (instancetype) init NS_UNAVAILABLE;
-- (instancetype) init:(NBSFuseContext*) context NS_DESIGNATED_INITIALIZER;
+- (NSArray<NSNumber*>*) getPermissionSet {
+    return $permissionSet;
+}
 
-- (NBSFuseContext*) getContext;
-- (void) execute:(NBSFuseAPIPacket*) packet withResponse:(NBSFuseAPIResponse*) response;
+- (BOOL) isJustified {
+    return $isJustified;
+}
 
 @end
-
-#endif

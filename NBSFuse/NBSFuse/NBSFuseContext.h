@@ -25,14 +25,15 @@ limitations under the License.
 @class NBSFusePlugin;
 @class NBSFuseAPIRouter;
 
-@interface NBSFuseContext: NSObject
+@interface NBSFuseContext: NSObject {
+    @private
+    NSMutableDictionary<NSString*, NBSFusePlugin*>* $pluginMap;
+    NBSFuseAPIRouter* $apiRouter;
+    __weak NBSFuseViewController* $viewController;
+}
 
-//@property (nonatomic, strong) WKWebView* $webview;
-@property (nonatomic, strong) NSMutableDictionary<NSString*, NBSFusePlugin*>* $pluginMap;
-@property (nonatomic, strong) NBSFuseAPIRouter* $apiRouter;
-@property (nonatomic, strong) NBSFuseViewController* $viewController;
-
-- (instancetype) init;
+- (instancetype) init NS_UNAVAILABLE;
+- (instancetype) init:(NBSFuseViewController*) controller NS_DESIGNATED_INITIALIZER;
 - (WKWebView*) getWebview;
 - (NBSFuseViewController*) getViewController;
 - (void) registerPlugin:(NBSFusePlugin*)plugin;

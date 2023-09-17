@@ -19,21 +19,46 @@ limitations under the License.
 
 @implementation NBSFuseAPIPacket
 
-- (instancetype) init:(NSString*) route withData:(NSData*) data {
-    self = [super self];
+- (instancetype) init:(NSString*) route withHeaders:(NSDictionary*) headers withData:(NSData*) data {
+    self = [super init];
     
-    self.$route = route;
-    self.$data = data;
+    $route = route;
+    $headers = headers;
+    $data = data;
     
     return self;
 }
 
 - (NSString*) getRoute {
-    return self.$route;
+    return $route;
 }
 
 - (NSData*) getData {
-    return self.$data;
+    return $data;
+}
+
+- (unsigned long) getContentLength {
+    return [[$headers valueForKey: @"Content-Length"] unsignedLongValue];
+}
+
+- (NSString*) getContentType {
+    return [$headers valueForKey: @"Content-Type"];
+}
+
+- (NSString*) readAsString {
+    return [[NSString alloc] initWithData: $data encoding: NSUTF8StringEncoding];
+}
+
+- (NSData*) readAsBinary {
+    return $data;
+}
+
+- (NSDictionary*) readAsJSONObject:(NSError*) error {
+    return [NSJSONSerialization JSONObjectWithData: $data options:NSJSONReadingMutableContainers error: &error];
+}
+
+- (NSArray*) readAsJSONArray:(NSError*) error {
+    return [NSJSONSerialization JSONObjectWithData: $data options:NSJSONReadingMutableContainers error: &error];
 }
 
 @end

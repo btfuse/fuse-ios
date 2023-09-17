@@ -36,7 +36,8 @@ typedef NS_ENUM(NSUInteger, NBSFuseAPIResponseStatus) {
 @property (nonatomic, assign) NSUInteger $contentLength;
 @property (nonatomic, assign) NSUInteger $status;
 
-- (instancetype) init: (id<WKURLSchemeTask>) task withURL:(NSURL*) requestURL;
+- (instancetype) init NS_UNAVAILABLE;
+- (instancetype) init: (id<WKURLSchemeTask>) task withURL:(NSURL*) requestURL NS_DESIGNATED_INITIALIZER;
 
 // Header APIs
 - (void) setStatus:(NSUInteger) status;

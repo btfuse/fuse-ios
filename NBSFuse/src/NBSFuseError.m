@@ -21,42 +21,36 @@ limitations under the License.
 @implementation NBSFuseError
 
 - (instancetype)init:(NSString *)domain withCode:(NSInteger)code withMessage:(NSString *)message {
-    self = [self init];
+    self = [super init];
     
-    self.$domain = domain;
-    self.$message = message;
-    self.$code = code;
+    $domain = domain;
+    $message = message;
+    $code = code;
     
     return self;
 }
 
 - (instancetype)init:(NSString *)domain withCode:(NSInteger)code withError:(NSError *)error {
-    self = [self init];
-    
-    self.$domain = domain;
-    self.$message = [error localizedDescription];
-    self.$code = code;
-    
-    return self;
+    return [self init:domain withCode:code withMessage:[error localizedDescription]];
 }
 
 - (NSInteger)getCode {
-    return self.$code;
+    return $code;
 }
 
 - (NSString *)getDomain {
-    return self.$domain;
+    return $domain;
 }
 
 - (NSString *)getMessage {
-    return self.$message;
+    return $message;
 }
 
 - (NSString *)serialize:(NSError*) error {
     NSDictionary* obj = @{
-        @"domain": self.$domain,
-        @"code": [[NSNumber alloc] initWithInteger: self.$code],
-        @"message": self.$message
+        @"domain": $domain,
+        @"code": [[NSNumber alloc] initWithInteger: $code],
+        @"message": $message
     };
     
     NSString* serialized = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:obj options:0 error:&error] encoding: NSUTF8StringEncoding];

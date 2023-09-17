@@ -29,12 +29,16 @@ NSString* const HOST = @"localhost";
 
 @implementation NBSFuseSchemeHandler
 
-- (instancetype)init:(NBSFuseContext*)context {
+- (instancetype) init:(NBSFuseContext*) context {
     self = [super init];
     
-    self.$context = context;
+    $context = context;
     
     return self;
+}
+
+- (NBSFuseContext*) getContext {
+    return $context;
 }
 
 - (void)webView:(WKWebView*)webView startURLSchemeTask:(id<WKURLSchemeTask>)urlSchemeTask {
@@ -81,10 +85,10 @@ NSString* const HOST = @"localhost";
         }
     }
     else if ([routeService isEqualToString:@"api"]) {
-        NBSFuseAPIPacket* packet = [[NBSFuseAPIPacket alloc] init: path withData: urlSchemeTask.request.HTTPBody];
+        NBSFuseAPIPacket* packet = [[NBSFuseAPIPacket alloc] init: path withHeaders: urlSchemeTask.request.allHTTPHeaderFields withData: urlSchemeTask.request.HTTPBody];
         NBSFuseAPIResponse* response = [[NBSFuseAPIResponse alloc] init:urlSchemeTask withURL:requestURL];
         
-        NBSFuseAPIRouter* router = [self.$context getAPIRouter];
+        NBSFuseAPIRouter* router = [$context getAPIRouter];
         [router execute: packet withResponse: response];
     }
     else {
