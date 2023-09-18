@@ -21,59 +21,109 @@ limitations under the License.
 
 @implementation NBSFuseAPIResponse
 
-- (instancetype)init:(id<WKURLSchemeTask>)task withURL:(NSURL *)requestURL {
+//- (instancetype)init:(id<WKURLSchemeTask>)task withURL:(NSURL *)requestURL {
+//    self = [super init];
+//
+//    self.$task = task;
+//    self.$requestURL = requestURL;
+//    self.$hasSentHeaders = false;
+//    self.$status = NBSFuseAPIResponseStatusOk;
+//    self.$contentType = @"application/octet-stream";
+//    self.$contentLength = 0;
+//
+//    return self;
+//}
+
+- (instancetype) init:(int) client {
     self = [super init];
     
-    self.$task = task;
-    self.$requestURL = requestURL;
-    self.$hasSentHeaders = false;
-    self.$status = NBSFuseAPIResponseStatusOk;
-    self.$contentType = @"application/octet-stream";
-    self.$contentLength = 0;
+    $client = client;
+    $hasSentHeaders = false;
+    $status = NBSFuseAPIResponseStatusOk;
+    $contentLength = 0;
+    $contentType = @"application/octet-stream";
     
     return self;
 }
 
 - (void)setStatus:(NSUInteger)status {
-    self.$status = status;
+    $status = status;
 }
 
 - (void) setContentType:(NSString*)contentType {
-    self.$contentType = contentType;
+    $contentType = contentType;
 }
 
 - (void) setContentLength:(NSUInteger)length {
-    self.$contentLength = length;
+    $contentLength = length;
 }
 
 - (void) didFinishHeaders {
 //    NSURLResponse* response = [[NSURLResponse alloc] initWithURL:self.$requestURL MIMEType:self.$contentType expectedContentLength:self.$contentLength textEncodingName:@"utf-8"];
-    NSHTTPURLResponse* response = [
-        [NSHTTPURLResponse alloc]
-        initWithURL:self.$requestURL
-        statusCode:self.$status
-        HTTPVersion:@"HTTP/1.1"
-        headerFields: @{
-            @"Content-Type": self.$contentType,
-            @"Content-Length": [NSString stringWithFormat:@"%lu", self.$contentLength]
-        }
-    ];
-    [self.$task didReceiveResponse: response];
-    self.$hasSentHeaders = true;
+//    NSHTTPURLResponse* response = [
+//        [NSHTTPURLResponse alloc]
+//        initWithURL:self.$requestURL
+//        statusCode:self.$status
+//        HTTPVersion:@"HTTP/1.1"
+//        headerFields: @{
+//            @"Content-Type": self.$contentType,
+//            @"Content-Length": [NSString stringWithFormat:@"%lu", self.$contentLength]
+//        }
+//    ];
+//    [self.$task didReceiveResponse: response];
+    $hasSentHeaders = true;
+    
+    NSMutableString* headers = [[NSMutableString alloc] initWithString:@"HTTP/1.1"];
+    [headers appendString:[NSString stringWithFormat:@" %lu %@\r\n", $status, [self getStatusText:$status]]];
+    [headers appendString:[NSString stringWithFormat:@"Access-Control-Allow-Origin: %@\r\n", @"nbsfuse://localhost"]];
+    [headers appendString:[NSString stringWithFormat:@"Access-Control-Allow-Headers: %@\r\n", @"*"]];
+    [headers appendString:[NSString stringWithFormat:@"Cache-Control: %@\r\n", @"no-cache"]];
+    [headers appendString:[NSString stringWithFormat:@"Content-Type: %@\r\n", $contentType]];
+    [headers appendString:[NSString stringWithFormat:@"Content-Length: %lu\r\n", $contentLength]];
+    [headers appendString:@"\r\n"];
+    
+    const char* headersBytes = [headers UTF8String];
+    size_t headersLength = strlen(headersBytes);
+    ssize_t bytesWritten = write($client, headersBytes, headersLength);
+    
+    if (bytesWritten < 0) {
+        NSLog(@"Error writing to the client socket");
+        close($client);
+    }
+}
+
+- (NSString*) getStatusText:(NSUInteger) status {
+    switch (status) {
+        case NBSFuseAPIResponseStatusOk:
+            return @"OK";
+        case NBSFuseAPIResponseStatusError:
+            return @"Bad Request";
+        case NBSFuseAPIResponseStatusInternalError:
+            return @"Internal Error";
+        default:
+            return @"Unknown";
+    }
 }
 
 - (void) pushData:(NSData *)data {
-    if (!self.$hasSentHeaders) {
+    if (!$hasSentHeaders) {
         NSLog(@"Cannot send data before headers are sent. Must call finishHeaders first!");
         // TODO: Raise exception somehow
         return;
     }
     
-    [self.$task didReceiveData: data];
+    const void* dataBytes = [data bytes];
+    NSUInteger dataLength = [data length];
+
+    ssize_t bytesWritten = write($client, dataBytes, dataLength);
+    if (bytesWritten < 0) {
+        NSLog(@"Error writing to the client socket");
+        close($client);
+    }
 }
 
 - (void) didFinish {
-    [self.$task didFinish];
+    close($client);
 }
 
 - (void) didInternalError {

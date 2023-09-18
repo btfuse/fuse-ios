@@ -19,12 +19,12 @@ limitations under the License.
 
 @implementation NBSFuseAPIPacket
 
-- (instancetype) init:(NSString*) route withHeaders:(NSDictionary*) headers withData:(NSData*) data {
+- (instancetype) init:(NSString*) route withHeaders:(NSDictionary*) headers withStream:(NSInputStream*) inputStream {
     self = [super init];
     
     $route = route;
     $headers = headers;
-    $data = data;
+    $stream = inputStream;
     
     return self;
 }
@@ -33,12 +33,13 @@ limitations under the License.
     return $route;
 }
 
-- (NSData*) getData {
-    return $data;
+- (NSInputStream*) getStream {
+    return $stream;
 }
 
 - (unsigned long) getContentLength {
-    return [[$headers valueForKey: @"Content-Length"] unsignedLongValue];
+    NSString* value = [$headers valueForKey: @"Content-Length"];
+    return value.longLongValue;
 }
 
 - (NSString*) getContentType {
@@ -46,19 +47,40 @@ limitations under the License.
 }
 
 - (NSString*) readAsString {
-    return [[NSString alloc] initWithData: $data encoding: NSUTF8StringEncoding];
+    NSData* data = [self readAsBinary];
+    return [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
 }
 
 - (NSData*) readAsBinary {
-    return $data;
+    unsigned long contentLength = [self getContentLength];
+    NSMutableData* data = [[NSMutableData alloc] initWithLength: contentLength];
+    
+    NSUInteger bytesRead = 0;
+    NSUInteger bytesToRead = contentLength;
+
+    while (bytesRead < contentLength) {
+        NSInteger result = [$stream read:[data mutableBytes] + bytesRead maxLength:bytesToRead];
+        
+        if (result <= 0) {
+            // Handle error or end of stream
+            break;
+        }
+        
+        bytesRead += result;
+        bytesToRead -= result;
+    }
+    
+    return data;
 }
 
 - (NSDictionary*) readAsJSONObject:(NSError*) error {
-    return [NSJSONSerialization JSONObjectWithData: $data options:NSJSONReadingMutableContainers error: &error];
+    NSData* data = [self readAsBinary];
+    return [NSJSONSerialization JSONObjectWithData: data options:NSJSONReadingMutableContainers error: &error];
 }
 
 - (NSArray*) readAsJSONArray:(NSError*) error {
-    return [NSJSONSerialization JSONObjectWithData: $data options:NSJSONReadingMutableContainers error: &error];
+    NSData* data = [self readAsBinary];
+    return [NSJSONSerialization JSONObjectWithData: data options:NSJSONReadingMutableContainers error: &error];
 }
 
 @end

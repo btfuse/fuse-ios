@@ -27,20 +27,21 @@ typedef NS_ENUM(NSUInteger, NBSFuseAPIResponseStatus) {
     NBSFuseAPIResponseStatusInternalError = 500
 };
 
-@interface NBSFuseAPIResponse: NSObject
-
-@property (nonatomic, assign) bool $hasSentHeaders;
-@property (nonatomic, strong) NSURL* $requestURL;
-@property (nonatomic, assign) id<WKURLSchemeTask> $task;
-@property (nonatomic, strong) NSString* $contentType;
-@property (nonatomic, assign) NSUInteger $contentLength;
-@property (nonatomic, assign) NSUInteger $status;
+@interface NBSFuseAPIResponse: NSObject {
+    int $client;
+    bool $hasSentHeaders;
+    NSUInteger $status;
+    NSUInteger $contentLength;
+    NSString* $contentType;
+}
 
 - (instancetype) init NS_UNAVAILABLE;
-- (instancetype) init: (id<WKURLSchemeTask>) task withURL:(NSURL*) requestURL NS_DESIGNATED_INITIALIZER;
+//- (instancetype) init: (id<WKURLSchemeTask>) task withURL:(NSURL*) requestURL NS_DESIGNATED_INITIALIZER;
+- (instancetype) init:(int) client NS_DESIGNATED_INITIALIZER;
 
 // Header APIs
 - (void) setStatus:(NSUInteger) status;
+- (NSString*) getStatusText:(NSUInteger) status;
 - (void) setContentLength:(NSUInteger) length;
 - (void) setContentType:(NSString*) contentType;
 - (void) didFinishHeaders;
@@ -62,4 +63,4 @@ typedef NS_ENUM(NSUInteger, NBSFuseAPIResponseStatus) {
 
 @end
 
-#endif /* NBSFuseAPIResponse_h */
+#endif

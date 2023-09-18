@@ -21,27 +21,28 @@ limitations under the License.
 #import <Foundation/Foundation.h>
 #import <NBSFuse/NBSFuseAPIResponse.h>
 #import <NBSFuse/NBSFuseError.h>
+#import <NBSFuse/NBSFuseAPIPacket.h>
 
-typedef void (^NBSFusePluginAPIHandle)(NSData* data, NBSFuseAPIResponse* response);
+typedef void (^NBSFusePluginAPIHandle)(NBSFuseAPIPacket* packet, NBSFuseAPIResponse* response);
 
 @class NBSFuseContext;
 
 @protocol NBSFusePluginProtocol <NSObject>
 
 - (NSString*)getID;
-//- (NSString*)handle:(NSString*)method data:(NSData*)data;
 
 @end
 
-@interface NBSFusePlugin: NSObject <NBSFusePluginProtocol>
-
-@property (nonatomic, strong) NSMutableDictionary<NSString*, NBSFusePluginAPIHandle>* $handles;
-@property (nonatomic, weak) NBSFuseContext* $context;
+@interface NBSFusePlugin: NSObject <NBSFusePluginProtocol> {
+    @private
+    NSMutableDictionary<NSString*, NBSFusePluginAPIHandle>* $handles;
+    __weak NBSFuseContext* $context;
+}
 
 - (instancetype) init NS_UNAVAILABLE;
 - (instancetype) init:(NBSFuseContext*) context NS_DESIGNATED_INITIALIZER;
 
-- (void) route:(NSString*)path data:(NSData*)data withResponse:(NBSFuseAPIResponse*) response;
+- (void) route:(NSString*)path withPacket:(NBSFuseAPIPacket*) packet withResponse:(NBSFuseAPIResponse*) response;
 
 - (void) initHandles;
 - (void) attachHandler:(NSString*) path callback:(NBSFusePluginAPIHandle)callback;
@@ -50,4 +51,4 @@ typedef void (^NBSFusePluginAPIHandle)(NSData* data, NBSFuseAPIResponse* respons
 
 @end
 
-#endif /* NBSFusePlugih_h */
+#endif

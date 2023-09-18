@@ -25,15 +25,15 @@ limitations under the License.
 - (instancetype)init:(NBSFuseContext*)context {
     self = [super init];
     
-    self.$context = context;
-    self.$handles = [[NSMutableDictionary alloc] init];
+    $context = context;
+    $handles = [[NSMutableDictionary alloc] init];
     [self initHandles];
     
     return self;
 }
 
 - (NBSFuseContext*) getContext {
-    return self.$context;
+    return $context;
 }
 
 - (NSString*)getID {
@@ -41,8 +41,8 @@ limitations under the License.
     return nil;
 }
 
-- (void) route:(NSString*) path data:(NSData*) data withResponse:(NBSFuseAPIResponse*) response {
-    NBSFusePluginAPIHandle apiHandle = [self.$handles objectForKey: path];
+- (void) route:(NSString*) path withPacket:(NBSFuseAPIPacket*) packet withResponse:(NBSFuseAPIResponse*) response {
+    NBSFusePluginAPIHandle apiHandle = [$handles objectForKey: path];
     if (apiHandle == nil) {
         [response setStatus:NBSFuseAPIResponseStatusError];
         [response setContentType:@"application/json"];
@@ -56,11 +56,11 @@ limitations under the License.
         return;
     }
     
-    apiHandle(data, response);
+    apiHandle(packet, response);
 }
 
 - (void) attachHandler:(NSString *)path callback:(NBSFusePluginAPIHandle)callback {
-    [self.$handles setObject:callback forKey:path];
+    [$handles setObject:callback forKey:path];
 }
 
 - (void) initHandles {}

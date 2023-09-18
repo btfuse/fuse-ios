@@ -42,17 +42,17 @@ limitations under the License.
 - (void) initHandles {
     __weak NBSFuseRuntime* weakSelf = self;
     
-    [self attachHandler:@"/info" callback:^void(NSData *data, NBSFuseAPIResponse* response) {
+    [self attachHandler:@"/info" callback:^void(NBSFuseAPIPacket* packet, NBSFuseAPIResponse* response) {
         [response sendJSON:[weakSelf getInfo]];
     }];
     
-    [self attachHandler:@"/registerPauseHandler" callback:^(NSData* data, NBSFuseAPIResponse* response) {
-        [weakSelf.$pauseHandlers addObject:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
+    [self attachHandler:@"/registerPauseHandler" callback:^(NBSFuseAPIPacket* packet, NBSFuseAPIResponse* response) {
+        [weakSelf.$pauseHandlers addObject:[packet readAsString]];
         [response sendNoContent];
     }];
     
-    [self attachHandler:@"/unregisterPauseHandler" callback:^(NSData* data, NBSFuseAPIResponse* response) {
-        NSString* targetValue = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [self attachHandler:@"/unregisterPauseHandler" callback:^(NBSFuseAPIPacket* packet, NBSFuseAPIResponse* response) {
+        NSString* targetValue = [packet readAsString];
         NSInteger indexToRemove = [weakSelf.$pauseHandlers indexOfObjectPassingTest: ^BOOL (NSString* obj, NSUInteger idx, BOOL* stop) {
             return [obj isEqualToString: targetValue];
         }];
@@ -64,13 +64,13 @@ limitations under the License.
         [response sendNoContent];
     }];
     
-    [self attachHandler:@"/registerResumeHandler" callback:^(NSData* data, NBSFuseAPIResponse* response) {
-        [weakSelf.$resumeHandlers addObject:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
+    [self attachHandler:@"/registerResumeHandler" callback:^(NBSFuseAPIPacket* packet, NBSFuseAPIResponse* response) {
+        [weakSelf.$resumeHandlers addObject:[packet readAsString]];
         [response sendNoContent];
     }];
     
-    [self attachHandler:@"/unregisterResumeHandler" callback:^(NSData* data, NBSFuseAPIResponse* response) {
-        NSString* targetValue = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [self attachHandler:@"/unregisterResumeHandler" callback:^(NBSFuseAPIPacket* packet, NBSFuseAPIResponse* response) {
+        NSString* targetValue = [packet readAsString];
         NSInteger indexToRemove = [weakSelf.$resumeHandlers indexOfObjectPassingTest: ^BOOL (NSString* obj, NSUInteger idx, BOOL* stop) {
             return [obj isEqualToString: targetValue];
         }];

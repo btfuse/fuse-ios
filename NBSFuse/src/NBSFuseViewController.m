@@ -20,6 +20,12 @@ limitations under the License.
 #import <NBSFuse/NBSFuseViewController.h>
 #import <NBSFuse/NBSFuseSchemeHandler.h>
 #import <NBSFuse/NBSFuseWebviewUIDelegation.h>
+#import "NBSFuseAPIServer.h"
+
+@interface NBSFuseViewController () {
+    NBSFuseAPIServer* $apiServer;
+}
+@end
 
 @implementation NBSFuseViewController
 
@@ -27,10 +33,13 @@ limitations under the License.
     [super viewDidLoad];
     
     $context = [[NBSFuseContext alloc] init: self];
+    $apiServer = [[NBSFuseAPIServer alloc] init:$context];
     
     $webviewUIDelegation = [[NBSFuseWebviewUIDelegation alloc] init];
     
     WKWebViewConfiguration* configuration = [[WKWebViewConfiguration alloc] init];
+    [configuration.userContentController addScriptMessageHandlerWithReply: self contentWorld: WKContentWorld.pageWorld name:@"getAPIPort"];
+    [configuration.userContentController addScriptMessageHandlerWithReply: self contentWorld: WKContentWorld.pageWorld name:@"getAPISecret"];
     
     //TODO: pass the configuration object to a overridable method to give a chance for application-level configuration
     [configuration setURLSchemeHandler: [
@@ -65,6 +74,24 @@ limitations under the License.
 
 - (NBSFuseContext*) getContext {
     return $context;
+}
+
+- (void)    userContentController:(WKUserContentController*) userContentController
+            didReceiveScriptMessage:(WKScriptMessage*) message
+            replyHandler:(void (^)(id _Nullable, NSString* _Nullable)) replyHandler
+{
+    if ([message.name isEqualToString:@"getAPIPort" ]) {
+        int port = [$apiServer getPort];
+        replyHandler([[NSNumber alloc] initWithInt:port], nil);
+        return;
+    }
+    else if ([message.name isEqualToString:@"getAPISecret"]) {
+        NSString* secret = [$apiServer getSecret];
+        replyHandler(secret, nil);
+        return;
+    }
+    
+    replyHandler(nil, @"Unhandled Script");
 }
 
 @end

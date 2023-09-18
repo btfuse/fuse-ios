@@ -61,7 +61,7 @@ limitations under the License.
         [response setStatus:NBSFuseAPIResponseStatusError];
         [response setContentType:@"application/json"];
         NSError* error = nil;
-        NSString* message = [[[NBSFuseError alloc] init:@"NBSFuseAPIRouter" withCode:2 withMessage:@"Unknown Plugin"] serialize:error];
+        NSString* message = [[[NBSFuseError alloc] init:@"NBSFuseAPIRouter" withCode:2 withMessage:[NSString stringWithFormat: @"Unknown Plugin: %@", pluginID]] serialize:error];
         NSData* msgData = [message dataUsingEncoding:NSUTF8StringEncoding];
         [response setContentLength: [msgData length]];
         [response didFinishHeaders];
@@ -75,7 +75,7 @@ limitations under the License.
     [components removeObjectsInRange: NSMakeRange(0, 3)]; //Removes /, api, and the plugin ID from components, and leaves /methodName
     NSString* servicePath = [@"/" stringByAppendingString:[components componentsJoinedByString:@"/"]];
     
-    [plugin route: servicePath data: [packet getData] withResponse: response];
+    [plugin route: servicePath withPacket: packet withResponse: response];
 }
 
 @end
