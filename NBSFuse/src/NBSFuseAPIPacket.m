@@ -19,12 +19,12 @@ limitations under the License.
 
 @implementation NBSFuseAPIPacket
 
-- (instancetype) init:(NSString*) route withHeaders:(NSDictionary*) headers withStream:(NSInputStream*) inputStream {
+- (instancetype) init:(NSString*) route withHeaders:(NSDictionary*) headers withSocket:(int) socket {
     self = [super init];
     
     $route = route;
     $headers = headers;
-    $stream = inputStream;
+    $socket = socket;
     
     return self;
 }
@@ -33,8 +33,8 @@ limitations under the License.
     return $route;
 }
 
-- (NSInputStream*) getStream {
-    return $stream;
+- (int) getSocket {
+    return $socket;
 }
 
 - (unsigned long) getContentLength {
@@ -53,24 +53,14 @@ limitations under the License.
 
 - (NSData*) readAsBinary {
     unsigned long contentLength = [self getContentLength];
-    NSMutableData* data = [[NSMutableData alloc] initWithLength: contentLength];
     
-    NSUInteger bytesRead = 0;
-    NSUInteger bytesToRead = contentLength;
-
-    while (bytesRead < contentLength) {
-        NSInteger result = [$stream read:[data mutableBytes] + bytesRead maxLength:bytesToRead];
-        
-        if (result <= 0) {
-            // Handle error or end of stream
-            break;
-        }
-        
-        bytesRead += result;
-        bytesToRead -= result;
+    uint8_t buffer[contentLength];
+    if (read($socket, buffer, contentLength) == -1) {
+        NSLog(@"Socket read error");
+        close($socket);
     }
     
-    return data;
+    return [NSData dataWithBytes:buffer length:contentLength];
 }
 
 - (NSDictionary*) readAsJSONObject:(NSError*) error {

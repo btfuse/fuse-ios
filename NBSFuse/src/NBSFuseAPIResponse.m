@@ -16,23 +16,10 @@ limitations under the License.
 */
 
 #import <Foundation/Foundation.h>
-
 #import <NBSFuse/NBSFuseAPIResponse.h>
+#include <sys/socket.h>
 
 @implementation NBSFuseAPIResponse
-
-//- (instancetype)init:(id<WKURLSchemeTask>)task withURL:(NSURL *)requestURL {
-//    self = [super init];
-//
-//    self.$task = task;
-//    self.$requestURL = requestURL;
-//    self.$hasSentHeaders = false;
-//    self.$status = NBSFuseAPIResponseStatusOk;
-//    self.$contentType = @"application/octet-stream";
-//    self.$contentLength = 0;
-//
-//    return self;
-//}
 
 - (instancetype) init:(int) client {
     self = [super init];
@@ -59,18 +46,6 @@ limitations under the License.
 }
 
 - (void) didFinishHeaders {
-//    NSURLResponse* response = [[NSURLResponse alloc] initWithURL:self.$requestURL MIMEType:self.$contentType expectedContentLength:self.$contentLength textEncodingName:@"utf-8"];
-//    NSHTTPURLResponse* response = [
-//        [NSHTTPURLResponse alloc]
-//        initWithURL:self.$requestURL
-//        statusCode:self.$status
-//        HTTPVersion:@"HTTP/1.1"
-//        headerFields: @{
-//            @"Content-Type": self.$contentType,
-//            @"Content-Length": [NSString stringWithFormat:@"%lu", self.$contentLength]
-//        }
-//    ];
-//    [self.$task didReceiveResponse: response];
     $hasSentHeaders = true;
     
     NSMutableString* headers = [[NSMutableString alloc] initWithString:@"HTTP/1.1"];
@@ -123,7 +98,7 @@ limitations under the License.
 }
 
 - (void) didFinish {
-    close($client);
+    shutdown($client, SHUT_RDWR);
 }
 
 - (void) didInternalError {

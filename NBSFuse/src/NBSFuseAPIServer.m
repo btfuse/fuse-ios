@@ -108,6 +108,10 @@ void* $handleClientConnection(void* dataPtr) {
     int clientFD = connection->client;
     free(connection); // once we copied the clientFD then we don't need this struct anymore.
     NBSFuseAPIServerHeaders* headers = $parseHeaders(clientFD);
+    if (headers == nil) {
+        close(clientFD);
+        return NULL;
+    }
     
     NSString* method = [headers getMethod];
     if ([method isEqualToString:@"OPTIONS"]) {
@@ -123,19 +127,8 @@ void* $handleClientConnection(void* dataPtr) {
         return NULL;
     }
     
-//    NBSFuseAPIResponse* res = [[NBSFuseAPIResponse alloc] init: clientFD];
-//    [res sendError:[[NBSFuseError alloc] init:@"FUSE SERVER" withCode:0 withMessage:@"HAHAHA"]];
-    
-    CFReadStreamRef readStream;
-    CFStreamCreatePairWithSocket(kCFAllocatorDefault, clientFD, &readStream, NULL);
-
-    NSInputStream* inputStream = (__bridge_transfer NSInputStream*)readStream;
-    [inputStream setDelegate: server]; // Set your delegate to handle events
-    [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-    [inputStream open];
-    
     NBSFuseAPIResponse* res = [[NBSFuseAPIResponse alloc] init: clientFD];
-    NBSFuseAPIPacket* packet = [[NBSFuseAPIPacket alloc] init:[headers getPath] withHeaders:[headers getHeaders] withStream:inputStream];
+    NBSFuseAPIPacket* packet = [[NBSFuseAPIPacket alloc] init:[headers getPath] withHeaders:[headers getHeaders] withSocket:clientFD];
     
     [[[server getContext] getAPIRouter] execute: packet withResponse: res];
     
@@ -220,19 +213,16 @@ NSString* readLine(int clientFD) {
 }
 
 NBSFuseAPIServerHeaders* $parseHeaders(int clientFD) {
-//    NSMutableDictionary* headers = [[NSMutableDictionary alloc] init];
     NBSFuseAPIServerHeaders* headers = [[NBSFuseAPIServerHeaders alloc] init];
     
     NSString* initialLine = readLine(clientFD);
     if (initialLine == nil) {
-        // error
+        return nil;
     }
-    
-    NSLog(@"LINE: %@", initialLine);
     
     NSArray<NSString*>* initParts = [initialLine componentsSeparatedByString:@" "];
     if (initParts.count < 3) {
-        // error
+        return nil;
     }
     
     [headers setMethod: [initParts objectAtIndex: 0]];
@@ -281,17 +271,10 @@ NBSFuseAPIServerHeaders* $parseHeaders(int clientFD) {
         return nil;
     }
     
-//    int flag = 1;
-//    if (setsockopt($sockFD, IPPROTO_TCP, TCP_NODELAY, &flag, sizeof(int)) == -1) {
-//        NSLog(@"NBSFuseAPIServer: Socket Configuration Error");
-//        close($sockFD);
-//        return nil;
-//    }
-    
     struct sockaddr_in server_addr;
     server_addr.sin_family = AF_INET;
-    server_addr.sin_addr.s_addr = inet_addr("127.0.0.1"); // Bind to localhost
-    server_addr.sin_port = 0; // Bind to any available port
+    server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    server_addr.sin_port = 0;
     
     if (bind($sockFD, (struct sockaddr*)&server_addr, sizeof(server_addr)) == -1) {
         NSLog(@"NBSFuseAPIServer: Socket Bind Error");
@@ -315,34 +298,7 @@ NBSFuseAPIServerHeaders* $parseHeaders(int clientFD) {
     }
     
     pthread_create(&$mainNetworkThread, NULL, &$networkLoop, (__bridge void *)(self));
-    
     pthread_detach($mainNetworkThread);
-    
-//    $connectionThread = dispatch_queue_create("NBSFuseAPIServer", DISPATCH_QUEUE_CONCURRENT);
-//
-//    int sockFD = $sockFD;
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        while (true) {
-//            int clientFD;
-//            struct sockaddr_in clientAddr;
-//            socklen_t clientAddrLen = sizeof(clientAddr);
-//            clientFD = accept(sockFD, (struct sockaddr*)&clientAddr, &clientAddrLen);
-//
-//            if (clientFD == -1) {
-//                continue;
-//            }
-//
-//            int value = 1;
-//            setsockopt(clientFD, SOL_SOCKET, SO_NOSIGPIPE, &value, sizeof(value));
-//
-//            printf("Accepted connection from %s:%d\n", inet_ntoa(clientAddr.sin_addr), ntohs(clientAddr.sin_port));
-//
-//            // move off to a different thread
-//            dispatch_async(self->$connectionThread, ^{
-//                $handleClientConnection(self, clientFD);
-//            });
-//        }
-//    });
     
     return self;
 }
@@ -354,11 +310,8 @@ NBSFuseAPIServerHeaders* $parseHeaders(int clientFD) {
 
 void* $networkLoop(void* ptr) {
     NBSFuseAPIServer* self = (__bridge NBSFuseAPIServer*)ptr;
-//    int sockFD = *(int*)ptr;
-    
     
     int sockFD = self->$sockFD;
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     while (true) {
         int clientFD;
         struct sockaddr_in clientAddr;
@@ -371,10 +324,7 @@ void* $networkLoop(void* ptr) {
 
         int value = 1;
         setsockopt(clientFD, SOL_SOCKET, SO_NOSIGPIPE, &value, sizeof(value));
-
-        printf("Accepted connection from %s:%d\n", inet_ntoa(clientAddr.sin_addr), ntohs(clientAddr.sin_port));
         
-//        NBSFuseAPIServerClient* client = new
         struct NBSFuseAPIServerClientConnection* client = (struct NBSFuseAPIServerClientConnection*)malloc(sizeof(struct NBSFuseAPIServerClientConnection));
         client->server = self;
         client->client = clientFD;
@@ -383,12 +333,7 @@ void* $networkLoop(void* ptr) {
         pthread_t connectionThread;
         pthread_create(&connectionThread, NULL, &$handleClientConnection, client);
         pthread_detach(connectionThread);
-        // move off to a different thread
-//        dispatch_async(self->$connectionThread, ^{
-//            $handleClientConnection(self, clientFD);
-//        });
     }
-//    });
     
     return NULL;
 }

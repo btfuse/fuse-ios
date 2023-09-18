@@ -23,15 +23,15 @@ limitations under the License.
 @interface NBSFuseAPIPacket: NSObject {
     @private
     NSString* $route;
-    NSInputStream* $stream;
+    int $socket;
     NSDictionary* $headers;
 }
 
 - (instancetype) init NS_UNAVAILABLE;
-- (instancetype) init:(NSString*) route withHeaders:(NSDictionary*) headers withStream:(NSInputStream*) inputStream NS_DESIGNATED_INITIALIZER;
+- (instancetype) init:(NSString*) route withHeaders:(NSDictionary*) headers withSocket:(int) socket NS_DESIGNATED_INITIALIZER;
 
 - (NSString*) getRoute;
-- (NSInputStream*) getStream;
+- (int) getSocket;
 - (unsigned long) getContentLength;
 - (NSString*) getContentType;
 

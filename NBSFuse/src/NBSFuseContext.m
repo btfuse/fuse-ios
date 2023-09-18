@@ -27,18 +27,6 @@ limitations under the License.
 
 @implementation NBSFuseContext
 
-//- (instancetype)init {
-//    self = [super init];
-//
-//    $apiRouter = [[NBSFuseAPIRouter alloc] init: self];
-//    $pluginMap = [[NSMutableDictionary alloc] init];
-////    $viewController = [[NBSFuseViewController alloc] init: self];
-//
-//    [self registerPlugin:[[NBSFuseRuntime alloc] init: self]];
-//
-//    return self;
-//}
-
 - (instancetype) init:(NBSFuseViewController*) controller {
     self = [super init];
     

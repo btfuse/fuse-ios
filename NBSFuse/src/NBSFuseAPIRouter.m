@@ -58,15 +58,7 @@ limitations under the License.
     NSString* pluginID = [parts objectAtIndex: 2];
     NBSFusePlugin* plugin = [$context getPlugin: pluginID];
     if (plugin == nil) {
-        [response setStatus:NBSFuseAPIResponseStatusError];
-        [response setContentType:@"application/json"];
-        NSError* error = nil;
-        NSString* message = [[[NBSFuseError alloc] init:@"NBSFuseAPIRouter" withCode:2 withMessage:[NSString stringWithFormat: @"Unknown Plugin: %@", pluginID]] serialize:error];
-        NSData* msgData = [message dataUsingEncoding:NSUTF8StringEncoding];
-        [response setContentLength: [msgData length]];
-        [response didFinishHeaders];
-        [response pushData:msgData];
-        [response didFinish];
+        [response sendError:[[NBSFuseError alloc] init:@"NBSFuse" withCode:0 withMessage:[NSString stringWithFormat: @"Unknown Plugin: %@", pluginID]]];
         return;
     }
     

@@ -29,11 +29,15 @@ limitations under the License.
 
 @implementation NBSFuseViewController
 
-- (void) viewDidLoad {
-    [super viewDidLoad];
-    
+- (instancetype) init {
+    self = [super init];
     $context = [[NBSFuseContext alloc] init: self];
     $apiServer = [[NBSFuseAPIServer alloc] init:$context];
+    return self;
+}
+
+- (void) viewDidLoad {
+    [super viewDidLoad];
     
     $webviewUIDelegation = [[NBSFuseWebviewUIDelegation alloc] init];
     

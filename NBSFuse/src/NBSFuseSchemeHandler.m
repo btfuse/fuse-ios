@@ -84,13 +84,6 @@ NSString* const HOST = @"localhost";
             [self sendErrorResponseWithStatusCode:404 toURLSchemeTask:urlSchemeTask];
         }
     }
-//    else if ([routeService isEqualToString:@"api"]) {
-//        NBSFuseAPIPacket* packet = [[NBSFuseAPIPacket alloc] init: path withHeaders: urlSchemeTask.request.allHTTPHeaderFields withData: urlSchemeTask.request.HTTPBody];
-//        NBSFuseAPIResponse* response = [[NBSFuseAPIResponse alloc] init:urlSchemeTask withURL:requestURL];
-//
-//        NBSFuseAPIRouter* router = [$context getAPIRouter];
-//        [router execute: packet withResponse: response];
-//    }
     else {
         NSLog(@"Unknown Route Service: %@", routeService);
     }
