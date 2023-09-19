@@ -18,7 +18,7 @@ limitations under the License.
 #ifndef NBSFuseAPIServer_h
 #define NBSFuseAPIServer_h
 
-#import "NBSFuseContext.h"
+#import <NBSFuse/NBSFuseContext.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
