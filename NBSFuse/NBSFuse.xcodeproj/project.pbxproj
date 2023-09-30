@@ -31,8 +31,6 @@
 		94A886BC2A714F6D0098530D /* NBSFuseContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A886662A702D6A0098530D /* NBSFuseContext.m */; };
 		94A886DC2A7169920098530D /* NBSFusePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A886DB2A7169920098530D /* NBSFusePlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94A886DE2A716A0C0098530D /* NBSFusePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A886DD2A716A0C0098530D /* NBSFusePlugin.m */; };
-		94B0A6852AB74439008C291A /* NBSFusePermissionRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B0A6842AB74439008C291A /* NBSFusePermissionRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		94B0A6872AB74C00008C291A /* NBSFusePermissionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B0A6862AB74C00008C291A /* NBSFusePermissionRequest.m */; };
 		94B0A68F2AB776DC008C291A /* NBSFuseAPIServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B0A68E2AB776DC008C291A /* NBSFuseAPIServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94B0A6932AB77790008C291A /* NBSFuseAPIServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B0A6922AB77790008C291A /* NBSFuseAPIServer.m */; };
 /* End PBXBuildFile section */
@@ -63,8 +61,6 @@
 		94A886C22A714F6D0098530D /* NBSFuse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NBSFuse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A886DB2A7169920098530D /* NBSFusePlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFusePlugin.h; sourceTree = "<group>"; };
 		94A886DD2A716A0C0098530D /* NBSFusePlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFusePlugin.m; sourceTree = "<group>"; };
-		94B0A6842AB74439008C291A /* NBSFusePermissionRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFusePermissionRequest.h; sourceTree = "<group>"; };
-		94B0A6862AB74C00008C291A /* NBSFusePermissionRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFusePermissionRequest.m; sourceTree = "<group>"; };
 		94B0A68E2AB776DC008C291A /* NBSFuseAPIServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseAPIServer.h; sourceTree = "<group>"; };
 		94B0A6922AB77790008C291A /* NBSFuseAPIServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseAPIServer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -139,7 +135,6 @@
 				9489EB9E2AA61A1C0087424D /* NBSFuseWebviewUIDelegation.h */,
 				9489EBA22AA621A70087424D /* NBSFuseViewController.h */,
 				9489EBB72AA659D70087424D /* NBSFuseLocalization.h */,
-				94B0A6842AB74439008C291A /* NBSFusePermissionRequest.h */,
 			);
 			path = NBSFuse;
 			sourceTree = "<group>";
@@ -159,7 +154,6 @@
 				9489EBA02AA61A770087424D /* NBSFuseWebviewUIDelegation.m */,
 				9489EBA42AA623B70087424D /* NBSFuseViewController.m */,
 				9489EBB92AA65A990087424D /* NBSFuseLocalization.m */,
-				94B0A6862AB74C00008C291A /* NBSFusePermissionRequest.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -187,7 +181,6 @@
 				9489EBB82AA659D70087424D /* NBSFuseLocalization.h in Headers */,
 				941862AB2A9FE5F700CCFEE1 /* NBSFuseError.h in Headers */,
 				9489EB982AA54FA40087424D /* NBSFuseRuntime.h in Headers */,
-				94B0A6852AB74439008C291A /* NBSFusePermissionRequest.h in Headers */,
 				9418629F2A995BDC00CCFEE1 /* NBSFuseAPIPacket.h in Headers */,
 				94B0A68F2AB776DC008C291A /* NBSFuseAPIServer.h in Headers */,
 				941862A32A99617100CCFEE1 /* NBSFuseAPIResponse.h in Headers */,
@@ -260,7 +253,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				941862A12A995C4F00CCFEE1 /* NBSFuseAPIPacket.m in Sources */,
-				94B0A6872AB74C00008C291A /* NBSFusePermissionRequest.m in Sources */,
 				94A886DE2A716A0C0098530D /* NBSFusePlugin.m in Sources */,
 				941862AD2A9FE65E00CCFEE1 /* NBSFuseError.m in Sources */,
 				9489EBA12AA61A770087424D /* NBSFuseWebviewUIDelegation.m in Sources */,

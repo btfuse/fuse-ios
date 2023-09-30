@@ -33,7 +33,6 @@ FOUNDATION_EXPORT const unsigned char NBSFuseVersionString[];
 #import <NBSFuse/NBSFuseWebviewUIDelegation.h>
 #import <NBSFuse/NBSFuseViewController.h>
 #import <NBSFuse/NBSFuseLocalization.h>
-#import <NBSFuse/NBSFusePermissionRequest.h>
 #import <NBSFuse/NBSFuseAPIServer.h>
 
 // Core Plugins
