@@ -15,6 +15,10 @@
 		941862A52A996F7900CCFEE1 /* NBSFuseAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 941862A42A996F7900CCFEE1 /* NBSFuseAPIResponse.m */; };
 		941862AB2A9FE5F700CCFEE1 /* NBSFuseError.h in Headers */ = {isa = PBXBuildFile; fileRef = 941862AA2A9FE5F700CCFEE1 /* NBSFuseError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		941862AD2A9FE65E00CCFEE1 /* NBSFuseError.m in Sources */ = {isa = PBXBuildFile; fileRef = 941862AC2A9FE65E00CCFEE1 /* NBSFuseError.m */; };
+		946278482AC8AA22008A89FA /* NBSFuseTestTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 946278472AC8AA22008A89FA /* NBSFuseTestTools.framework */; };
+		947FF0D22AC89FA2003D09BC /* NBSFuseAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 947FF0D12AC89FA2003D09BC /* NBSFuseAPITests.m */; };
+		947FF0F02AC8A375003D09BC /* NBSFuseAPIResponseFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 947FF0EF2AC8A375003D09BC /* NBSFuseAPIResponseFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		947FF0F22AC8A3DA003D09BC /* NBSFuseAPIResponseFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 947FF0F12AC8A3DA003D09BC /* NBSFuseAPIResponseFactory.m */; };
 		9489EB982AA54FA40087424D /* NBSFuseRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = 9489EB972AA54FA40087424D /* NBSFuseRuntime.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9489EB9A2AA54FED0087424D /* NBSFuseRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 9489EB992AA54FED0087424D /* NBSFuseRuntime.m */; };
 		9489EB9F2AA61A1C0087424D /* NBSFuseWebviewUIDelegation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9489EB9E2AA61A1C0087424D /* NBSFuseWebviewUIDelegation.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -33,7 +37,19 @@
 		94A886DE2A716A0C0098530D /* NBSFusePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A886DD2A716A0C0098530D /* NBSFusePlugin.m */; };
 		94B0A68F2AB776DC008C291A /* NBSFuseAPIServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B0A68E2AB776DC008C291A /* NBSFuseAPIServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94B0A6932AB77790008C291A /* NBSFuseAPIServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B0A6922AB77790008C291A /* NBSFuseAPIServer.m */; };
+		94B7A9CF2AC89E39003D294D /* NBSFuseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7A9CE2AC89E39003D294D /* NBSFuseTests.m */; };
+		94B7A9D02AC89E39003D294D /* NBSFuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A886C22A714F6D0098530D /* NBSFuse.framework */; platformFilter = ios; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		94B7A9D12AC89E39003D294D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 94A886502A702C6C0098530D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 94A886B52A714F6D0098530D;
+			remoteInfo = NBSFuse;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9418629A2A99564600CCFEE1 /* NBSFuseAPIRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseAPIRouter.h; sourceTree = "<group>"; };
@@ -44,6 +60,11 @@
 		941862A42A996F7900CCFEE1 /* NBSFuseAPIResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseAPIResponse.m; sourceTree = "<group>"; };
 		941862AA2A9FE5F700CCFEE1 /* NBSFuseError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseError.h; sourceTree = "<group>"; };
 		941862AC2A9FE65E00CCFEE1 /* NBSFuseError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseError.m; sourceTree = "<group>"; };
+		946278472AC8AA22008A89FA /* NBSFuseTestTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NBSFuseTestTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		947FF0D12AC89FA2003D09BC /* NBSFuseAPITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseAPITests.m; sourceTree = "<group>"; };
+		947FF0E82AC8A2A5003D09BC /* libNBSFuseTestTools.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libNBSFuseTestTools.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		947FF0EF2AC8A375003D09BC /* NBSFuseAPIResponseFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSFuseAPIResponseFactory.h; sourceTree = "<group>"; };
+		947FF0F12AC8A3DA003D09BC /* NBSFuseAPIResponseFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseAPIResponseFactory.m; sourceTree = "<group>"; };
 		9489EB972AA54FA40087424D /* NBSFuseRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseRuntime.h; sourceTree = "<group>"; };
 		9489EB992AA54FED0087424D /* NBSFuseRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseRuntime.m; sourceTree = "<group>"; };
 		9489EB9E2AA61A1C0087424D /* NBSFuseWebviewUIDelegation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseWebviewUIDelegation.h; sourceTree = "<group>"; };
@@ -63,6 +84,8 @@
 		94A886DD2A716A0C0098530D /* NBSFusePlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFusePlugin.m; sourceTree = "<group>"; };
 		94B0A68E2AB776DC008C291A /* NBSFuseAPIServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseAPIServer.h; sourceTree = "<group>"; };
 		94B0A6922AB77790008C291A /* NBSFuseAPIServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseAPIServer.m; sourceTree = "<group>"; };
+		94B7A9CC2AC89E39003D294D /* NBSFuseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NBSFuseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		94B7A9CE2AC89E39003D294D /* NBSFuseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +93,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94B7A9C92AC89E39003D294D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94B7A9D02AC89E39003D294D /* NBSFuse.framework in Frameworks */,
+				946278482AC8AA22008A89FA /* NBSFuseTestTools.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +138,7 @@
 				9489EBA62AA640ED0087424D /* localization */,
 				94A886652A702D3A0098530D /* src */,
 				94A8865B2A702C6C0098530D /* NBSFuse */,
+				94B7A9CD2AC89E39003D294D /* NBSFuseTests */,
 				94A8865A2A702C6C0098530D /* Products */,
 				B09295BDA9DD81FE38C25D6F /* Frameworks */,
 			);
@@ -115,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				94A886C22A714F6D0098530D /* NBSFuse.framework */,
+				94B7A9CC2AC89E39003D294D /* NBSFuseTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -127,6 +161,7 @@
 				94A886632A702D240098530D /* NBSFuseContext.h */,
 				94A886682A702F020098530D /* NBSFuseSchemeHandler.h */,
 				94B0A68E2AB776DC008C291A /* NBSFuseAPIServer.h */,
+				947FF0EF2AC8A375003D09BC /* NBSFuseAPIResponseFactory.h */,
 				94A886DB2A7169920098530D /* NBSFusePlugin.h */,
 				9418629A2A99564600CCFEE1 /* NBSFuseAPIRouter.h */,
 				9418629E2A995BDC00CCFEE1 /* NBSFuseAPIPacket.h */,
@@ -154,13 +189,25 @@
 				9489EBA02AA61A770087424D /* NBSFuseWebviewUIDelegation.m */,
 				9489EBA42AA623B70087424D /* NBSFuseViewController.m */,
 				9489EBB92AA65A990087424D /* NBSFuseLocalization.m */,
+				947FF0F12AC8A3DA003D09BC /* NBSFuseAPIResponseFactory.m */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		94B7A9CD2AC89E39003D294D /* NBSFuseTests */ = {
+			isa = PBXGroup;
+			children = (
+				94B7A9CE2AC89E39003D294D /* NBSFuseTests.m */,
+				947FF0D12AC89FA2003D09BC /* NBSFuseAPITests.m */,
+			);
+			path = NBSFuseTests;
 			sourceTree = "<group>";
 		};
 		B09295BDA9DD81FE38C25D6F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				946278472AC8AA22008A89FA /* NBSFuseTestTools.framework */,
+				947FF0E82AC8A2A5003D09BC /* libNBSFuseTestTools.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -180,6 +227,7 @@
 				94A886B92A714F6D0098530D /* NBSFuseSchemeHandler.h in Headers */,
 				9489EBB82AA659D70087424D /* NBSFuseLocalization.h in Headers */,
 				941862AB2A9FE5F700CCFEE1 /* NBSFuseError.h in Headers */,
+				947FF0F02AC8A375003D09BC /* NBSFuseAPIResponseFactory.h in Headers */,
 				9489EB982AA54FA40087424D /* NBSFuseRuntime.h in Headers */,
 				9418629F2A995BDC00CCFEE1 /* NBSFuseAPIPacket.h in Headers */,
 				94B0A68F2AB776DC008C291A /* NBSFuseAPIServer.h in Headers */,
@@ -209,6 +257,24 @@
 			productReference = 94A886C22A714F6D0098530D /* NBSFuse.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		94B7A9CB2AC89E39003D294D /* NBSFuseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94B7A9D32AC89E39003D294D /* Build configuration list for PBXNativeTarget "NBSFuseTests" */;
+			buildPhases = (
+				94B7A9C82AC89E39003D294D /* Sources */,
+				94B7A9C92AC89E39003D294D /* Frameworks */,
+				94B7A9CA2AC89E39003D294D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				94B7A9D22AC89E39003D294D /* PBXTargetDependency */,
+			);
+			name = NBSFuseTests;
+			productName = NBSFuseTests;
+			productReference = 94B7A9CC2AC89E39003D294D /* NBSFuseTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -217,6 +283,11 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					94B7A9CB2AC89E39003D294D = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
 			};
 			buildConfigurationList = 94A886532A702C6C0098530D /* Build configuration list for PBXProject "NBSFuse" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -232,6 +303,7 @@
 			projectRoot = "";
 			targets = (
 				94A886B52A714F6D0098530D /* NBSFuse */,
+				94B7A9CB2AC89E39003D294D /* NBSFuseTests */,
 			);
 		};
 /* End PBXProject section */
@@ -242,6 +314,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9489EBAE2AA6445C0087424D /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94B7A9CA2AC89E39003D294D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +339,7 @@
 				9418629D2A9956F100CCFEE1 /* NBSFuseAPIRouter.m in Sources */,
 				9489EB9A2AA54FED0087424D /* NBSFuseRuntime.m in Sources */,
 				9489EBA52AA623B70087424D /* NBSFuseViewController.m in Sources */,
+				947FF0F22AC8A3DA003D09BC /* NBSFuseAPIResponseFactory.m in Sources */,
 				941862A52A996F7900CCFEE1 /* NBSFuseAPIResponse.m in Sources */,
 				94B0A6932AB77790008C291A /* NBSFuseAPIServer.m in Sources */,
 				9489EBBA2AA65A990087424D /* NBSFuseLocalization.m in Sources */,
@@ -267,7 +347,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		94B7A9C82AC89E39003D294D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94B7A9CF2AC89E39003D294D /* NBSFuseTests.m in Sources */,
+				947FF0D22AC89FA2003D09BC /* NBSFuseAPITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		94B7A9D22AC89E39003D294D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 94A886B52A714F6D0098530D /* NBSFuse */;
+			targetProxy = 94B7A9D12AC89E39003D294D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9489EBB02AA6445C0087424D /* Localizable.strings */ = {
@@ -471,6 +569,44 @@
 			};
 			name = Release;
 		};
+		94B7A9D42AC89E39003D294D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AF37P8XHYY;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.nbsolutions.NBSFuseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		94B7A9D52AC89E39003D294D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AF37P8XHYY;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.nbsolutions.NBSFuseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -488,6 +624,15 @@
 			buildConfigurations = (
 				94A886C02A714F6D0098530D /* Debug */,
 				94A886C12A714F6D0098530D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		94B7A9D32AC89E39003D294D /* Build configuration list for PBXNativeTarget "NBSFuseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94B7A9D42AC89E39003D294D /* Debug */,
+				94B7A9D52AC89E39003D294D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

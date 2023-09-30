@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <FileRef
+      location = "group:NBSFuse/NBSFuseTestTools/NBSFuseTestTools.xcodeproj">
+   </FileRef>
    <Group
       location = "container:"
       name = "plugins">
-      <FileRef
-         location = "group:../plugins/permission/ios/permissionplugin/permissionplugin.xcodeproj">
-      </FileRef>
       <FileRef
          location = "group:../plugins/echo/ios/echo.xcodeproj">
       </FileRef>

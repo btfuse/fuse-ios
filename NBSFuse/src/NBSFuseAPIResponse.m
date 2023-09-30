@@ -18,22 +18,123 @@ limitations under the License.
 #import <Foundation/Foundation.h>
 #import <NBSFuse/NBSFuseAPIResponse.h>
 #include <sys/socket.h>
+#include <pthread.h>
 
-@implementation NBSFuseAPIResponse
+typedef void (^NBSFuseAPIResponse_TaskBlock)(void);
+
+@implementation NBSFuseAPIResponse {
+    pthread_mutex_t $workerMutex;
+    pthread_t $workerThread;
+    NSMutableArray<NBSFuseAPIResponse_TaskBlock>* $workerQueue;
+}
+
+void* $NBSFuseAPIResponse_processTask(void* pdata) {
+    NBSFuseAPIResponse* res = (__bridge NBSFuseAPIResponse*)pdata;
+    
+    pthread_mutex_t* workerMutex = [res __getWorkerMutex];
+    
+    while (true) {
+        if (![res isClosed]) {
+            pthread_mutex_lock(workerMutex);
+        }
+        else {
+            break;
+        }
+        
+        while ([res __hasTaskAvailable]) {
+            NBSFuseAPIResponse_TaskBlock task = [res __getNextTask];
+            task();
+        }
+    }
+    
+    return NULL;
+}
 
 - (instancetype) init:(int) client {
     self = [super init];
     
     $client = client;
+    if (pthread_mutex_init(&$workerMutex, NULL) != 0) {
+        NSLog(@"Worker Mutex Init Failure");
+        return nil;
+    }
+    
+    $workerQueue = [[NSMutableArray alloc] init];
+    $isClosed = false;
     $hasSentHeaders = false;
     $status = NBSFuseAPIResponseStatusOk;
     $contentLength = 0;
     $contentType = @"application/octet-stream";
     
+    pthread_create(&self->$workerThread, NULL, &$NBSFuseAPIResponse_processTask, (__bridge void *)(self));
+    
     return self;
 }
 
-- (void)setStatus:(NSUInteger)status {
+- (pthread_mutex_t*) __getWorkerMutex {
+    return &$workerMutex;
+}
+
+- (bool) __hasTaskAvailable {
+    @synchronized ($workerQueue) {
+        return [$workerQueue count] > 0;
+    }
+}
+
+- (void) __addNetworkingTask:(NBSFuseAPIResponse_TaskBlock) task {
+    @synchronized ($workerQueue) {
+        [$workerQueue addObject:task];
+        pthread_mutex_unlock(&$workerMutex);
+    }
+}
+
+- (NBSFuseAPIResponse_TaskBlock) __getNextTask {
+    @synchronized ($workerQueue) {
+        NBSFuseAPIResponse_TaskBlock task = [$workerQueue firstObject];
+        [$workerQueue removeObjectAtIndex: 0];
+        return task;
+    }
+}
+
+- (void) $kill:(NSString*) message {
+    if ($isClosed) {
+        return;
+    }
+    
+    NSLog(@"Killing %d for reason: %@", $client, message);
+    $isClosed = true;
+    close($client);
+}
+
+- (ssize_t) $write:(const void*) data length:(size_t) length {
+    return write($client, data, length);
+}
+
+- (void) write:(const void*) sourceData length:(size_t) length {
+    void* data = malloc(length);
+    memcpy(data, sourceData, length);
+    [self __addNetworkingTask:^{
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Warc-retain-cycles"
+        /*
+            The block is stored temporary and removed when processed later,
+            thus retain cycles should be a non-issue here.
+         */
+        if ([self isClosed]) {
+            return;
+        }
+        
+        NSLog(@"Writing to %d", self->$client);
+        ssize_t bytesWritten = [self $write:data length: length];
+        free(data);
+        if (bytesWritten < 0) {
+            [self $kill:@"Network Socket Error"];
+        }
+        #pragma clang diagnostic pop
+    }];
+}
+
+- (void) setStatus:(NSUInteger)status {
     $status = status;
 }
 
@@ -43,6 +144,10 @@ limitations under the License.
 
 - (void) setContentLength:(NSUInteger)length {
     $contentLength = length;
+}
+
+- (bool) isClosed {
+    return $isClosed;
 }
 
 - (void) didFinishHeaders {
@@ -57,14 +162,24 @@ limitations under the License.
     [headers appendString:[NSString stringWithFormat:@"Content-Length: %lu\r\n", $contentLength]];
     [headers appendString:@"\r\n"];
     
-    const char* headersBytes = [headers UTF8String];
-    size_t headersLength = strlen(headersBytes);
-    ssize_t bytesWritten = write($client, headersBytes, headersLength);
-    
-    if (bytesWritten < 0) {
-        NSLog(@"Error writing to the client socket");
-        close($client);
-    }
+    [self write: [headers UTF8String] length: [headers lengthOfBytesUsingEncoding:NSUTF8StringEncoding]];
+}
+
+- (void) kill:(NSString*) message {
+    [self __addNetworkingTask:^{
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Warc-retain-cycles"
+        /*
+            The block is stored temporary and removed when processed later,
+            thus retain cycles should be a non-issue here.
+         */
+        if ([self isClosed]) {
+            return;
+        }
+        
+        [self $kill: message];
+        #pragma clang diagnostic pop
+    }];
 }
 
 - (NSString*) getStatusText:(NSUInteger) status {
@@ -80,25 +195,32 @@ limitations under the License.
     }
 }
 
-- (void) pushData:(NSData *)data {
+- (void) pushData:(NSData*) data {
     if (!$hasSentHeaders) {
         NSLog(@"Cannot send data before headers are sent. Must call finishHeaders first!");
         // TODO: Raise exception somehow
         return;
     }
     
-    const void* dataBytes = [data bytes];
-    NSUInteger dataLength = [data length];
-
-    ssize_t bytesWritten = write($client, dataBytes, dataLength);
-    if (bytesWritten < 0) {
-        NSLog(@"Error writing to the client socket");
-        close($client);
-    }
+    [self write: [data bytes] length:[data length]];
 }
 
 - (void) didFinish {
-    shutdown($client, SHUT_RDWR);
+    [self __addNetworkingTask:^{
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Warc-retain-cycles"
+        /*
+            The block is stored temporary and removed when processed later,
+            thus retain cycles should be a non-issue here.
+         */
+        self->$isClosed = true;
+        NSLog(@"Closing for %d", self->$client);
+        int result = shutdown(self->$client, SHUT_RDWR);
+        if (result == -1) {
+            NSLog(@"Socket shudown error: %d", errno);
+        }
+        #pragma clang diagnostic pop
+    }];
 }
 
 - (void) didInternalError {

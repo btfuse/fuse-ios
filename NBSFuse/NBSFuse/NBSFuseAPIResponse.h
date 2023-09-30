@@ -30,9 +30,11 @@ typedef NS_ENUM(NSUInteger, NBSFuseAPIResponseStatus) {
 @interface NBSFuseAPIResponse: NSObject {
     int $client;
     bool $hasSentHeaders;
+    bool $isClosed;
     NSUInteger $status;
     NSUInteger $contentLength;
     NSString* $contentType;
+    dispatch_queue_t $networkQueue;
 }
 
 - (instancetype) init NS_UNAVAILABLE;
@@ -52,6 +54,7 @@ typedef NS_ENUM(NSUInteger, NBSFuseAPIResponseStatus) {
 - (void) didFinish;
 
 - (void) didInternalError;
+- (bool) isClosed;
 
 // Convenience methods, if you don't need to chunk data
 - (void) sendString:(NSString*) data;
@@ -60,6 +63,8 @@ typedef NS_ENUM(NSUInteger, NBSFuseAPIResponseStatus) {
 - (void) sendJSON:(NSDictionary*) data;
 - (void) sendNoContent;
 - (void) sendError:(NBSFuseError*) error;
+
+- (void) kill:(NSString*) message;
 
 @end
 

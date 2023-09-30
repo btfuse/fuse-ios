@@ -20,6 +20,7 @@ limitations under the License.
 
 #import <Foundation/Foundation.h>
 #import <WebKit/WebKit.h>
+#import <NBSFuse/NBSFuseAPIResponseFactory.h>
 
 @class NBSFuseViewController;
 @class NBSFusePlugin;
@@ -30,17 +31,20 @@ limitations under the License.
     NSMutableDictionary<NSString*, NBSFusePlugin*>* $pluginMap;
     NBSFuseAPIRouter* $apiRouter;
     __weak NBSFuseViewController* $viewController;
+    NBSFuseAPIResponseFactory* $responseFactory;
 }
 
-- (instancetype) init NS_UNAVAILABLE;
-- (instancetype) init:(NBSFuseViewController*) controller NS_DESIGNATED_INITIALIZER;
-- (WKWebView*) getWebview;
-- (NBSFuseViewController*) getViewController;
-- (void) registerPlugin:(NBSFusePlugin*)plugin;
-- (NBSFusePlugin*) getPlugin:(NSString*)pluginID;
-- (NBSFuseAPIRouter*) getAPIRouter;
-- (void) execCallback:(NSString*) callbackID withData:(NSString*) data;
-- (void) execCallback:(NSString*) callbackID;
+- (nonnull instancetype) init NS_UNAVAILABLE;
+- (nonnull instancetype) init:(nonnull NBSFuseViewController*) controller NS_DESIGNATED_INITIALIZER;
+- (nonnull NBSFuseAPIResponseFactory*) getResponseFactory;
+- (void) setResponseFactory:(nonnull NBSFuseAPIResponseFactory*) factory;
+- (nonnull WKWebView*) getWebview;
+- (nonnull NBSFuseViewController*) getViewController;
+- (void) registerPlugin:(nonnull NBSFusePlugin*)plugin;
+- (nonnull NBSFusePlugin*) getPlugin:(nonnull NSString*)pluginID;
+- (nonnull NBSFuseAPIRouter*) getAPIRouter;
+- (void) execCallback:(nonnull NSString*) callbackID withData:(nonnull NSString*) data;
+- (void) execCallback:(nonnull NSString*) callbackID;
 
 @end
 

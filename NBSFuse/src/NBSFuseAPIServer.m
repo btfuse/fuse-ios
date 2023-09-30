@@ -114,7 +114,9 @@ void* $handleClientConnection(void* dataPtr) {
     }
     
     NSString* method = [headers getMethod];
+    NSLog(@"API Request %@ %@", method, [headers getPath]);
     if ([method isEqualToString:@"OPTIONS"]) {
+//        NBSFuseAPIResponse* res = [[[server getContext] getResponseFactory] create: clientFD];
         NBSFuseAPIResponse* res = [[NBSFuseAPIResponse alloc] init: clientFD];
         [res sendNoContent];
         return NULL;
@@ -127,6 +129,7 @@ void* $handleClientConnection(void* dataPtr) {
         return NULL;
     }
     
+//    NBSFuseAPIResponse* res = [[[server getContext] getResponseFactory] create: clientFD];
     NBSFuseAPIResponse* res = [[NBSFuseAPIResponse alloc] init: clientFD];
     NBSFuseAPIPacket* packet = [[NBSFuseAPIPacket alloc] init:[headers getPath] withHeaders:[headers getHeaders] withSocket:clientFD];
     
@@ -158,8 +161,6 @@ void* $handleClientConnection(void* dataPtr) {
             break;
     }
 }
-
-//- (void) r
 
 NSString* $generateSecret(void) {
     size_t secretLength = 32; // Length in bytes
@@ -306,6 +307,8 @@ NBSFuseAPIServerHeaders* $parseHeaders(int clientFD) {
 - (void) dealloc {
     close($sockFD);
     pthread_join($mainNetworkThread, NULL);
+    // This is a more graceful way of shutting down, but will involve adding a killswitch in the networkLoop.
+    // shutdown($sockFD, SHUT_RDWR);
 }
 
 void* $networkLoop(void* ptr) {
@@ -319,11 +322,19 @@ void* $networkLoop(void* ptr) {
         clientFD = accept(sockFD, (struct sockaddr*)&clientAddr, &clientAddrLen);
 
         if (clientFD == -1) {
+            NSLog(@"Socket Acceptance Error");
             continue;
         }
+        
+        NSLog(@"Accepted Client: %d", clientFD);
 
         int value = 1;
-        setsockopt(clientFD, SOL_SOCKET, SO_NOSIGPIPE, &value, sizeof(value));
+        int result = setsockopt(clientFD, SOL_SOCKET, SO_NOSIGPIPE, &value, sizeof(value));
+        if (result == -1) {
+            NSLog(@"Socket Configuration Error");
+            close(clientFD);
+            continue;
+        }
         
         struct NBSFuseAPIServerClientConnection* client = (struct NBSFuseAPIServerClientConnection*)malloc(sizeof(struct NBSFuseAPIServerClientConnection));
         client->server = self;

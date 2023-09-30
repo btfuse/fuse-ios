@@ -30,6 +30,7 @@ limitations under the License.
 - (instancetype) init:(NBSFuseViewController*) controller {
     self = [super init];
     
+    $responseFactory = [[NBSFuseAPIResponseFactory alloc] init];
     $apiRouter = [[NBSFuseAPIRouter alloc] init: self];
     $pluginMap = [[NSMutableDictionary alloc] init];
     $viewController = controller;
@@ -74,6 +75,14 @@ limitations under the License.
 
 - (NBSFusePlugin*) getPlugin:(NSString*)pluginID {
     return [$pluginMap objectForKey:pluginID];
+}
+
+- (nonnull NBSFuseAPIResponseFactory*) getResponseFactory {
+    return $responseFactory;
+}
+
+- (void)setResponseFactory:(nonnull NBSFuseAPIResponseFactory*) factory {
+    $responseFactory = factory;
 }
 
 @end
