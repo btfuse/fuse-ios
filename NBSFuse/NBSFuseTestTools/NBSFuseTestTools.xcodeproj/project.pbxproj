@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		94552C502ACA0FC900DAE0F4 /* libecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94552C4F2ACA0FC900DAE0F4 /* libecho.a */; };
 		946278442AC8A94A008A89FA /* NBSFuseTestViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 946278432AC8A94A008A89FA /* NBSFuseTestViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		946278462AC8A987008A89FA /* NBSFuseTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946278452AC8A987008A89FA /* NBSFuseTestViewController.m */; };
 		9462784C2AC8B154008A89FA /* NBSFuseTestAPIResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 9462784B2AC8B154008A89FA /* NBSFuseTestAPIResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -17,10 +18,10 @@
 		947FF1112AC8A83B003D09BC /* NBSFuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 947FF1102AC8A83B003D09BC /* NBSFuse.framework */; };
 		94D499BB2AC9CFEE009917A7 /* NBSFuseTestAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 94D499BA2AC9CFEE009917A7 /* NBSFuseTestAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94D499BD2AC9D254009917A7 /* NBSFuseTestAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D499BC2AC9D254009917A7 /* NBSFuseTestAPIClient.m */; };
-		94D499BF2AC9F0BB009917A7 /* libecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D499BE2AC9F0BB009917A7 /* libecho.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		94552C4F2ACA0FC900DAE0F4 /* libecho.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libecho.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		946278432AC8A94A008A89FA /* NBSFuseTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseTestViewController.h; sourceTree = "<group>"; };
 		946278452AC8A987008A89FA /* NBSFuseTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseTestViewController.m; sourceTree = "<group>"; };
 		9462784B2AC8B154008A89FA /* NBSFuseTestAPIResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseTestAPIResponse.h; sourceTree = "<group>"; };
@@ -32,7 +33,6 @@
 		947FF1102AC8A83B003D09BC /* NBSFuse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NBSFuse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94D499BA2AC9CFEE009917A7 /* NBSFuseTestAPIClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseTestAPIClient.h; sourceTree = "<group>"; };
 		94D499BC2AC9D254009917A7 /* NBSFuseTestAPIClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseTestAPIClient.m; sourceTree = "<group>"; };
-		94D499BE2AC9F0BB009917A7 /* libecho.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libecho.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94D499BF2AC9F0BB009917A7 /* libecho.a in Frameworks */,
+				94552C502ACA0FC900DAE0F4 /* libecho.a in Frameworks */,
 				947FF1112AC8A83B003D09BC /* NBSFuse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,7 +100,7 @@
 		947FF10F2AC8A83B003D09BC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				94D499BE2AC9F0BB009917A7 /* libecho.a */,
+				94552C4F2ACA0FC900DAE0F4 /* libecho.a */,
 				947FF1102AC8A83B003D09BC /* NBSFuse.framework */,
 			);
 			name = Frameworks;
