@@ -35,7 +35,7 @@
 		94A886BC2A714F6D0098530D /* NBSFuseContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A886662A702D6A0098530D /* NBSFuseContext.m */; };
 		94A886DC2A7169920098530D /* NBSFusePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A886DB2A7169920098530D /* NBSFusePlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94A886DE2A716A0C0098530D /* NBSFusePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A886DD2A716A0C0098530D /* NBSFusePlugin.m */; };
-		94B0A68F2AB776DC008C291A /* NBSFuseAPIServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B0A68E2AB776DC008C291A /* NBSFuseAPIServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94B0A68F2AB776DC008C291A /* NBSFuseAPIServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B0A68E2AB776DC008C291A /* NBSFuseAPIServer.h */; };
 		94B0A6932AB77790008C291A /* NBSFuseAPIServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B0A6922AB77790008C291A /* NBSFuseAPIServer.m */; };
 		94B7A9CF2AC89E39003D294D /* NBSFuseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7A9CE2AC89E39003D294D /* NBSFuseTests.m */; };
 		94B7A9D02AC89E39003D294D /* NBSFuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A886C22A714F6D0098530D /* NBSFuse.framework */; platformFilter = ios; };

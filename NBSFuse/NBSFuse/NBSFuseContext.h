@@ -45,6 +45,8 @@ limitations under the License.
 - (nonnull NBSFuseAPIRouter*) getAPIRouter;
 - (void) execCallback:(nonnull NSString*) callbackID withData:(nonnull NSString*) data;
 - (void) execCallback:(nonnull NSString*) callbackID;
+- (int) getAPIPort;
+- (nonnull NSString*) getAPISecret;
 
 @end
 

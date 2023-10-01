@@ -18,6 +18,7 @@ limitations under the License.
 #import <Foundation/Foundation.h>
 #import <NBSFuseTestTools/NBSFuseTestViewController.h>
 #import <NBSFuseTestTools/NBSFuseTestAPIResponseFactory.h>
+#import <echo/EchoPlugin.h>
 
 @implementation NBSFuseTestViewController
 
@@ -25,6 +26,7 @@ limitations under the License.
     self = [super init];
     
     [[self getContext] setResponseFactory: [[NBSFuseTestAPIResponseFactory alloc] init]];
+    [[self getContext] registerPlugin:[[EchoPlugin alloc] init: [self getContext]]];
     
     return self;
 }

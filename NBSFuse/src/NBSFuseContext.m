@@ -24,11 +24,19 @@ limitations under the License.
 #import <NBSFuse/NBSFuseAPIResponse.h>
 #import <NBSFuse/NBSFuseRuntime.h>
 #import <NBSFuse/NBSFuseViewController.h>
+#import <NBSFuse/NBSFuseAPIServer.h>
+
+@interface NBSFuseContext () {
+    NBSFuseAPIServer* $apiServer;
+}
+@end
 
 @implementation NBSFuseContext
 
 - (instancetype) init:(NBSFuseViewController*) controller {
     self = [super init];
+    
+    $apiServer = [[NBSFuseAPIServer alloc] init: self];
     
     $responseFactory = [[NBSFuseAPIResponseFactory alloc] init];
     $apiRouter = [[NBSFuseAPIRouter alloc] init: self];
@@ -81,8 +89,16 @@ limitations under the License.
     return $responseFactory;
 }
 
-- (void)setResponseFactory:(nonnull NBSFuseAPIResponseFactory*) factory {
+- (void) setResponseFactory:(nonnull NBSFuseAPIResponseFactory*) factory {
     $responseFactory = factory;
+}
+
+- (int) getAPIPort {
+    return [$apiServer getPort];
+}
+
+- (NSString*) getAPISecret {
+    return [$apiServer getSecret];
 }
 
 @end

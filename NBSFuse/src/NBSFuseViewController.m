@@ -22,17 +22,11 @@ limitations under the License.
 #import <NBSFuse/NBSFuseWebviewUIDelegation.h>
 #import "NBSFuseAPIServer.h"
 
-@interface NBSFuseViewController () {
-    NBSFuseAPIServer* $apiServer;
-}
-@end
-
 @implementation NBSFuseViewController
 
 - (instancetype) init {
     self = [super init];
     $context = [[NBSFuseContext alloc] init: self];
-    $apiServer = [[NBSFuseAPIServer alloc] init:$context];
     return self;
 }
 
@@ -85,12 +79,12 @@ limitations under the License.
             replyHandler:(void (^)(id _Nullable, NSString* _Nullable)) replyHandler
 {
     if ([message.name isEqualToString:@"getAPIPort" ]) {
-        int port = [$apiServer getPort];
+        int port = [$context getAPIPort];
         replyHandler([[NSNumber alloc] initWithInt:port], nil);
         return;
     }
     else if ([message.name isEqualToString:@"getAPISecret"]) {
-        NSString* secret = [$apiServer getSecret];
+        NSString* secret = [$context getAPISecret];
         replyHandler(secret, nil);
         return;
     }

@@ -26,3 +26,5 @@ FOUNDATION_EXPORT const unsigned char NBSFuseTestToolsVersionString[];
 #import <NBSFuseTestTools/NBSFuseTestViewController.h>
 #import <NBSFuseTestTools/NBSFuseTestAPIResponse.h>
 #import <NBSFuseTestTools/NBSFuseTestAPIResponseFactory.h>
+#import <NBSFuseTestTools/NBSFuseTestAPIClient.h>
+

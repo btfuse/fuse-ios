@@ -15,6 +15,9 @@
 		946278522AC8B3EE008A89FA /* NBSFuseTestAPIResponseFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 946278512AC8B3EE008A89FA /* NBSFuseTestAPIResponseFactory.m */; };
 		947FF1092AC8A82E003D09BC /* NBSFuseTestTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 947FF1082AC8A82E003D09BC /* NBSFuseTestTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		947FF1112AC8A83B003D09BC /* NBSFuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 947FF1102AC8A83B003D09BC /* NBSFuse.framework */; };
+		94D499BB2AC9CFEE009917A7 /* NBSFuseTestAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 94D499BA2AC9CFEE009917A7 /* NBSFuseTestAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D499BD2AC9D254009917A7 /* NBSFuseTestAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D499BC2AC9D254009917A7 /* NBSFuseTestAPIClient.m */; };
+		94D499BF2AC9F0BB009917A7 /* libecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D499BE2AC9F0BB009917A7 /* libecho.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +30,9 @@
 		947FF1052AC8A82E003D09BC /* NBSFuseTestTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NBSFuseTestTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		947FF1082AC8A82E003D09BC /* NBSFuseTestTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseTestTools.h; sourceTree = "<group>"; };
 		947FF1102AC8A83B003D09BC /* NBSFuse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NBSFuse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		94D499BA2AC9CFEE009917A7 /* NBSFuseTestAPIClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseTestAPIClient.h; sourceTree = "<group>"; };
+		94D499BC2AC9D254009917A7 /* NBSFuseTestAPIClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseTestAPIClient.m; sourceTree = "<group>"; };
+		94D499BE2AC9F0BB009917A7 /* libecho.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libecho.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94D499BF2AC9F0BB009917A7 /* libecho.a in Frameworks */,
 				947FF1112AC8A83B003D09BC /* NBSFuse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -47,6 +54,7 @@
 				946278432AC8A94A008A89FA /* NBSFuseTestViewController.h */,
 				9462784B2AC8B154008A89FA /* NBSFuseTestAPIResponse.h */,
 				9462784F2AC8B1D1008A89FA /* NBSFuseTestAPIResponseFactory.h */,
+				94D499BA2AC9CFEE009917A7 /* NBSFuseTestAPIClient.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -57,6 +65,7 @@
 				946278452AC8A987008A89FA /* NBSFuseTestViewController.m */,
 				9462784D2AC8B1AF008A89FA /* NBSFuseTestAPIResponse.m */,
 				946278512AC8B3EE008A89FA /* NBSFuseTestAPIResponseFactory.m */,
+				94D499BC2AC9D254009917A7 /* NBSFuseTestAPIClient.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -91,6 +100,7 @@
 		947FF10F2AC8A83B003D09BC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				94D499BE2AC9F0BB009917A7 /* libecho.a */,
 				947FF1102AC8A83B003D09BC /* NBSFuse.framework */,
 			);
 			name = Frameworks;
@@ -105,6 +115,7 @@
 			files = (
 				946278502AC8B1D1008A89FA /* NBSFuseTestAPIResponseFactory.h in Headers */,
 				9462784C2AC8B154008A89FA /* NBSFuseTestAPIResponse.h in Headers */,
+				94D499BB2AC9CFEE009917A7 /* NBSFuseTestAPIClient.h in Headers */,
 				946278442AC8A94A008A89FA /* NBSFuseTestViewController.h in Headers */,
 				947FF1092AC8A82E003D09BC /* NBSFuseTestTools.h in Headers */,
 			);
@@ -178,6 +189,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94D499BD2AC9D254009917A7 /* NBSFuseTestAPIClient.m in Sources */,
 				946278462AC8A987008A89FA /* NBSFuseTestViewController.m in Sources */,
 				9462784E2AC8B1AF008A89FA /* NBSFuseTestAPIResponse.m in Sources */,
 				946278522AC8B3EE008A89FA /* NBSFuseTestAPIResponseFactory.m in Sources */,

@@ -22,6 +22,7 @@ limitations under the License.
 
 @interface NBSFuseAPITests : XCTestCase {
     NBSFuseTestViewController* $viewController;
+    NBSFuseTestAPIClientBuilder* $apiBuilder;
 }
 
 @end
@@ -31,10 +32,57 @@ limitations under the License.
 - (void) setUp {
     $viewController = [[NBSFuseTestViewController alloc] init];
     [$viewController loadViewIfNeeded];
+    
+    NBSFuseContext* context = [$viewController getContext];
+    
+    $apiBuilder = [[NBSFuseTestAPIClientBuilder alloc] init];
+    
+    $apiBuilder.apiPort = @([context getAPIPort]);
+    $apiBuilder.apiSecret = [context getAPISecret];
+    $apiBuilder.pluginID = @"echo";
+    $apiBuilder.contentType = @"text/plain";
 }
 
 - (void) tearDown {
     $viewController = nil;
+}
+
+- (void) testSimpleEchoRequest {
+    $apiBuilder.endpoint = @"echo";
+    $apiBuilder.data = [@"Hello Test!" dataUsingEncoding:NSUTF8StringEncoding];
+    NBSFuseTestAPIClient* client = [$apiBuilder build];
+    
+    XCTestExpectation* expectation = [self expectationWithDescription:@"testSimpleEchoRequest"];
+    
+    [client execute:^(NSError * _Nullable error, NBSFuseTestAPIClientResponse * _Nullable response) {
+        XCTAssertNil(error, @"Error should be nil");
+        
+        NSString* payload = [[NSString alloc] initWithData:response.data encoding:NSUTF8StringEncoding];
+        XCTAssertTrue([payload isEqualToString:@"Hello Test!"], @"Payload should echo input");
+        
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:30.0 handler:nil];
+}
+
+- (void) testThreadedRequest {
+    $apiBuilder.endpoint = @"threadtest";
+    $apiBuilder.data = [@"Hello Test!" dataUsingEncoding:NSUTF8StringEncoding];
+    NBSFuseTestAPIClient* client = [$apiBuilder build];
+    
+    XCTestExpectation* expectation = [self expectationWithDescription:@"testThreadedRequest"];
+    
+    [client execute:^(NSError * _Nullable error, NBSFuseTestAPIClientResponse * _Nullable response) {
+        XCTAssertNil(error, @"Error should be nil");
+        
+        NSString* payload = [[NSString alloc] initWithData:response.data encoding:NSUTF8StringEncoding];
+        XCTAssertTrue([payload isEqualToString:@"Hello Test!"], @"Payload should echo input");
+        
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:30.0 handler:nil];
 }
 
 //- (void) testShouldHaveContext {

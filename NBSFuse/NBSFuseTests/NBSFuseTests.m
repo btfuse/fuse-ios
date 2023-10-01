@@ -38,12 +38,25 @@ limitations under the License.
 
 - (void) testShouldHaveContext {
     NBSFuseContext* context = [$viewController getContext];
-    XCTAssert(context != nil);
+    XCTAssertNotNil(context, @"NBSFuseContext should not be nil");
 }
 
 - (void) testShouldHaveWebview {
     WKWebView* webview = [$viewController getWebview];
-    XCTAssert(webview != nil);
+    XCTAssertNotNil(webview, @"WKWebView should not be nil");
+}
+
+- (void) testShouldHaveAPIPort {
+    NBSFuseContext* context = [$viewController getContext];
+    int port = [context getAPIPort];
+    XCTAssertTrue(port > 1024 && port < 65535, @"Fuse API Port should be > 1024 and < 65535");
+}
+
+- (void) testShouldHaveAPISecret {
+    NBSFuseContext* context = [$viewController getContext];
+    NSString* secret = [context getAPISecret];
+    XCTAssertNotNil(secret, @"API Fuse Secret should not be nil");
+    
 }
 
 @end
