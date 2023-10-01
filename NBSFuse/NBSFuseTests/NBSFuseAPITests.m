@@ -48,7 +48,7 @@ limitations under the License.
 }
 
 - (void) testSimpleEchoRequest {
-    $apiBuilder.endpoint = @"echo";
+    $apiBuilder.endpoint = @"/echo";
     $apiBuilder.data = [@"Hello Test!" dataUsingEncoding:NSUTF8StringEncoding];
     NBSFuseTestAPIClient* client = [$apiBuilder build];
     
@@ -67,7 +67,7 @@ limitations under the License.
 }
 
 - (void) testThreadedRequest {
-    $apiBuilder.endpoint = @"threadtest";
+    $apiBuilder.endpoint = @"/threadtest";
     $apiBuilder.data = [@"Hello Test!" dataUsingEncoding:NSUTF8StringEncoding];
     NBSFuseTestAPIClient* client = [$apiBuilder build];
     
@@ -84,15 +84,5 @@ limitations under the License.
     
     [self waitForExpectationsWithTimeout:30.0 handler:nil];
 }
-
-//- (void) testShouldHaveContext {
-//    NBSFuseContext* context = [$viewController getContext];
-//    XCTAssert(context != nil);
-//}
-//
-//- (void) testShouldHaveWebview {
-//    WKWebView* webview = [$viewController getWebview];
-//    XCTAssert(webview != nil);
-//}
 
 @end

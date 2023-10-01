@@ -78,7 +78,7 @@ limitations under the License.
 }
 
 - (NSString*) $getURL {
-    return [NSString stringWithFormat:@"%@:%d/api/%@/%@", API_ENDPOINT_BASE, $apiPort, $pluginID, $endpoint];
+    return [NSString stringWithFormat:@"%@:%d/api/%@%@", API_ENDPOINT_BASE, $apiPort, $pluginID, $endpoint];
 }
 
 - (void) execute:(NBSFuseTestAPIClientCallback) callback {
