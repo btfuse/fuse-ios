@@ -88,8 +88,14 @@ limitations under the License.
     
     NSString* version = [device systemVersion];
     
+    bool debugMode = false;
+    #ifdef DEBUG
+        debugMode = true;
+    #endif
+    
     return @{
-        @"version": version
+        @"version": version,
+        @"debugMode": @(debugMode)
     };
 }
 
