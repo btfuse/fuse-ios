@@ -116,8 +116,7 @@ void* $handleClientConnection(void* dataPtr) {
     NSString* method = [headers getMethod];
     NSLog(@"API Request %@ %@", method, [headers getPath]);
     if ([method isEqualToString:@"OPTIONS"]) {
-//        NBSFuseAPIResponse* res = [[[server getContext] getResponseFactory] create: clientFD];
-        NBSFuseAPIResponse* res = [[NBSFuseAPIResponse alloc] init: clientFD];
+        NBSFuseAPIResponse* res = [[[server getContext] getResponseFactory] create: clientFD];
         [res sendNoContent];
         return NULL;
     }
@@ -129,8 +128,7 @@ void* $handleClientConnection(void* dataPtr) {
         return NULL;
     }
     
-//    NBSFuseAPIResponse* res = [[[server getContext] getResponseFactory] create: clientFD];
-    NBSFuseAPIResponse* res = [[NBSFuseAPIResponse alloc] init: clientFD];
+    NBSFuseAPIResponse* res = [[[server getContext] getResponseFactory] create: clientFD];
     NBSFuseAPIPacket* packet = [[NBSFuseAPIPacket alloc] init:[headers getPath] withHeaders:[headers getHeaders] withSocket:clientFD];
     
     [[[server getContext] getAPIRouter] execute: packet withResponse: res];
