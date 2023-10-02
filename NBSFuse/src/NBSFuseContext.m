@@ -25,6 +25,7 @@ limitations under the License.
 #import <NBSFuse/NBSFuseRuntime.h>
 #import <NBSFuse/NBSFuseViewController.h>
 #import <NBSFuse/NBSFuseAPIServer.h>
+#import <NBSFuse/NBSFuse.h>
 
 @interface NBSFuseContext () {
     NBSFuseAPIServer* $apiServer;
@@ -35,6 +36,15 @@ limitations under the License.
 
 - (instancetype) init:(NBSFuseViewController*) controller {
     self = [super init];
+    
+//    NSBundle* bundle = [NSBundle mainBundle];
+    NSBundle* bundle = [NSBundle bundleForClass: [NBSFuseContext class]];
+    NSString* version = [bundle objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
+    NSString* build = [bundle objectForInfoDictionaryKey: @"CFBundleVersion"];
+//    NSString* version = [NSString stringWithUTF8String: (const char*)NBSFuseVersionString];
+//    NSString* build = [NSString stringWithFormat:@"%f", NBSFuseVersionNumber];
+    
+    NSLog(@"Fuse %@ (%@)", version, build);
     
     $apiServer = [[NBSFuseAPIServer alloc] init: self];
     

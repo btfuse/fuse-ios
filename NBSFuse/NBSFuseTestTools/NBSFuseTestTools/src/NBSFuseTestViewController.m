@@ -18,7 +18,7 @@ limitations under the License.
 #import <Foundation/Foundation.h>
 #import <NBSFuseTestTools/NBSFuseTestViewController.h>
 #import <NBSFuseTestTools/NBSFuseTestAPIResponseFactory.h>
-#import <echo/EchoPlugin.h>
+#import <EchoPlugin.h>
 
 @implementation NBSFuseTestViewController
 

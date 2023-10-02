@@ -38,7 +38,14 @@ limitations under the License.
     WKWebViewConfiguration* configuration = [[WKWebViewConfiguration alloc] init];
     [configuration.userContentController addScriptMessageHandlerWithReply: self contentWorld: WKContentWorld.pageWorld name:@"getAPIPort"];
     [configuration.userContentController addScriptMessageHandlerWithReply: self contentWorld: WKContentWorld.pageWorld name:@"getAPISecret"];
-    
+
+    NSString* fuseBuildTag = @"Release";
+    #ifdef DEBUG
+        fuseBuildTag = @"Debug";
+    #endif
+    // TODO: Pull Version information somehow
+    configuration.applicationNameForUserAgent = [NSString stringWithFormat:@"FuseRuntime (%@ %@ Build", @"0.0.0", fuseBuildTag];
+
     //TODO: pass the configuration object to a overridable method to give a chance for application-level configuration
     [configuration setURLSchemeHandler: [
         [NBSFuseSchemeHandler alloc] init: $context]

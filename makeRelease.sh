@@ -14,65 +14,30 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-REPO="fuse-ios"
+source build-tools/assertions.sh
+source build-tools/DirectoryTools.sh
 
-cd ..
-source compiler/_assertCleanWorkspace.sh
-source compiler/_assertMac.sh
-cd fuse-ios
+assertMac "Mac is required for publishing"
+assertGitRepo
+assertGitCleanRepo
 
 VERSION="$1"
 
-if [ -z "$VERSION" ]; then
-    echo "Version is required."
-    exit 2
-fi
-
-cd ..
-source compiler/_assertGitTag.sh
-cd fuse-ios
+assertVersion $VERSION
+assetGitTagAvailable $VERSION
 
 echo $VERSION > VERSION
 
-cd ..
-./build.sh ios
-cd fuse-ios
+spushd NBSFuse/configs
+echo "// This is an auto-generated file, do not edit!" > version.xcconfig
+echo "CURRENT_PROJECT_VERSION = $VERSION" >> version.xcconfig
+echo "MARKETING_VERSION = $VERSION" >> version.xcconfig
+spopd
 
-rm -f ./build/NBSFuse.xcframework.zip
+./build.sh
+./test.sh
 
-cd build
-zip ./NBSFuse.xcframework.zip -r ./NBSFuse.xcframework
-cd ..
-
-rm -rf build/dist
-mkdir -p build/dist/NBSFuse
-cp -r build/NBSFuse.xcframework build/dist/NBSFuse/
-cp LICENSE build/dist/NBSFuse/
-mkdir -p build/dist/NBSFuse/Headers
-cp -r NBSFuse/NBSFuse/* build/dist/NBSFuse/Headers/
-
-rm -f build/NBSFuse.zip
-cd build/dist
-zip NBSFuse.zip -r NBSFuse
-cd ../..
-mv build/dist/NBSFuse.zip build/
-
-CHECKSUM="$(shasum -a 1 build/NBSFuse.xcframework.zip  | cut -d ' ' -f 1)"
-echo "$CHECKSUM" > build/NBSFuse.xcframework.checksum
-
-# Neither SwiftPM or CocoaPods wants to play ball, so I'm just not going to use them
-# Generate the podspec. Unfortunately due to how podspecs work, they need access to any files
-# they reference, so we can't read from VERSION in the podspec itself.
-# echo "// This is a generated file, do not modify directly\n\n" > Package.swift
-# echo "$(cat Package.template.swift)" >> Package.swift
-# sed -i '' "s/:VERSION:/$VERSION/g" Package.swift
-# sed -i '' "s/:CHECKSUM:/$CHECKSUM/g" Package.swift
-
-# echo "# This is a generated file, do not modify directory\n\n" > NBSFuse.podspec
-# echo "$(cat NBSFuse.template.podspec)" >> NBSFuse.podspec
-# sed -i '' "s/:VERSION:/$VERSION/g" NBSFuse.podspec
-# sed -i '' "s/:CHECKSUM:/$CHECKSUM/g" NBSFuse.podspec
-
+git add VERSION NBSFuse/configs/version.xcconfig
 git add VERSION
 git commit -m "iOS Release: $VERSION"
 git push
@@ -80,8 +45,8 @@ git tag -a $VERSION -m "iOS Release: $VERSION"
 git push --tags
 
 gh release create $VERSION \
-    ./build/NBSFuse.xcframework.zip \
-    ./build/NBSFuse.xcframework.checksum \
+    ./dist/NBSFuse.xcframework.zip \
+    ./dist/NBSFuse.xcframework.zip.sha1.txt \
+    ./dist/NBSFuse.framework.dSYM.zip \
+    ./dist/NBSFuse.framework.dSYM.zip.sha1.txt \
     --verify-tag --generate-notes
-
-# pod repo push nbs NBSFuse.podspec
