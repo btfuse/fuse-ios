@@ -21,6 +21,7 @@ limitations under the License.
 #import <NBSFuse/NBSFuseSchemeHandler.h>
 #import <NBSFuse/NBSFuseWebviewUIDelegation.h>
 #import "NBSFuseAPIServer.h"
+#import <NBSFuse/NBSFuseLoggerLevel.h>
 
 @implementation NBSFuseViewController
 
@@ -38,6 +39,7 @@ limitations under the License.
     WKWebViewConfiguration* configuration = [[WKWebViewConfiguration alloc] init];
     [configuration.userContentController addScriptMessageHandlerWithReply: self contentWorld: WKContentWorld.pageWorld name:@"getAPIPort"];
     [configuration.userContentController addScriptMessageHandlerWithReply: self contentWorld: WKContentWorld.pageWorld name:@"getAPISecret"];
+    [configuration.userContentController addScriptMessageHandler: self name:@"log"];
 
     NSString* fuseBuildTag = @"Release";
     #ifdef DEBUG
@@ -79,6 +81,26 @@ limitations under the License.
 
 - (NBSFuseContext*) getContext {
     return $context;
+}
+
+- (void) userContentController:(WKUserContentController*) userContentController didReceiveScriptMessage:(WKScriptMessage*) message {
+    if ([message.name isEqualToString:@"log"] /* && [message.body isKindOfClass:[NSString class]]*/) {
+        if ([message.body isKindOfClass:[NSArray class]]) {
+            NSArray* logArgs = message.body;
+            if ([logArgs count] < 2) {
+                NSLog(@"Received log from webview but with invalid arguments.");
+            }
+            
+            NBSFuseLoggerLevel level = [[logArgs objectAtIndex: 0] unsignedIntValue];
+            NSString* levelLabel = NBSFuseLoggerLevel_toString(level);
+            NSString* content = [logArgs objectAtIndex: 1];
+            
+            NSLog(@"[%@]: %@", levelLabel, content);
+        }
+        else {
+            NSLog(@"Received log from webview but with invalid arguments.");
+        }
+    }
 }
 
 - (void)    userContentController:(WKUserContentController*) userContentController

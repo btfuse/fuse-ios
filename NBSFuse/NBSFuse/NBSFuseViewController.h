@@ -25,7 +25,7 @@ limitations under the License.
 
 @class NBSFuseContext;
 
-@interface NBSFuseViewController: UIViewController <WKScriptMessageHandlerWithReply> {
+@interface NBSFuseViewController: UIViewController <WKScriptMessageHandler, WKScriptMessageHandlerWithReply> {
     @private
     NBSFuseContext* $context;
     WKWebView* $webview;

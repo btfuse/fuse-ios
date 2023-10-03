@@ -16,6 +16,8 @@
 		941862AB2A9FE5F700CCFEE1 /* NBSFuseError.h in Headers */ = {isa = PBXBuildFile; fileRef = 941862AA2A9FE5F700CCFEE1 /* NBSFuseError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		941862AD2A9FE65E00CCFEE1 /* NBSFuseError.m in Sources */ = {isa = PBXBuildFile; fileRef = 941862AC2A9FE65E00CCFEE1 /* NBSFuseError.m */; };
 		94552C5D2ACB3A5600DAE0F4 /* NBSFuse.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 94552C5C2ACB3A5600DAE0F4 /* NBSFuse.xcconfig */; };
+		94552C612ACC32E600DAE0F4 /* NBSFuseLoggerLevel.h in Headers */ = {isa = PBXBuildFile; fileRef = 94552C602ACC32E600DAE0F4 /* NBSFuseLoggerLevel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94552C632ACC367600DAE0F4 /* NBSFuseLoggerLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94552C622ACC367600DAE0F4 /* NBSFuseLoggerLevel.m */; };
 		946278482AC8AA22008A89FA /* NBSFuseTestTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 946278472AC8AA22008A89FA /* NBSFuseTestTools.framework */; };
 		947FF0D22AC89FA2003D09BC /* NBSFuseAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 947FF0D12AC89FA2003D09BC /* NBSFuseAPITests.m */; };
 		947FF0F02AC8A375003D09BC /* NBSFuseAPIResponseFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 947FF0EF2AC8A375003D09BC /* NBSFuseAPIResponseFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -62,6 +64,8 @@
 		941862AA2A9FE5F700CCFEE1 /* NBSFuseError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseError.h; sourceTree = "<group>"; };
 		941862AC2A9FE65E00CCFEE1 /* NBSFuseError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseError.m; sourceTree = "<group>"; };
 		94552C5C2ACB3A5600DAE0F4 /* NBSFuse.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = NBSFuse.xcconfig; path = configs/NBSFuse.xcconfig; sourceTree = "<group>"; };
+		94552C602ACC32E600DAE0F4 /* NBSFuseLoggerLevel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseLoggerLevel.h; sourceTree = "<group>"; usesTabs = 0; };
+		94552C622ACC367600DAE0F4 /* NBSFuseLoggerLevel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseLoggerLevel.m; sourceTree = "<group>"; };
 		946278472AC8AA22008A89FA /* NBSFuseTestTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NBSFuseTestTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		947FF0D12AC89FA2003D09BC /* NBSFuseAPITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseAPITests.m; sourceTree = "<group>"; };
 		947FF0E82AC8A2A5003D09BC /* libNBSFuseTestTools.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libNBSFuseTestTools.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,6 +185,7 @@
 				9489EB9E2AA61A1C0087424D /* NBSFuseWebviewUIDelegation.h */,
 				9489EBA22AA621A70087424D /* NBSFuseViewController.h */,
 				9489EBB72AA659D70087424D /* NBSFuseLocalization.h */,
+				94552C602ACC32E600DAE0F4 /* NBSFuseLoggerLevel.h */,
 			);
 			path = NBSFuse;
 			sourceTree = "<group>";
@@ -201,6 +206,7 @@
 				9489EBA42AA623B70087424D /* NBSFuseViewController.m */,
 				9489EBB92AA65A990087424D /* NBSFuseLocalization.m */,
 				947FF0F12AC8A3DA003D09BC /* NBSFuseAPIResponseFactory.m */,
+				94552C622ACC367600DAE0F4 /* NBSFuseLoggerLevel.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -237,6 +243,7 @@
 				9418629B2A99564600CCFEE1 /* NBSFuseAPIRouter.h in Headers */,
 				94A886B92A714F6D0098530D /* NBSFuseSchemeHandler.h in Headers */,
 				9489EBB82AA659D70087424D /* NBSFuseLocalization.h in Headers */,
+				94552C612ACC32E600DAE0F4 /* NBSFuseLoggerLevel.h in Headers */,
 				941862AB2A9FE5F700CCFEE1 /* NBSFuseError.h in Headers */,
 				947FF0F02AC8A375003D09BC /* NBSFuseAPIResponseFactory.h in Headers */,
 				9489EB982AA54FA40087424D /* NBSFuseRuntime.h in Headers */,
@@ -354,6 +361,7 @@
 				947FF0F22AC8A3DA003D09BC /* NBSFuseAPIResponseFactory.m in Sources */,
 				941862A52A996F7900CCFEE1 /* NBSFuseAPIResponse.m in Sources */,
 				94B0A6932AB77790008C291A /* NBSFuseAPIServer.m in Sources */,
+				94552C632ACC367600DAE0F4 /* NBSFuseLoggerLevel.m in Sources */,
 				9489EBBA2AA65A990087424D /* NBSFuseLocalization.m in Sources */,
 				94A886BC2A714F6D0098530D /* NBSFuseContext.m in Sources */,
 			);
