@@ -122,7 +122,7 @@ void* $handleClientConnection(void* dataPtr) {
     
     NSString* method = [headers getMethod];
     NBSFuseLogger* logger = [[server getContext] getLogger];
-    [logger info: @"API Server Request: (%@) %@", method, [headers getPath]];
+    [logger info: @"API Server Request (%d): (%@) %@", clientFD, method, [headers getPath]];
     if ([method isEqualToString:@"OPTIONS"]) {
         NBSFuseAPIResponse* res = [[[server getContext] getResponseFactory] create: [server getContext] socket: clientFD];
         [res sendNoContent];

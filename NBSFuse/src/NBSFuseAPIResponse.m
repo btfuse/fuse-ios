@@ -66,6 +66,7 @@ void* $NBSFuseAPIResponse_processTask(void* pdata) {
     
     $startTime = mach_absolute_time();
     
+    $context = context;
     NBSFuseLogger* logger = [$context getLogger];
     
     $client = client;
@@ -127,13 +128,21 @@ void* $NBSFuseAPIResponse_processTask(void* pdata) {
 }
 
 - (void) $printEndTime {
+    NBSFuseLogger* logger = [$context getLogger];
+    
     uint64_t elapsed = mach_absolute_time() - $startTime;
     mach_timebase_info_data_t timebase;
-    mach_timebase_info(&timebase);
-    uint64_t elapsedNano = elapsed * timebase.numer / timebase.denom;
-    float elapsedSeconds = (float)elapsedNano / 1000000.0f;
-    NBSFuseLogger* logger = [$context getLogger];
-    [logger info:@"Response (Client %d) closed with status %lu in %.3fs", $client, $status, elapsedSeconds];
+    kern_return_t kernResult = mach_timebase_info(&timebase);
+    
+    if (kernResult != KERN_SUCCESS) {
+        [logger info:@"Response (Request %d with status %lu. Time information not available.", $client, $status];
+        return;
+    }
+    
+    double UNIT = 1e-9 * (double)timebase.numer / (double)timebase.denom;
+    double elapsedSeconds = (double)elapsed * UNIT;
+    
+    [logger info:@"Response (Request %d) closed with status %lu in %fs", $client, $status, elapsedSeconds];
 }
 
 - (ssize_t) $write:(const void*) data length:(size_t) length {
