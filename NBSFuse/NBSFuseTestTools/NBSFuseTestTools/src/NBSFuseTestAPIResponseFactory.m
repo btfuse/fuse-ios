@@ -20,8 +20,8 @@ limitations under the License.
 
 @implementation NBSFuseTestAPIResponseFactory
 
-- (NBSFuseAPIResponse*) create:(int) socket {
-    return [[NBSFuseTestAPIResponse alloc] init: socket];
+- (NBSFuseAPIResponse*) create:(NBSFuseContext*) context socket:(int) socket {
+    return [[NBSFuseTestAPIResponse alloc] init:context client: socket];
 }
 
 @end
