@@ -101,7 +101,13 @@ struct NBSFuseAPIServerClientConnection {
 
 @end
 
-@implementation NBSFuseAPIServer
+@implementation NBSFuseAPIServer {
+    NBSFuseContext* $context;
+    int $sockFD;
+    int $port;
+    NSString* $secret;
+    pthread_t $mainNetworkThread;
+}
 
 void* $handleClientConnection(void* dataPtr) {
     struct NBSFuseAPIServerClientConnection* connection = (struct NBSFuseAPIServerClientConnection*)dataPtr;
@@ -137,30 +143,6 @@ void* $handleClientConnection(void* dataPtr) {
     
     return NULL;
 }
-
-//- (void) stream:(NSStream*) stream handleEvent:(NSStreamEvent) eventCode {
-//    NSLog(@"stream event that probably needs to be handled...?");
-//    switch (eventCode) {
-//        case NSStreamEventNone:
-//            NSLog(@"NSStream None");
-//            break;
-//        case NSStreamEventOpenCompleted:
-//            NSLog(@"NSStream open");
-//            break;
-//        case NSStreamEventHasBytesAvailable:
-//            NSLog(@"NSStream bytes available for read");
-//            break;
-//        case NSStreamEventHasSpaceAvailable:
-//            NSLog(@"NSStream space available for write");
-//            break;
-//        case NSStreamEventErrorOccurred:
-//            NSLog(@"NSStream ERROR");
-//            break;
-//        case NSStreamEventEndEncountered:
-//            NSLog(@"NSStream END");
-//            break;
-//    }
-//}
 
 NSString* $generateSecret(void) {
     size_t secretLength = 32; // Length in bytes

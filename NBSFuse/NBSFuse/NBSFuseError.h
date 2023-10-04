@@ -18,12 +18,7 @@ limitations under the License.
 #ifndef NBSFuseError_h
 #define NBSFuseError_h
 
-@interface NBSFuseError: NSObject {
-    @private
-    NSInteger $code;
-    NSString* $domain;
-    NSString* $message;
-}
+@interface NBSFuseError: NSObject
 
 - (instancetype) init NS_UNAVAILABLE;
 - (instancetype) init:(NSString*) domain withCode:(NSInteger) code withMessage:(NSString*) message NS_DESIGNATED_INITIALIZER;

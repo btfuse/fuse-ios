@@ -20,7 +20,6 @@ limitations under the License.
 
 #import <Foundation/Foundation.h>
 #import <NBSFuse/NBSFuseAPIResponse.h>
-#import <NBSFuse/NBSFuseError.h>
 #import <NBSFuse/NBSFuseAPIPacket.h>
 
 typedef void (^NBSFusePluginAPIHandle)(NBSFuseAPIPacket* packet, NBSFuseAPIResponse* response);
@@ -33,11 +32,7 @@ typedef void (^NBSFusePluginAPIHandle)(NBSFuseAPIPacket* packet, NBSFuseAPIRespo
 
 @end
 
-@interface NBSFusePlugin: NSObject <NBSFusePluginProtocol> {
-    @private
-    NSMutableDictionary<NSString*, NBSFusePluginAPIHandle>* $handles;
-    __weak NBSFuseContext* $context;
-}
+@interface NBSFusePlugin: NSObject <NBSFusePluginProtocol>
 
 - (instancetype) init NS_UNAVAILABLE;
 - (instancetype) init:(NBSFuseContext*) context NS_DESIGNATED_INITIALIZER;

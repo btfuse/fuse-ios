@@ -21,23 +21,12 @@ limitations under the License.
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
-#import <NBSFuse/NBSFuseWebviewUIDelegation.h>
 
 @class NBSFuseContext;
 
-@interface NBSFuseViewController: UIViewController <WKScriptMessageHandler, WKScriptMessageHandlerWithReply> {
-    @private
-    NBSFuseContext* $context;
-    WKWebView* $webview;
-    NBSFuseWebviewUIDelegation* $webviewUIDelegation;
-}
+@interface NBSFuseViewController: UIViewController <WKScriptMessageHandler, WKScriptMessageHandlerWithReply>
 
 - (NBSFuseContext*) getContext;
-
-//- (instancetype) init NS_DESIGNATED_INITIALIZER;
-//- (instancetype) initWithCoder:(NSCoder*) coder NS_DESIGNATED_INITIALIZER;
-//- (instancetype) initWithNibName:(NSString*) nibNameOrNil bundle:(NSBundle*) nibBundleOrNil;
-//- (instancetype) init:(NBSFuseContext*) context NS_DESIGNATED_INITIALIZER;
 
 - (WKWebView*) getWebview;
 

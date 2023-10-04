@@ -30,20 +30,9 @@ typedef NS_ENUM(NSUInteger, NBSFuseAPIResponseStatus) {
     NBSFuseAPIResponseStatusInternalError = 500
 };
 
-@interface NBSFuseAPIResponse: NSObject {
-    int $client;
-    bool $hasSentHeaders;
-    bool $isClosed;
-    NBSFuseContext* $context;
-    NSUInteger $status;
-    NSUInteger $contentLength;
-    NSString* $contentType;
-    dispatch_queue_t $networkQueue;
-    uint64_t $startTime;
-}
+@interface NBSFuseAPIResponse: NSObject
 
 - (instancetype) init NS_UNAVAILABLE;
-//- (instancetype) init: (id<WKURLSchemeTask>) task withURL:(NSURL*) requestURL NS_DESIGNATED_INITIALIZER;
 - (instancetype) init:(NBSFuseContext*) context client:(int) client NS_DESIGNATED_INITIALIZER;
 
 // Header APIs

@@ -23,9 +23,7 @@ limitations under the License.
 
 @class NBSFuseContext;
 
-@interface NBSFuseAPIRouter: NSObject {
-    __weak NBSFuseContext* $context;
-}
+@interface NBSFuseAPIRouter: NSObject
 
 - (instancetype) init NS_UNAVAILABLE;
 - (instancetype) init:(NBSFuseContext*) context NS_DESIGNATED_INITIALIZER;

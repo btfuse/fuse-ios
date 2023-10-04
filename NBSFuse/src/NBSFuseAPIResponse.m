@@ -28,6 +28,15 @@ typedef void (^NBSFuseAPIResponse_TaskBlock)(void);
     pthread_mutex_t $workerMutex;
     pthread_t $workerThread;
     NSMutableArray<NBSFuseAPIResponse_TaskBlock>* $workerQueue;
+    int $client;
+    bool $hasSentHeaders;
+    bool $isClosed;
+    NBSFuseContext* $context;
+    NSUInteger $status;
+    NSUInteger $contentLength;
+    NSString* $contentType;
+    dispatch_queue_t $networkQueue;
+    uint64_t $startTime;
 }
 
 void* $NBSFuseAPIResponse_processTask(void* pdata) {

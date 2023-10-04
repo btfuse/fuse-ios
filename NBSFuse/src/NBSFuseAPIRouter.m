@@ -21,7 +21,9 @@ limitations under the License.
 #import <NBSFuse/NBSFusePlugin.h>
 #import <NBSFuse/NBSFuseError.h>
 
-@implementation NBSFuseAPIRouter
+@implementation NBSFuseAPIRouter {
+    __weak NBSFuseContext* $context;
+}
 
 - (instancetype) init: (NBSFuseContext*) context {
     self = [super init];

@@ -27,14 +27,7 @@ limitations under the License.
 @class NBSFuseAPIRouter;
 @class NBSFuseLogger;
 
-@interface NBSFuseContext: NSObject {
-    @private
-    NSMutableDictionary<NSString*, NBSFusePlugin*>* $pluginMap;
-    NBSFuseAPIRouter* $apiRouter;
-    __weak NBSFuseViewController* $viewController;
-    NBSFuseAPIResponseFactory* $responseFactory;
-    NBSFuseLogger* $logger;
-}
+@interface NBSFuseContext: NSObject
 
 - (nonnull instancetype) init NS_UNAVAILABLE;
 - (nonnull instancetype) init:(nonnull NBSFuseViewController*) controller NS_DESIGNATED_INITIALIZER;

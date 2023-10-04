@@ -18,7 +18,11 @@ limitations under the License.
 #import <Foundation/Foundation.h>
 #import <NBSFuse/NBSFuseError.h>
 
-@implementation NBSFuseError
+@implementation NBSFuseError {
+    NSInteger $code;
+    NSString* $domain;
+    NSString* $message;
+}
 
 - (instancetype)init:(NSString *)domain withCode:(NSInteger)code withMessage:(NSString *)message {
     self = [super init];

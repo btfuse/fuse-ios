@@ -19,7 +19,12 @@ limitations under the License.
 #import <NBSFuse/NBSFuseContext.h>
 #import <NBSFuse/NBSFuseLogger.h>
 
-@implementation NBSFuseAPIPacket
+@implementation NBSFuseAPIPacket {
+    NSString* $route;
+    int $socket;
+    NSDictionary* $headers;
+    NBSFuseContext* $context;
+}
 
 - (instancetype) init:(NBSFuseContext*) context route:(NSString*) route withHeaders:(NSDictionary*) headers withSocket:(int) socket {
     self = [super init];

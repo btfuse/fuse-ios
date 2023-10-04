@@ -27,12 +27,14 @@ limitations under the License.
 #import <NBSFuse/NBSFuseAPIServer.h>
 #import <NBSFuse/NBSFuse.h>
 
-@interface NBSFuseContext () {
+@implementation NBSFuseContext {
+    NSMutableDictionary<NSString*, NBSFusePlugin*>* $pluginMap;
+    NBSFuseAPIRouter* $apiRouter;
+    __weak NBSFuseViewController* $viewController;
+    NBSFuseAPIResponseFactory* $responseFactory;
+    NBSFuseLogger* $logger;
     NBSFuseAPIServer* $apiServer;
 }
-@end
-
-@implementation NBSFuseContext
 
 - (instancetype) init:(NBSFuseViewController*) controller {
     self = [super init];

@@ -24,7 +24,11 @@ limitations under the License.
 #import <NBSFuse/NBSFuseLogger.h>
 #import <NBSFuse/NBSFuseLoggerLevel.h>
 
-@implementation NBSFuseViewController
+@implementation NBSFuseViewController {
+    NBSFuseContext* $context;
+    WKWebView* $webview;
+    NBSFuseWebviewUIDelegation* $webviewUIDelegation;
+}
 
 - (instancetype) init {
     self = [super init];

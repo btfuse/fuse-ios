@@ -27,15 +27,7 @@ limitations under the License.
 #include <stdlib.h>
 #include <pthread.h>
 
-@interface NBSFuseAPIServer: NSObject <NSStreamDelegate> {
-    @private
-    NBSFuseContext* $context;
-    int $sockFD;
-    int $port;
-//    dispatch_queue_t $connectionThread;
-    NSString* $secret;
-    pthread_t $mainNetworkThread;
-}
+@interface NBSFuseAPIServer: NSObject
 
 - (instancetype) init NS_UNAVAILABLE;
 - (instancetype) init:(NBSFuseContext*) context;
@@ -45,4 +37,4 @@ limitations under the License.
 
 @end
 
-#endif /* NBSFuseAPIServer_h */
+#endif

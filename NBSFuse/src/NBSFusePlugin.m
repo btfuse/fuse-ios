@@ -20,7 +20,10 @@ limitations under the License.
 #import <NBSFuse/NBSFuseContext.h>
 #import <NBSFuse/NBSFuseError.h>
 
-@implementation NBSFusePlugin
+@implementation NBSFusePlugin  {
+    NSMutableDictionary<NSString*, NBSFusePluginAPIHandle>* $handles;
+    __weak NBSFuseContext* $context;
+}
 
 - (instancetype)init:(NBSFuseContext*)context {
     self = [super init];

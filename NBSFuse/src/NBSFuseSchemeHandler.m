@@ -28,7 +28,9 @@ limitations under the License.
 NSString* const SCHEME = @"nbsfuse";
 NSString* const HOST = @"localhost";
 
-@implementation NBSFuseSchemeHandler
+@implementation NBSFuseSchemeHandler  {
+    __weak NBSFuseContext* $context;
+}
 
 - (instancetype) init:(NBSFuseContext*) context {
     self = [super init];

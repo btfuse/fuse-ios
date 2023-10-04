@@ -23,10 +23,7 @@ limitations under the License.
 
 @class NBSFuseContext;
 
-@interface NBSFuseSchemeHandler: NSObject <WKURLSchemeHandler> {
-    @private
-    __weak NBSFuseContext* $context;
-}
+@interface NBSFuseSchemeHandler: NSObject <WKURLSchemeHandler>
 
 - (instancetype) init NS_UNAVAILABLE;
 - (instancetype) init:(NBSFuseContext*)context NS_DESIGNATED_INITIALIZER;
