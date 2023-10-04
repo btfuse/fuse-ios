@@ -22,6 +22,7 @@ limitations under the License.
 #import "NBSFuseAPIResponse.h"
 #import "NBSFuseAPIPacket.h"
 #import "NBSFuseAPIRouter.h"
+#import <NBSFuse/NBSFuseLogger.h>
 #include <netinet/tcp.h>
 
 struct NBSFuseAPIServerClientConnection {
@@ -114,9 +115,10 @@ void* $handleClientConnection(void* dataPtr) {
     }
     
     NSString* method = [headers getMethod];
-    NSLog(@"API Request %@ %@", method, [headers getPath]);
+    NBSFuseLogger* logger = [[server getContext] getLogger];
+    [logger info: @"API Server Request: (%@) %@", method, [headers getPath]];
     if ([method isEqualToString:@"OPTIONS"]) {
-        NBSFuseAPIResponse* res = [[[server getContext] getResponseFactory] create: clientFD];
+        NBSFuseAPIResponse* res = [[[server getContext] getResponseFactory] create: [server getContext] socket: clientFD];
         [res sendNoContent];
         return NULL;
     }
@@ -128,37 +130,37 @@ void* $handleClientConnection(void* dataPtr) {
         return NULL;
     }
     
-    NBSFuseAPIResponse* res = [[[server getContext] getResponseFactory] create: clientFD];
-    NBSFuseAPIPacket* packet = [[NBSFuseAPIPacket alloc] init:[headers getPath] withHeaders:[headers getHeaders] withSocket:clientFD];
+    NBSFuseAPIResponse* res = [[[server getContext] getResponseFactory] create: [server getContext] socket: clientFD];
+    NBSFuseAPIPacket* packet = [[NBSFuseAPIPacket alloc] init: [server getContext] route:[headers getPath] withHeaders:[headers getHeaders] withSocket:clientFD];
     
     [[[server getContext] getAPIRouter] execute: packet withResponse: res];
     
     return NULL;
 }
 
-- (void) stream:(NSStream*) stream handleEvent:(NSStreamEvent) eventCode {
-    NSLog(@"stream event that probably needs to be handled...?");
-    switch (eventCode) {
-        case NSStreamEventNone:
-            NSLog(@"NSStream None");
-            break;
-        case NSStreamEventOpenCompleted:
-            NSLog(@"NSStream open");
-            break;
-        case NSStreamEventHasBytesAvailable:
-            NSLog(@"NSStream bytes available for read");
-            break;
-        case NSStreamEventHasSpaceAvailable:
-            NSLog(@"NSStream space available for write");
-            break;
-        case NSStreamEventErrorOccurred:
-            NSLog(@"NSStream ERROR");
-            break;
-        case NSStreamEventEndEncountered:
-            NSLog(@"NSStream END");
-            break;
-    }
-}
+//- (void) stream:(NSStream*) stream handleEvent:(NSStreamEvent) eventCode {
+//    NSLog(@"stream event that probably needs to be handled...?");
+//    switch (eventCode) {
+//        case NSStreamEventNone:
+//            NSLog(@"NSStream None");
+//            break;
+//        case NSStreamEventOpenCompleted:
+//            NSLog(@"NSStream open");
+//            break;
+//        case NSStreamEventHasBytesAvailable:
+//            NSLog(@"NSStream bytes available for read");
+//            break;
+//        case NSStreamEventHasSpaceAvailable:
+//            NSLog(@"NSStream space available for write");
+//            break;
+//        case NSStreamEventErrorOccurred:
+//            NSLog(@"NSStream ERROR");
+//            break;
+//        case NSStreamEventEndEncountered:
+//            NSLog(@"NSStream END");
+//            break;
+//    }
+//}
 
 NSString* $generateSecret(void) {
     size_t secretLength = 32; // Length in bytes
@@ -258,15 +260,17 @@ NBSFuseAPIServerHeaders* $parseHeaders(int clientFD) {
     
     $context = context;
     
+    NBSFuseLogger* logger = [$context getLogger];
+    
     $secret = $generateSecret();
     if ($secret == nil) {
-        NSLog(@"NBSFuseAPIServer: Secret Generation Failure");
+        [logger error:@"NBSFuseAPIServer: Secret Generation Failure"];
         return nil;
     }
     
     $sockFD = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
     if ($sockFD == -1) {
-        NSLog(@"NBSFuseAPIServer: Socket Error");
+        [logger error:@"NBSFuseAPIServer: Socket Error"];
         return nil;
     }
     
@@ -276,14 +280,14 @@ NBSFuseAPIServerHeaders* $parseHeaders(int clientFD) {
     server_addr.sin_port = 0;
     
     if (bind($sockFD, (struct sockaddr*)&server_addr, sizeof(server_addr)) == -1) {
-        NSLog(@"NBSFuseAPIServer: Socket Bind Error");
+        [logger error:@"NBSFuseAPIServer: Socket Bind Error"];
         close($sockFD);
         return nil;
     }
     
     socklen_t addr_len = sizeof(server_addr);
     if (getsockname($sockFD, (struct sockaddr *)&server_addr, &addr_len) == -1) {
-        NSLog(@"NBSFuseAPIServer: Socket Descriptor Error");
+        [logger error:@"NBSFuseAPIServer: Socket Descriptor Error"];
         close($sockFD);
         return nil;
     }
@@ -291,7 +295,7 @@ NBSFuseAPIServerHeaders* $parseHeaders(int clientFD) {
     $port = ntohs(server_addr.sin_port);
     
     if (listen($sockFD, 255) == -1) {
-        NSLog(@"NBSFuseAPIServer: Could not listen to interface");
+        [logger error:@"NBSFuseAPIServer: Could not listen to interface"];
         close($sockFD);
         return nil;
     }
@@ -312,6 +316,8 @@ NBSFuseAPIServerHeaders* $parseHeaders(int clientFD) {
 void* $networkLoop(void* ptr) {
     NBSFuseAPIServer* self = (__bridge NBSFuseAPIServer*)ptr;
     
+    NBSFuseLogger* logger = [[self getContext] getLogger];
+    
     int sockFD = self->$sockFD;
     while (true) {
         int clientFD;
@@ -320,16 +326,14 @@ void* $networkLoop(void* ptr) {
         clientFD = accept(sockFD, (struct sockaddr*)&clientAddr, &clientAddrLen);
 
         if (clientFD == -1) {
-            NSLog(@"Socket Acceptance Error");
+            [logger error:@"Socket Acceptance Error"];
             continue;
         }
-        
-        NSLog(@"Accepted Client: %d", clientFD);
 
         int value = 1;
         int result = setsockopt(clientFD, SOL_SOCKET, SO_NOSIGPIPE, &value, sizeof(value));
         if (result == -1) {
-            NSLog(@"Socket Configuration Error");
+            [logger error:@"Socket Configuration Error"];
             close(clientFD);
             continue;
         }

@@ -20,12 +20,14 @@ limitations under the License.
 
 #import <NBSFuse/NBSFuseAPIResponse.h>
 
+@class NBSFuseContext;
+
 @interface NBSFuseAPIResponseFactory: NSObject {}
 
 - (instancetype) init NS_DESIGNATED_INITIALIZER;
 
-- (NBSFuseAPIResponse*) create:(int) socket;
+- (NBSFuseAPIResponse*) create:(NBSFuseContext*) context socket:(int) socket;
 
 @end
 
-#endif /* NBSFuseAPIResponseFactory_h */
+#endif

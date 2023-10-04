@@ -37,14 +37,12 @@ limitations under the License.
 - (instancetype) init:(NBSFuseViewController*) controller {
     self = [super init];
     
-//    NSBundle* bundle = [NSBundle mainBundle];
+    $logger = [[NBSFuseLogger alloc] init: self];
+    
     NSBundle* bundle = [NSBundle bundleForClass: [NBSFuseContext class]];
     NSString* version = [bundle objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
     NSString* build = [bundle objectForInfoDictionaryKey: @"CFBundleVersion"];
-//    NSString* version = [NSString stringWithUTF8String: (const char*)NBSFuseVersionString];
-//    NSString* build = [NSString stringWithFormat:@"%f", NBSFuseVersionNumber];
-    
-    NSLog(@"Fuse %@ (%@)", version, build);
+    [$logger info:@"Fuse %@ (%@)", version, build];
     
     $apiServer = [[NBSFuseAPIServer alloc] init: self];
     
@@ -63,15 +61,20 @@ limitations under the License.
 }
 
 - (void) execCallback:(NSString*) callbackID withData:(NSString*) data {
-    NSString* js = [[NSString alloc] initWithFormat:@"window.__nbsfuse_doCallback(%@,%@);", callbackID, data];
-    WKWebView* webview = [$viewController getWebview];
-    [webview evaluateJavaScript:js completionHandler:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString* escapedData = [data stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+        NSString* js = [[NSString alloc] initWithFormat:@"window.__nbsfuse_doCallback(\"%@\",\"%@\");", callbackID, escapedData];
+        WKWebView* webview = [self->$viewController getWebview];
+        [webview evaluateJavaScript:js completionHandler:nil];
+    });
 }
 
 - (void) execCallback:(NSString*) callbackID {
-    NSString* js = [[NSString alloc] initWithFormat:@"window.__nbsfuse_doCallback(%@);", callbackID];
-    WKWebView* webview = [$viewController getWebview];
-    [webview evaluateJavaScript:js completionHandler:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString* js = [[NSString alloc] initWithFormat:@"window.__nbsfuse_doCallback(\"%@\");", callbackID];
+        WKWebView* webview = [self->$viewController getWebview];
+        [webview evaluateJavaScript:js completionHandler:nil];
+    });
 }
 
 - (WKWebView*) getWebview {
@@ -109,6 +112,10 @@ limitations under the License.
 
 - (NSString*) getAPISecret {
     return [$apiServer getSecret];
+}
+
+- (NBSFuseLogger*) getLogger {
+    return $logger;
 }
 
 @end

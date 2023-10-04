@@ -23,6 +23,7 @@ limitations under the License.
 #import <NBSFuse/NBSFuseAPIPacket.h>
 #import <NBSFuse/NBSFuseAPIResponse.h>
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <NBSFuse/NBSFuseLogger.h>
 
 NSString* const SCHEME = @"nbsfuse";
 NSString* const HOST = @"localhost";
@@ -58,10 +59,11 @@ NSString* const HOST = @"localhost";
         return;
     }
     
-    NSLog(@"Scheme Path: %@", path);
+    NBSFuseLogger* logger = [$context getLogger];
+    
+    [logger info: @"Incoming DOM Request: %@", path];
     
     NSURL* route = [NSURL fileURLWithPath: path];
-    NSLog(@"break");
     
     NSString* routeService = route.pathComponents[1];
     
@@ -85,31 +87,27 @@ NSString* const HOST = @"localhost";
         }
     }
     else {
-        NSLog(@"Unknown Route Service: %@", routeService);
+        [logger error:@"Unknown Service Route: %@", routeService];
+        NSHTTPURLResponse* response = [[NSHTTPURLResponse alloc] initWithURL:urlSchemeTask.request.URL statusCode: 404 HTTPVersion:@"HTTP/1.1" headerFields:nil];
+        [urlSchemeTask didReceiveResponse:response];
+        [urlSchemeTask didFinish];
     }
 }
 
-- (void)webView:(nonnull WKWebView *)webView stopURLSchemeTask:(nonnull id<WKURLSchemeTask>)urlSchemeTask {
-    // TODO: Figure out how to properly handle this delegation
-}
+- (void) webView:(nonnull WKWebView*) webView stopURLSchemeTask:(nonnull id<WKURLSchemeTask>) urlSchemeTask {}
 
-- (void)sendErrorResponseWithStatusCode:(NSInteger)statusCode toURLSchemeTask:(id<WKURLSchemeTask>)urlSchemeTask {
-    // Define the HTTP status code and the corresponding status text
-    NSDictionary *statusCodeTexts = @{
+- (void) sendErrorResponseWithStatusCode:(NSInteger) statusCode toURLSchemeTask:(id<WKURLSchemeTask> )urlSchemeTask {
+    NSDictionary* statusCodeTexts = @{
         @(200): @"OK",
         @(404): @"Not Found",
         // Add more status codes and texts as needed
     };
 
-    // Get the status text corresponding to the status code
-    NSString *statusText = statusCodeTexts[@(statusCode)];
-
-    // Construct the error response
-    NSString *errorHTML = [NSString stringWithFormat:@"<html><body><h1>%ld %@</h1></body></html>", (long)statusCode, statusText];
-    NSData *errorData = [errorHTML dataUsingEncoding:NSUTF8StringEncoding];
-
-    // Create the HTTP response
-    NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:urlSchemeTask.request.URL statusCode:statusCode HTTPVersion:@"HTTP/1.1" headerFields:nil];
+    // Create a basic HTML response
+    NSString* statusText = statusCodeTexts[@(statusCode)];
+    NSString* errorHTML = [NSString stringWithFormat:@"<html><body><h1>%ld %@</h1></body></html>", (long)statusCode, statusText];
+    NSData* errorData = [errorHTML dataUsingEncoding:NSUTF8StringEncoding];
+    NSHTTPURLResponse* response = [[NSHTTPURLResponse alloc] initWithURL:urlSchemeTask.request.URL statusCode:statusCode HTTPVersion:@"HTTP/1.1" headerFields:nil];
 
     // Send the response
     [urlSchemeTask didReceiveResponse:response];

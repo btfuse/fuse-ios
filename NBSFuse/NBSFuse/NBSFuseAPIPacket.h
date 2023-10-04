@@ -20,15 +20,18 @@ limitations under the License.
 
 #import <Foundation/Foundation.h>
 
+@class NBSFuseContext;
+
 @interface NBSFuseAPIPacket: NSObject {
     @private
     NSString* $route;
     int $socket;
     NSDictionary* $headers;
+    NBSFuseContext* $context;
 }
 
 - (instancetype) init NS_UNAVAILABLE;
-- (instancetype) init:(NSString*) route withHeaders:(NSDictionary*) headers withSocket:(int) socket NS_DESIGNATED_INITIALIZER;
+- (instancetype) init:(NBSFuseContext*) context route:(NSString*) route withHeaders:(NSDictionary*) headers withSocket:(int) socket NS_DESIGNATED_INITIALIZER;
 
 - (NSString*) getRoute;
 - (int) getSocket;

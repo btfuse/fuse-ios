@@ -16,7 +16,9 @@ limitations under the License.
 */
 
 #import <Foundation/Foundation.h>
+#import <NBSFuse/NBSFuseContext.h>
 #import <NBSFuse/NBSFuseAPIResponse.h>
+#import <NBSFuse/NBSFuseLogger.h>
 #include <sys/socket.h>
 #include <pthread.h>
 
@@ -50,12 +52,16 @@ void* $NBSFuseAPIResponse_processTask(void* pdata) {
     return NULL;
 }
 
-- (instancetype) init:(int) client {
+- (instancetype) init:(NBSFuseContext*) context client:(int) client {
     self = [super init];
+    
+    $startTime = mach_absolute_time();
+    
+    NBSFuseLogger* logger = [$context getLogger];
     
     $client = client;
     if (pthread_mutex_init(&$workerMutex, NULL) != 0) {
-        NSLog(@"Worker Mutex Init Failure");
+        [logger error:@"Worker Mutex Init Failure"];
         return nil;
     }
     
@@ -101,9 +107,24 @@ void* $NBSFuseAPIResponse_processTask(void* pdata) {
         return;
     }
     
-    NSLog(@"Killing %d for reason: %@", $client, message);
+    $status = 0;
+    
+    NBSFuseLogger* logger = [$context getLogger];
+    [logger error: @"Killing %d for reason: %@", $client, message];
+    
     $isClosed = true;
     close($client);
+    [self $printEndTime];
+}
+
+- (void) $printEndTime {
+    uint64_t elapsed = mach_absolute_time() - $startTime;
+    mach_timebase_info_data_t timebase;
+    mach_timebase_info(&timebase);
+    uint64_t elapsedNano = elapsed * timebase.numer / timebase.denom;
+    float elapsedSeconds = (float)elapsedNano / 1000000.0f;
+    NBSFuseLogger* logger = [$context getLogger];
+    [logger info:@"Response (Client %d) closed with status %lu in %.3fs", $client, $status, elapsedSeconds];
 }
 
 - (ssize_t) $write:(const void*) data length:(size_t) length {
@@ -124,7 +145,6 @@ void* $NBSFuseAPIResponse_processTask(void* pdata) {
             return;
         }
         
-        NSLog(@"Writing to %d", self->$client);
         ssize_t bytesWritten = [self $write:data length: length];
         free(data);
         if (bytesWritten < 0) {
@@ -197,8 +217,7 @@ void* $NBSFuseAPIResponse_processTask(void* pdata) {
 
 - (void) pushData:(NSData*) data {
     if (!$hasSentHeaders) {
-        NSLog(@"Cannot send data before headers are sent. Must call finishHeaders first!");
-        // TODO: Raise exception somehow
+        [self kill:@"Cannot send data before headers are sent. Must call finishHeaders first!"];
         return;
     }
     
@@ -214,12 +233,10 @@ void* $NBSFuseAPIResponse_processTask(void* pdata) {
             thus retain cycles should be a non-issue here.
          */
         self->$isClosed = true;
-        NSLog(@"Closing for %d", self->$client);
-        int result = shutdown(self->$client, SHUT_RDWR);
-        if (result == -1) {
-            NSLog(@"Socket shudown error: %d", errno);
-        }
+        shutdown(self->$client, SHUT_RDWR);
         #pragma clang diagnostic pop
+        
+        [self $printEndTime];
     }];
 }
 
@@ -256,19 +273,21 @@ void* $NBSFuseAPIResponse_processTask(void* pdata) {
     NSError* serializationError;
     NSData* serialized = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:&serializationError];
     if (serializationError != nil) {
-        NSLog(@"Error domain: %@", serializationError.domain);
-        NSLog(@"Error code: %ld", (long)serializationError.code);
-        NSLog(@"Error description: %@", serializationError.localizedDescription);
+        NBSFuseLogger* logger = [$context getLogger];
+        
+        [logger error:@"Error domain: %@", serializationError.domain];
+        [logger error:@"Error code: %ld", (long)serializationError.code];
+        [logger error:@"Error description: %@", serializationError.localizedDescription];
         
         if (serializationError.localizedFailureReason) {
-            NSLog(@"Failure reason: %@", serializationError.localizedFailureReason);
+            [logger error:@"Failure reason: %@", serializationError.localizedFailureReason];
         }
         
         if (serializationError.localizedRecoverySuggestion) {
-            NSLog(@"Recovery suggestion: %@", serializationError.localizedRecoverySuggestion);
+            [logger error:@"Recovery suggestion: %@", serializationError.localizedRecoverySuggestion];
         }
         
-        NSLog(@"Error user info: %@", serializationError.userInfo);
+        [logger error:@"Error user info: %@", serializationError.userInfo];
         [self didInternalError];
         return;
     }
@@ -292,19 +311,20 @@ void* $NBSFuseAPIResponse_processTask(void* pdata) {
     NSError* serializationError = nil;
     NSString* data = [error serialize:serializationError];
     if (serializationError != nil) {
-        NSLog(@"Error domain: %@", serializationError.domain);
-        NSLog(@"Error code: %ld", (long)serializationError.code);
-        NSLog(@"Error description: %@", serializationError.localizedDescription);
+        NBSFuseLogger* logger = [$context getLogger];
+        [logger error:@"Error domain: %@", serializationError.domain];
+        [logger error:@"Error code: %ld", (long)serializationError.code];
+        [logger error:@"Error description: %@", serializationError.localizedDescription];
         
         if (serializationError.localizedFailureReason) {
-            NSLog(@"Failure reason: %@", serializationError.localizedFailureReason);
+            [logger error:@"Failure reason: %@", serializationError.localizedFailureReason];
         }
         
         if (serializationError.localizedRecoverySuggestion) {
-            NSLog(@"Recovery suggestion: %@", serializationError.localizedRecoverySuggestion);
+            [logger error:@"Recovery suggestion: %@", serializationError.localizedRecoverySuggestion];
         }
         
-        NSLog(@"Error user info: %@", serializationError.userInfo);
+        [logger error:@"Error user info: %@", serializationError.userInfo];
         [self didInternalError];
         return;
     }

@@ -18,6 +18,8 @@
 		94552C5D2ACB3A5600DAE0F4 /* NBSFuse.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 94552C5C2ACB3A5600DAE0F4 /* NBSFuse.xcconfig */; };
 		94552C612ACC32E600DAE0F4 /* NBSFuseLoggerLevel.h in Headers */ = {isa = PBXBuildFile; fileRef = 94552C602ACC32E600DAE0F4 /* NBSFuseLoggerLevel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94552C632ACC367600DAE0F4 /* NBSFuseLoggerLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94552C622ACC367600DAE0F4 /* NBSFuseLoggerLevel.m */; };
+		94552C652ACCD47C00DAE0F4 /* NBSFuseLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 94552C642ACCD47C00DAE0F4 /* NBSFuseLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94552C672ACCD67100DAE0F4 /* NBSFuseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 94552C662ACCD67100DAE0F4 /* NBSFuseLogger.m */; };
 		946278482AC8AA22008A89FA /* NBSFuseTestTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 946278472AC8AA22008A89FA /* NBSFuseTestTools.framework */; };
 		947FF0D22AC89FA2003D09BC /* NBSFuseAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 947FF0D12AC89FA2003D09BC /* NBSFuseAPITests.m */; };
 		947FF0F02AC8A375003D09BC /* NBSFuseAPIResponseFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 947FF0EF2AC8A375003D09BC /* NBSFuseAPIResponseFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -66,6 +68,8 @@
 		94552C5C2ACB3A5600DAE0F4 /* NBSFuse.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = NBSFuse.xcconfig; path = configs/NBSFuse.xcconfig; sourceTree = "<group>"; };
 		94552C602ACC32E600DAE0F4 /* NBSFuseLoggerLevel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseLoggerLevel.h; sourceTree = "<group>"; usesTabs = 0; };
 		94552C622ACC367600DAE0F4 /* NBSFuseLoggerLevel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseLoggerLevel.m; sourceTree = "<group>"; };
+		94552C642ACCD47C00DAE0F4 /* NBSFuseLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseLogger.h; sourceTree = "<group>"; };
+		94552C662ACCD67100DAE0F4 /* NBSFuseLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseLogger.m; sourceTree = "<group>"; };
 		946278472AC8AA22008A89FA /* NBSFuseTestTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NBSFuseTestTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		947FF0D12AC89FA2003D09BC /* NBSFuseAPITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseAPITests.m; sourceTree = "<group>"; };
 		947FF0E82AC8A2A5003D09BC /* libNBSFuseTestTools.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libNBSFuseTestTools.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,6 +190,7 @@
 				9489EBA22AA621A70087424D /* NBSFuseViewController.h */,
 				9489EBB72AA659D70087424D /* NBSFuseLocalization.h */,
 				94552C602ACC32E600DAE0F4 /* NBSFuseLoggerLevel.h */,
+				94552C642ACCD47C00DAE0F4 /* NBSFuseLogger.h */,
 			);
 			path = NBSFuse;
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 				9489EBB92AA65A990087424D /* NBSFuseLocalization.m */,
 				947FF0F12AC8A3DA003D09BC /* NBSFuseAPIResponseFactory.m */,
 				94552C622ACC367600DAE0F4 /* NBSFuseLoggerLevel.m */,
+				94552C662ACCD67100DAE0F4 /* NBSFuseLogger.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -247,6 +253,7 @@
 				941862AB2A9FE5F700CCFEE1 /* NBSFuseError.h in Headers */,
 				947FF0F02AC8A375003D09BC /* NBSFuseAPIResponseFactory.h in Headers */,
 				9489EB982AA54FA40087424D /* NBSFuseRuntime.h in Headers */,
+				94552C652ACCD47C00DAE0F4 /* NBSFuseLogger.h in Headers */,
 				9418629F2A995BDC00CCFEE1 /* NBSFuseAPIPacket.h in Headers */,
 				94B0A68F2AB776DC008C291A /* NBSFuseAPIServer.h in Headers */,
 				941862A32A99617100CCFEE1 /* NBSFuseAPIResponse.h in Headers */,
@@ -354,6 +361,7 @@
 				94A886DE2A716A0C0098530D /* NBSFusePlugin.m in Sources */,
 				941862AD2A9FE65E00CCFEE1 /* NBSFuseError.m in Sources */,
 				9489EBA12AA61A770087424D /* NBSFuseWebviewUIDelegation.m in Sources */,
+				94552C672ACCD67100DAE0F4 /* NBSFuseLogger.m in Sources */,
 				94A886BB2A714F6D0098530D /* NBSFuseSchemeHandler.m in Sources */,
 				9418629D2A9956F100CCFEE1 /* NBSFuseAPIRouter.m in Sources */,
 				9489EB9A2AA54FED0087424D /* NBSFuseRuntime.m in Sources */,

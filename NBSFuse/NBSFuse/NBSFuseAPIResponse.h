@@ -20,6 +20,9 @@ limitations under the License.
 
 #import <WebKit/WebKit.h>
 #import <NBSFuse/NBSFuseError.h>
+#import <mach/mach_time.h>
+
+@class NBSFuseContext;
 
 typedef NS_ENUM(NSUInteger, NBSFuseAPIResponseStatus) {
     NBSFuseAPIResponseStatusOk = 200,
@@ -31,15 +34,17 @@ typedef NS_ENUM(NSUInteger, NBSFuseAPIResponseStatus) {
     int $client;
     bool $hasSentHeaders;
     bool $isClosed;
+    NBSFuseContext* $context;
     NSUInteger $status;
     NSUInteger $contentLength;
     NSString* $contentType;
     dispatch_queue_t $networkQueue;
+    uint64_t $startTime;
 }
 
 - (instancetype) init NS_UNAVAILABLE;
 //- (instancetype) init: (id<WKURLSchemeTask>) task withURL:(NSURL*) requestURL NS_DESIGNATED_INITIALIZER;
-- (instancetype) init:(int) client NS_DESIGNATED_INITIALIZER;
+- (instancetype) init:(NBSFuseContext*) context client:(int) client NS_DESIGNATED_INITIALIZER;
 
 // Header APIs
 - (void) setStatus:(NSUInteger) status;

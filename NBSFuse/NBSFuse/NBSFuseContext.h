@@ -25,6 +25,7 @@ limitations under the License.
 @class NBSFuseViewController;
 @class NBSFusePlugin;
 @class NBSFuseAPIRouter;
+@class NBSFuseLogger;
 
 @interface NBSFuseContext: NSObject {
     @private
@@ -32,6 +33,7 @@ limitations under the License.
     NBSFuseAPIRouter* $apiRouter;
     __weak NBSFuseViewController* $viewController;
     NBSFuseAPIResponseFactory* $responseFactory;
+    NBSFuseLogger* $logger;
 }
 
 - (nonnull instancetype) init NS_UNAVAILABLE;
@@ -47,6 +49,7 @@ limitations under the License.
 - (void) execCallback:(nonnull NSString*) callbackID;
 - (int) getAPIPort;
 - (nonnull NSString*) getAPISecret;
+- (nonnull NBSFuseLogger*) getLogger;
 
 @end
 

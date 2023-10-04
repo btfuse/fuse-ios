@@ -36,8 +36,6 @@ limitations under the License.
 }
 
 - (void) execute:(NBSFuseAPIPacket*) packet withResponse:(NBSFuseAPIResponse*) response {
-    // TODO:
-    // Route packet to proper plugin and delegate the action, receive a NBSFuseAPIResponse back.
     NSString* route = [packet getRoute];
     
     NSArray* parts = [route componentsSeparatedByString: @"/"];

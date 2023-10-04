@@ -21,6 +21,7 @@ limitations under the License.
 #import <NBSFuse/NBSFuseSchemeHandler.h>
 #import <NBSFuse/NBSFuseWebviewUIDelegation.h>
 #import "NBSFuseAPIServer.h"
+#import <NBSFuse/NBSFuseLogger.h>
 #import <NBSFuse/NBSFuseLoggerLevel.h>
 
 @implementation NBSFuseViewController
@@ -40,6 +41,7 @@ limitations under the License.
     [configuration.userContentController addScriptMessageHandlerWithReply: self contentWorld: WKContentWorld.pageWorld name:@"getAPIPort"];
     [configuration.userContentController addScriptMessageHandlerWithReply: self contentWorld: WKContentWorld.pageWorld name:@"getAPISecret"];
     [configuration.userContentController addScriptMessageHandler: self name:@"log"];
+    [configuration.userContentController addScriptMessageHandler: self name:@"setLogCallback"];
 
     NSString* fuseBuildTag = @"Release";
     #ifdef DEBUG
@@ -99,6 +101,12 @@ limitations under the License.
         }
         else {
             NSLog(@"Received log from webview but with invalid arguments.");
+        }
+    }
+    else if ([message.name isEqualToString:@"setLogCallback"]) {
+        if ([message.body isKindOfClass:[NSString class]]) {
+            NSString* callbackID = message.body;
+            [[$context getLogger] setCallbackID: callbackID];
         }
     }
 }

@@ -16,12 +16,15 @@ limitations under the License.
 */
 
 #import <NBSFuse/NBSFuseAPIPacket.h>
+#import <NBSFuse/NBSFuseContext.h>
+#import <NBSFuse/NBSFuseLogger.h>
 
 @implementation NBSFuseAPIPacket
 
-- (instancetype) init:(NSString*) route withHeaders:(NSDictionary*) headers withSocket:(int) socket {
+- (instancetype) init:(NBSFuseContext*) context route:(NSString*) route withHeaders:(NSDictionary*) headers withSocket:(int) socket {
     self = [super init];
     
+    $context = context;
     $route = route;
     $headers = headers;
     $socket = socket;
@@ -56,7 +59,7 @@ limitations under the License.
     
     uint8_t buffer[contentLength];
     if (read($socket, buffer, contentLength) == -1) {
-        NSLog(@"Socket read error");
+        [[$context getLogger] error: @"Socket read error"];
         close($socket);
     }
     

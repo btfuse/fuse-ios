@@ -16,6 +16,7 @@ limitations under the License.
 */
 
 #import <Foundation/Foundation.h>
+#import <NBSFuse/NBSFuseContext.h>
 #import <NBSFuse/NBSFuseAPIResponseFactory.h>
 
 @implementation NBSFuseAPIResponseFactory
@@ -26,8 +27,8 @@ limitations under the License.
     return self;
 }
 
-- (NBSFuseAPIResponse*) create:(int) socket {
-    return [[NBSFuseAPIResponse alloc] init: socket];
+- (NBSFuseAPIResponse*) create:(NBSFuseContext*) context socket:(int) socket {
+    return [[NBSFuseAPIResponse alloc] init:context client: socket];
 }
 
 @end
