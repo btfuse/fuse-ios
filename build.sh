@@ -62,6 +62,7 @@ cp -r $iosBuild/NBSFuse.framework.dSYM ./dist/
 echo "Packing XCFramework..."
 xcodebuild -create-xcframework \
     -framework $iosBuild/NBSFuse.framework \
+    -debug-symbols $iosBuild/NBSFuse.framework.dSYM \
     -framework $simBuild/NBSFuse.framework \
     -output dist/NBSFuse.xcframework
 
