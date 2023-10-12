@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		940127172AD78F6200F76331 /* NBSFuseJSONSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 940127162AD78F6200F76331 /* NBSFuseJSONSerializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		940127192AD78FFD00F76331 /* NBSFuseJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 940127182AD78FFD00F76331 /* NBSFuseJSONSerializer.m */; };
 		9418629B2A99564600CCFEE1 /* NBSFuseAPIRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9418629A2A99564600CCFEE1 /* NBSFuseAPIRouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9418629D2A9956F100CCFEE1 /* NBSFuseAPIRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9418629C2A9956F100CCFEE1 /* NBSFuseAPIRouter.m */; };
 		9418629F2A995BDC00CCFEE1 /* NBSFuseAPIPacket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9418629E2A995BDC00CCFEE1 /* NBSFuseAPIPacket.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -57,6 +59,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		940127162AD78F6200F76331 /* NBSFuseJSONSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseJSONSerializer.h; sourceTree = "<group>"; };
+		940127182AD78FFD00F76331 /* NBSFuseJSONSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseJSONSerializer.m; sourceTree = "<group>"; };
 		9418629A2A99564600CCFEE1 /* NBSFuseAPIRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseAPIRouter.h; sourceTree = "<group>"; };
 		9418629C2A9956F100CCFEE1 /* NBSFuseAPIRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBSFuseAPIRouter.m; sourceTree = "<group>"; };
 		9418629E2A995BDC00CCFEE1 /* NBSFuseAPIPacket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBSFuseAPIPacket.h; sourceTree = "<group>"; };
@@ -191,6 +195,7 @@
 				9489EBB72AA659D70087424D /* NBSFuseLocalization.h */,
 				94552C602ACC32E600DAE0F4 /* NBSFuseLoggerLevel.h */,
 				94552C642ACCD47C00DAE0F4 /* NBSFuseLogger.h */,
+				940127162AD78F6200F76331 /* NBSFuseJSONSerializer.h */,
 			);
 			path = NBSFuse;
 			sourceTree = "<group>";
@@ -213,6 +218,7 @@
 				947FF0F12AC8A3DA003D09BC /* NBSFuseAPIResponseFactory.m */,
 				94552C622ACC367600DAE0F4 /* NBSFuseLoggerLevel.m */,
 				94552C662ACCD67100DAE0F4 /* NBSFuseLogger.m */,
+				940127182AD78FFD00F76331 /* NBSFuseJSONSerializer.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -249,6 +255,7 @@
 				9418629B2A99564600CCFEE1 /* NBSFuseAPIRouter.h in Headers */,
 				94A886B92A714F6D0098530D /* NBSFuseSchemeHandler.h in Headers */,
 				9489EBB82AA659D70087424D /* NBSFuseLocalization.h in Headers */,
+				940127172AD78F6200F76331 /* NBSFuseJSONSerializer.h in Headers */,
 				94552C612ACC32E600DAE0F4 /* NBSFuseLoggerLevel.h in Headers */,
 				941862AB2A9FE5F700CCFEE1 /* NBSFuseError.h in Headers */,
 				947FF0F02AC8A375003D09BC /* NBSFuseAPIResponseFactory.h in Headers */,
@@ -369,6 +376,7 @@
 				947FF0F22AC8A3DA003D09BC /* NBSFuseAPIResponseFactory.m in Sources */,
 				941862A52A996F7900CCFEE1 /* NBSFuseAPIResponse.m in Sources */,
 				94B0A6932AB77790008C291A /* NBSFuseAPIServer.m in Sources */,
+				940127192AD78FFD00F76331 /* NBSFuseJSONSerializer.m in Sources */,
 				94552C632ACC367600DAE0F4 /* NBSFuseLoggerLevel.m in Sources */,
 				9489EBBA2AA65A990087424D /* NBSFuseLocalization.m in Sources */,
 				94A886BC2A714F6D0098530D /* NBSFuseContext.m in Sources */,
