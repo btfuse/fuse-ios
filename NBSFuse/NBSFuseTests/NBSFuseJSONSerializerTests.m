@@ -15,19 +15,28 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-
 #import <Foundation/Foundation.h>
-#import <NBSFUse/NBSFuseJSONSerializer.h>
+#import <XCTest/XCTest.h>
+#import <NBSFuse/NBSFuse.h>
+//#import <NBSFuseTestTools/NBSFuseTestTools.h>
 
-@implementation NBSFuseJSONSerializer
-
-+ (NSString*) serialize:(NSDictionary*) data withError:(NSError *__autoreleasing*) error {
-    NSData* serialized = [NSJSONSerialization dataWithJSONObject:data options:0 error:error];
-    if (error == nil) {
-        return nil;
-    }
+@interface NBSFuseJSONSerializerTests : XCTestCase {}
     
-    return [[NSString alloc] initWithData:serialized encoding:NSUTF8StringEncoding];
+@end
+
+@implementation NBSFuseJSONSerializerTests
+
+- (void) setUp {}
+
+- (void) tearDown {}
+
+- (void) testShouldNotHaveLinebreaks {
+    NSError* error = nil;
+    NSString* json = [NBSFuseJSONSerializer serialize:@{
+        @"test": @(123)
+    } withError:&error];
+    
+    XCTAssertEqualObjects(json, @"{\"test\":123}");
 }
 
 @end

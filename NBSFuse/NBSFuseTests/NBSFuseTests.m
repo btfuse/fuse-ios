@@ -27,12 +27,12 @@ limitations under the License.
 
 @implementation NBSFuseTests
 
-- (void)setUp {
+- (void) setUp {
     $viewController = [[NBSFuseTestViewController alloc] init];
     [$viewController loadViewIfNeeded];
 }
 
-- (void)tearDown {
+- (void) tearDown {
     $viewController = nil;
 }
 

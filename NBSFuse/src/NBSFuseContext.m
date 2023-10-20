@@ -64,7 +64,7 @@ limitations under the License.
 
 - (void) execCallback:(NSString*) callbackID withData:(NSString*) data {
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSString* escapedData = [data stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+        NSString* escapedData = [[data stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""] stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
         NSString* js = [[NSString alloc] initWithFormat:@"window.__nbsfuse_doCallback(\"%@\",\"%@\");", callbackID, escapedData];
         WKWebView* webview = [self->$viewController getWebview];
         [webview evaluateJavaScript:js completionHandler:nil];
