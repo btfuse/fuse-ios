@@ -56,7 +56,6 @@ limitations under the License.
     NBSFuseContext* context = [$viewController getContext];
     NSString* secret = [context getAPISecret];
     XCTAssertNotNil(secret, @"API Fuse Secret should not be nil");
-    
 }
 
 @end
