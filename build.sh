@@ -1,7 +1,7 @@
 
 #!/bin/sh
 
-# Copyright 2023 Norman Breau 
+# Copyright 2023 Breautek 
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -41,34 +41,34 @@ echo "Cleaning the workspace..."
 # Clean the build
 # XCode can do a poor job in detecting if object code should recompile, particularly when messing with
 # build configuration settings. This will ensure that the produced binary will be representative.
-xcodebuild -quiet -workspace NBSFuse.xcworkspace -scheme NBSFuse -configuration Release -destination "generic/platform=iOS" clean
+xcodebuild -quiet -workspace BTFuse.xcworkspace -scheme BTFuse -configuration Release -destination "generic/platform=iOS" clean
 assertLastCall
-xcodebuild -quiet -workspace NBSFuse.xcworkspace -scheme NBSFuse -configuration Debug -destination "generic/platform=iOS Simulator" clean
+xcodebuild -quiet -workspace BTFuse.xcworkspace -scheme BTFuse -configuration Debug -destination "generic/platform=iOS Simulator" clean
 assertLastCall
 
 echo "Building iOS framework..."
 # Now build the iOS platform target in Release mode. We will continue to use Debug mode for iOS Simulator targets.
-xcodebuild -quiet -workspace NBSFuse.xcworkspace -scheme NBSFuse -configuration Release -destination "generic/platform=iOS" build
+xcodebuild -quiet -workspace BTFuse.xcworkspace -scheme BTFuse -configuration Release -destination "generic/platform=iOS" build
 assertLastCall
 echo "Building iOS Simulator framework..."
-xcodebuild -quiet -workspace NBSFuse.xcworkspace -scheme NBSFuse -configuration Debug -destination "generic/platform=iOS Simulator" build
+xcodebuild -quiet -workspace BTFuse.xcworkspace -scheme BTFuse -configuration Debug -destination "generic/platform=iOS Simulator" build
 assertLastCall
 
-iosBuild=$(echo "$(xcodebuild -workspace NBSFuse.xcworkspace -scheme NBSFuse -configuration Release -sdk iphoneos -showBuildSettings | grep "CONFIGURATION_BUILD_DIR")" | cut -d'=' -f2 | xargs)
-simBuild=$(echo "$(xcodebuild -workspace NBSFuse.xcworkspace -scheme NBSFuse -configuration Debug -sdk iphonesimulator -showBuildSettings | grep "CONFIGURATION_BUILD_DIR")" | cut -d'=' -f2 | xargs)
+iosBuild=$(echo "$(xcodebuild -workspace BTFuse.xcworkspace -scheme BTFuse -configuration Release -sdk iphoneos -showBuildSettings | grep "CONFIGURATION_BUILD_DIR")" | cut -d'=' -f2 | xargs)
+simBuild=$(echo "$(xcodebuild -workspace BTFuse.xcworkspace -scheme BTFuse -configuration Debug -sdk iphonesimulator -showBuildSettings | grep "CONFIGURATION_BUILD_DIR")" | cut -d'=' -f2 | xargs)
 
-cp -r $iosBuild/NBSFuse.framework.dSYM ./dist/
+cp -r $iosBuild/BTFuse.framework.dSYM ./dist/
 
 echo "Packing XCFramework..."
 xcodebuild -create-xcframework \
-    -framework $iosBuild/NBSFuse.framework \
-    -debug-symbols $iosBuild/NBSFuse.framework.dSYM \
-    -framework $simBuild/NBSFuse.framework \
-    -output dist/NBSFuse.xcframework
+    -framework $iosBuild/BTFuse.framework \
+    -debug-symbols $iosBuild/BTFuse.framework.dSYM \
+    -framework $simBuild/BTFuse.framework \
+    -output dist/BTFuse.xcframework
 
 spushd dist
-    zip -r NBSFuse.xcframework.zip NBSFuse.xcframework > /dev/null
-    zip -r NBSFuse.framework.dSYM.zip NBSFuse.framework.dSYM > /dev/null
-    sha1_compute NBSFuse.xcframework.zip
-    sha1_compute NBSFuse.framework.dSYM.zip
+    zip -r BTFuse.xcframework.zip BTFuse.xcframework > /dev/null
+    zip -r BTFuse.framework.dSYM.zip BTFuse.framework.dSYM > /dev/null
+    sha1_compute BTFuse.xcframework.zip
+    sha1_compute BTFuse.framework.dSYM.zip
 spopd

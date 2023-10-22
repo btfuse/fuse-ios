@@ -1,0 +1,691 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		940127172AD78F6200F76331 /* BTFuseJSONSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 940127162AD78F6200F76331 /* BTFuseJSONSerializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		940127192AD78FFD00F76331 /* BTFuseJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 940127182AD78FFD00F76331 /* BTFuseJSONSerializer.m */; };
+		9418629B2A99564600CCFEE1 /* BTFuseAPIRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9418629A2A99564600CCFEE1 /* BTFuseAPIRouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9418629D2A9956F100CCFEE1 /* BTFuseAPIRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9418629C2A9956F100CCFEE1 /* BTFuseAPIRouter.m */; };
+		9418629F2A995BDC00CCFEE1 /* BTFuseAPIPacket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9418629E2A995BDC00CCFEE1 /* BTFuseAPIPacket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		941862A12A995C4F00CCFEE1 /* BTFuseAPIPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 941862A02A995C4F00CCFEE1 /* BTFuseAPIPacket.m */; };
+		941862A32A99617100CCFEE1 /* BTFuseAPIResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 941862A22A99617100CCFEE1 /* BTFuseAPIResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		941862A52A996F7900CCFEE1 /* BTFuseAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 941862A42A996F7900CCFEE1 /* BTFuseAPIResponse.m */; };
+		941862AB2A9FE5F700CCFEE1 /* BTFuseError.h in Headers */ = {isa = PBXBuildFile; fileRef = 941862AA2A9FE5F700CCFEE1 /* BTFuseError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		941862AD2A9FE65E00CCFEE1 /* BTFuseError.m in Sources */ = {isa = PBXBuildFile; fileRef = 941862AC2A9FE65E00CCFEE1 /* BTFuseError.m */; };
+		94552C5D2ACB3A5600DAE0F4 /* BTFuse.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 94552C5C2ACB3A5600DAE0F4 /* BTFuse.xcconfig */; };
+		94552C612ACC32E600DAE0F4 /* BTFuseLoggerLevel.h in Headers */ = {isa = PBXBuildFile; fileRef = 94552C602ACC32E600DAE0F4 /* BTFuseLoggerLevel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94552C632ACC367600DAE0F4 /* BTFuseLoggerLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94552C622ACC367600DAE0F4 /* BTFuseLoggerLevel.m */; };
+		94552C652ACCD47C00DAE0F4 /* BTFuseLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 94552C642ACCD47C00DAE0F4 /* BTFuseLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94552C672ACCD67100DAE0F4 /* BTFuseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 94552C662ACCD67100DAE0F4 /* BTFuseLogger.m */; };
+		945A05982AE5838D0042C88A /* BTFuseTestTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 945A05972AE5838D0042C88A /* BTFuseTestTools.framework */; };
+		947B0CB92AE338850018B6E9 /* BTFuseJSONSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 947B0CB82AE338850018B6E9 /* BTFuseJSONSerializerTests.m */; };
+		947FF0D22AC89FA2003D09BC /* BTFuseAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 947FF0D12AC89FA2003D09BC /* BTFuseAPITests.m */; };
+		947FF0F02AC8A375003D09BC /* BTFuseAPIResponseFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 947FF0EF2AC8A375003D09BC /* BTFuseAPIResponseFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		947FF0F22AC8A3DA003D09BC /* BTFuseAPIResponseFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 947FF0F12AC8A3DA003D09BC /* BTFuseAPIResponseFactory.m */; };
+		9489EB982AA54FA40087424D /* BTFuseRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = 9489EB972AA54FA40087424D /* BTFuseRuntime.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9489EB9A2AA54FED0087424D /* BTFuseRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 9489EB992AA54FED0087424D /* BTFuseRuntime.m */; };
+		9489EB9F2AA61A1C0087424D /* BTFuseWebviewUIDelegation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9489EB9E2AA61A1C0087424D /* BTFuseWebviewUIDelegation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9489EBA12AA61A770087424D /* BTFuseWebviewUIDelegation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9489EBA02AA61A770087424D /* BTFuseWebviewUIDelegation.m */; };
+		9489EBA32AA621A70087424D /* BTFuseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9489EBA22AA621A70087424D /* BTFuseViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9489EBA52AA623B70087424D /* BTFuseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9489EBA42AA623B70087424D /* BTFuseViewController.m */; };
+		9489EBAE2AA6445C0087424D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9489EBB02AA6445C0087424D /* Localizable.strings */; };
+		9489EBB82AA659D70087424D /* BTFuseLocalization.h in Headers */ = {isa = PBXBuildFile; fileRef = 9489EBB72AA659D70087424D /* BTFuseLocalization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9489EBBA2AA65A990087424D /* BTFuseLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 9489EBB92AA65A990087424D /* BTFuseLocalization.m */; };
+		94A886B72A714F6D0098530D /* BTFuse.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A8865C2A702C6C0098530D /* BTFuse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94A886B82A714F6D0098530D /* BTFuseContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A886632A702D240098530D /* BTFuseContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94A886B92A714F6D0098530D /* BTFuseSchemeHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A886682A702F020098530D /* BTFuseSchemeHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94A886BB2A714F6D0098530D /* BTFuseSchemeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A8866A2A702F430098530D /* BTFuseSchemeHandler.m */; };
+		94A886BC2A714F6D0098530D /* BTFuseContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A886662A702D6A0098530D /* BTFuseContext.m */; };
+		94A886DC2A7169920098530D /* BTFusePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A886DB2A7169920098530D /* BTFusePlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94A886DE2A716A0C0098530D /* BTFusePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A886DD2A716A0C0098530D /* BTFusePlugin.m */; };
+		94B0A68F2AB776DC008C291A /* BTFuseAPIServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B0A68E2AB776DC008C291A /* BTFuseAPIServer.h */; };
+		94B0A6932AB77790008C291A /* BTFuseAPIServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B0A6922AB77790008C291A /* BTFuseAPIServer.m */; };
+		94B7A9CF2AC89E39003D294D /* BTFuseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7A9CE2AC89E39003D294D /* BTFuseTests.m */; };
+		94B7A9D02AC89E39003D294D /* BTFuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A886C22A714F6D0098530D /* BTFuse.framework */; platformFilter = ios; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		94B7A9D12AC89E39003D294D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 94A886502A702C6C0098530D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 94A886B52A714F6D0098530D;
+			remoteInfo = BTFuse;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		940127162AD78F6200F76331 /* BTFuseJSONSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseJSONSerializer.h; sourceTree = "<group>"; };
+		940127182AD78FFD00F76331 /* BTFuseJSONSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseJSONSerializer.m; sourceTree = "<group>"; };
+		9418629A2A99564600CCFEE1 /* BTFuseAPIRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseAPIRouter.h; sourceTree = "<group>"; };
+		9418629C2A9956F100CCFEE1 /* BTFuseAPIRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseAPIRouter.m; sourceTree = "<group>"; };
+		9418629E2A995BDC00CCFEE1 /* BTFuseAPIPacket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseAPIPacket.h; sourceTree = "<group>"; };
+		941862A02A995C4F00CCFEE1 /* BTFuseAPIPacket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseAPIPacket.m; sourceTree = "<group>"; };
+		941862A22A99617100CCFEE1 /* BTFuseAPIResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseAPIResponse.h; sourceTree = "<group>"; };
+		941862A42A996F7900CCFEE1 /* BTFuseAPIResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseAPIResponse.m; sourceTree = "<group>"; };
+		941862AA2A9FE5F700CCFEE1 /* BTFuseError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseError.h; sourceTree = "<group>"; };
+		941862AC2A9FE65E00CCFEE1 /* BTFuseError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseError.m; sourceTree = "<group>"; };
+		94552C5C2ACB3A5600DAE0F4 /* BTFuse.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = BTFuse.xcconfig; path = configs/BTFuse.xcconfig; sourceTree = "<group>"; };
+		94552C602ACC32E600DAE0F4 /* BTFuseLoggerLevel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseLoggerLevel.h; sourceTree = "<group>"; usesTabs = 0; };
+		94552C622ACC367600DAE0F4 /* BTFuseLoggerLevel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseLoggerLevel.m; sourceTree = "<group>"; };
+		94552C642ACCD47C00DAE0F4 /* BTFuseLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseLogger.h; sourceTree = "<group>"; };
+		94552C662ACCD67100DAE0F4 /* BTFuseLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseLogger.m; sourceTree = "<group>"; };
+		945A05972AE5838D0042C88A /* BTFuseTestTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BTFuseTestTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		947B0CB82AE338850018B6E9 /* BTFuseJSONSerializerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseJSONSerializerTests.m; sourceTree = "<group>"; };
+		947FF0D12AC89FA2003D09BC /* BTFuseAPITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseAPITests.m; sourceTree = "<group>"; };
+		947FF0EF2AC8A375003D09BC /* BTFuseAPIResponseFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTFuseAPIResponseFactory.h; sourceTree = "<group>"; };
+		947FF0F12AC8A3DA003D09BC /* BTFuseAPIResponseFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseAPIResponseFactory.m; sourceTree = "<group>"; };
+		9489EB972AA54FA40087424D /* BTFuseRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseRuntime.h; sourceTree = "<group>"; };
+		9489EB992AA54FED0087424D /* BTFuseRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseRuntime.m; sourceTree = "<group>"; };
+		9489EB9E2AA61A1C0087424D /* BTFuseWebviewUIDelegation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseWebviewUIDelegation.h; sourceTree = "<group>"; };
+		9489EBA02AA61A770087424D /* BTFuseWebviewUIDelegation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseWebviewUIDelegation.m; sourceTree = "<group>"; };
+		9489EBA22AA621A70087424D /* BTFuseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseViewController.h; sourceTree = "<group>"; };
+		9489EBA42AA623B70087424D /* BTFuseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseViewController.m; sourceTree = "<group>"; };
+		9489EBAF2AA6445C0087424D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9489EBB72AA659D70087424D /* BTFuseLocalization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseLocalization.h; sourceTree = "<group>"; };
+		9489EBB92AA65A990087424D /* BTFuseLocalization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseLocalization.m; sourceTree = "<group>"; };
+		94A8865C2A702C6C0098530D /* BTFuse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuse.h; sourceTree = "<group>"; };
+		94A886632A702D240098530D /* BTFuseContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseContext.h; sourceTree = "<group>"; };
+		94A886662A702D6A0098530D /* BTFuseContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseContext.m; sourceTree = "<group>"; };
+		94A886682A702F020098530D /* BTFuseSchemeHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseSchemeHandler.h; sourceTree = "<group>"; };
+		94A8866A2A702F430098530D /* BTFuseSchemeHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseSchemeHandler.m; sourceTree = "<group>"; };
+		94A886C22A714F6D0098530D /* BTFuse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BTFuse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		94A886DB2A7169920098530D /* BTFusePlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFusePlugin.h; sourceTree = "<group>"; };
+		94A886DD2A716A0C0098530D /* BTFusePlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFusePlugin.m; sourceTree = "<group>"; };
+		94B0A68E2AB776DC008C291A /* BTFuseAPIServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseAPIServer.h; sourceTree = "<group>"; };
+		94B0A6922AB77790008C291A /* BTFuseAPIServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseAPIServer.m; sourceTree = "<group>"; };
+		94B7A9CC2AC89E39003D294D /* BTFuseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BTFuseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		94B7A9CE2AC89E39003D294D /* BTFuseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		94A886BD2A714F6D0098530D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94B7A9C92AC89E39003D294D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94B7A9D02AC89E39003D294D /* BTFuse.framework in Frameworks */,
+				945A05982AE5838D0042C88A /* BTFuseTestTools.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		94552C592ACB349A00DAE0F4 /* configurations */ = {
+			isa = PBXGroup;
+			children = (
+				94552C5C2ACB3A5600DAE0F4 /* BTFuse.xcconfig */,
+			);
+			name = configurations;
+			sourceTree = "<group>";
+		};
+		9489EB9B2AA5507B0087424D /* plugins */ = {
+			isa = PBXGroup;
+			children = (
+				9489EB972AA54FA40087424D /* BTFuseRuntime.h */,
+			);
+			path = plugins;
+			sourceTree = "<group>";
+		};
+		9489EB9C2AA5508C0087424D /* plugins */ = {
+			isa = PBXGroup;
+			children = (
+				9489EB992AA54FED0087424D /* BTFuseRuntime.m */,
+			);
+			path = plugins;
+			sourceTree = "<group>";
+		};
+		9489EBA62AA640ED0087424D /* localization */ = {
+			isa = PBXGroup;
+			children = (
+				9489EBB02AA6445C0087424D /* Localizable.strings */,
+			);
+			name = localization;
+			sourceTree = "<group>";
+		};
+		94A8864F2A702C6C0098530D = {
+			isa = PBXGroup;
+			children = (
+				94552C592ACB349A00DAE0F4 /* configurations */,
+				9489EBA62AA640ED0087424D /* localization */,
+				94A886652A702D3A0098530D /* src */,
+				94A8865B2A702C6C0098530D /* BTFuse */,
+				94B7A9CD2AC89E39003D294D /* BTFuseTests */,
+				94A8865A2A702C6C0098530D /* Products */,
+				B09295BDA9DD81FE38C25D6F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		94A8865A2A702C6C0098530D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				94A886C22A714F6D0098530D /* BTFuse.framework */,
+				94B7A9CC2AC89E39003D294D /* BTFuseTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		94A8865B2A702C6C0098530D /* BTFuse */ = {
+			isa = PBXGroup;
+			children = (
+				9489EB9B2AA5507B0087424D /* plugins */,
+				94A8865C2A702C6C0098530D /* BTFuse.h */,
+				94A886632A702D240098530D /* BTFuseContext.h */,
+				94A886682A702F020098530D /* BTFuseSchemeHandler.h */,
+				94B0A68E2AB776DC008C291A /* BTFuseAPIServer.h */,
+				947FF0EF2AC8A375003D09BC /* BTFuseAPIResponseFactory.h */,
+				94A886DB2A7169920098530D /* BTFusePlugin.h */,
+				9418629A2A99564600CCFEE1 /* BTFuseAPIRouter.h */,
+				9418629E2A995BDC00CCFEE1 /* BTFuseAPIPacket.h */,
+				941862A22A99617100CCFEE1 /* BTFuseAPIResponse.h */,
+				941862AA2A9FE5F700CCFEE1 /* BTFuseError.h */,
+				9489EB9E2AA61A1C0087424D /* BTFuseWebviewUIDelegation.h */,
+				9489EBA22AA621A70087424D /* BTFuseViewController.h */,
+				9489EBB72AA659D70087424D /* BTFuseLocalization.h */,
+				94552C602ACC32E600DAE0F4 /* BTFuseLoggerLevel.h */,
+				94552C642ACCD47C00DAE0F4 /* BTFuseLogger.h */,
+				940127162AD78F6200F76331 /* BTFuseJSONSerializer.h */,
+			);
+			path = BTFuse;
+			sourceTree = "<group>";
+		};
+		94A886652A702D3A0098530D /* src */ = {
+			isa = PBXGroup;
+			children = (
+				9489EB9C2AA5508C0087424D /* plugins */,
+				94A886662A702D6A0098530D /* BTFuseContext.m */,
+				94A8866A2A702F430098530D /* BTFuseSchemeHandler.m */,
+				94A886DD2A716A0C0098530D /* BTFusePlugin.m */,
+				94B0A6922AB77790008C291A /* BTFuseAPIServer.m */,
+				9418629C2A9956F100CCFEE1 /* BTFuseAPIRouter.m */,
+				941862A02A995C4F00CCFEE1 /* BTFuseAPIPacket.m */,
+				941862A42A996F7900CCFEE1 /* BTFuseAPIResponse.m */,
+				941862AC2A9FE65E00CCFEE1 /* BTFuseError.m */,
+				9489EBA02AA61A770087424D /* BTFuseWebviewUIDelegation.m */,
+				9489EBA42AA623B70087424D /* BTFuseViewController.m */,
+				9489EBB92AA65A990087424D /* BTFuseLocalization.m */,
+				947FF0F12AC8A3DA003D09BC /* BTFuseAPIResponseFactory.m */,
+				94552C622ACC367600DAE0F4 /* BTFuseLoggerLevel.m */,
+				94552C662ACCD67100DAE0F4 /* BTFuseLogger.m */,
+				940127182AD78FFD00F76331 /* BTFuseJSONSerializer.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		94B7A9CD2AC89E39003D294D /* BTFuseTests */ = {
+			isa = PBXGroup;
+			children = (
+				94B7A9CE2AC89E39003D294D /* BTFuseTests.m */,
+				947FF0D12AC89FA2003D09BC /* BTFuseAPITests.m */,
+				947B0CB82AE338850018B6E9 /* BTFuseJSONSerializerTests.m */,
+			);
+			path = BTFuseTests;
+			sourceTree = "<group>";
+		};
+		B09295BDA9DD81FE38C25D6F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				945A05972AE5838D0042C88A /* BTFuseTestTools.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		94A886B62A714F6D0098530D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94A886DC2A7169920098530D /* BTFusePlugin.h in Headers */,
+				9489EB9F2AA61A1C0087424D /* BTFuseWebviewUIDelegation.h in Headers */,
+				94A886B72A714F6D0098530D /* BTFuse.h in Headers */,
+				9489EBA32AA621A70087424D /* BTFuseViewController.h in Headers */,
+				9418629B2A99564600CCFEE1 /* BTFuseAPIRouter.h in Headers */,
+				94A886B92A714F6D0098530D /* BTFuseSchemeHandler.h in Headers */,
+				9489EBB82AA659D70087424D /* BTFuseLocalization.h in Headers */,
+				940127172AD78F6200F76331 /* BTFuseJSONSerializer.h in Headers */,
+				94552C612ACC32E600DAE0F4 /* BTFuseLoggerLevel.h in Headers */,
+				941862AB2A9FE5F700CCFEE1 /* BTFuseError.h in Headers */,
+				947FF0F02AC8A375003D09BC /* BTFuseAPIResponseFactory.h in Headers */,
+				9489EB982AA54FA40087424D /* BTFuseRuntime.h in Headers */,
+				94552C652ACCD47C00DAE0F4 /* BTFuseLogger.h in Headers */,
+				9418629F2A995BDC00CCFEE1 /* BTFuseAPIPacket.h in Headers */,
+				94B0A68F2AB776DC008C291A /* BTFuseAPIServer.h in Headers */,
+				941862A32A99617100CCFEE1 /* BTFuseAPIResponse.h in Headers */,
+				94A886B82A714F6D0098530D /* BTFuseContext.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		94A886B52A714F6D0098530D /* BTFuse */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94A886BF2A714F6D0098530D /* Build configuration list for PBXNativeTarget "BTFuse" */;
+			buildPhases = (
+				94A886B62A714F6D0098530D /* Headers */,
+				94A886BA2A714F6D0098530D /* Sources */,
+				94A886BD2A714F6D0098530D /* Frameworks */,
+				94A886BE2A714F6D0098530D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BTFuse;
+			productName = BTFuse;
+			productReference = 94A886C22A714F6D0098530D /* BTFuse.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		94B7A9CB2AC89E39003D294D /* BTFuseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94B7A9D32AC89E39003D294D /* Build configuration list for PBXNativeTarget "BTFuseTests" */;
+			buildPhases = (
+				94B7A9C82AC89E39003D294D /* Sources */,
+				94B7A9C92AC89E39003D294D /* Frameworks */,
+				94B7A9CA2AC89E39003D294D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				94B7A9D22AC89E39003D294D /* PBXTargetDependency */,
+			);
+			name = BTFuseTests;
+			productName = BTFuseTests;
+			productReference = 94B7A9CC2AC89E39003D294D /* BTFuseTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		94A886502A702C6C0098530D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					94B7A9CB2AC89E39003D294D = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 94A886532A702C6C0098530D /* Build configuration list for PBXProject "BTFuse" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 94A8864F2A702C6C0098530D;
+			productRefGroup = 94A8865A2A702C6C0098530D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				94A886B52A714F6D0098530D /* BTFuse */,
+				94B7A9CB2AC89E39003D294D /* BTFuseTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		94A886BE2A714F6D0098530D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9489EBAE2AA6445C0087424D /* Localizable.strings in Resources */,
+				94552C5D2ACB3A5600DAE0F4 /* BTFuse.xcconfig in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94B7A9CA2AC89E39003D294D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		94A886BA2A714F6D0098530D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				941862A12A995C4F00CCFEE1 /* BTFuseAPIPacket.m in Sources */,
+				94A886DE2A716A0C0098530D /* BTFusePlugin.m in Sources */,
+				941862AD2A9FE65E00CCFEE1 /* BTFuseError.m in Sources */,
+				9489EBA12AA61A770087424D /* BTFuseWebviewUIDelegation.m in Sources */,
+				94552C672ACCD67100DAE0F4 /* BTFuseLogger.m in Sources */,
+				94A886BB2A714F6D0098530D /* BTFuseSchemeHandler.m in Sources */,
+				9418629D2A9956F100CCFEE1 /* BTFuseAPIRouter.m in Sources */,
+				9489EB9A2AA54FED0087424D /* BTFuseRuntime.m in Sources */,
+				9489EBA52AA623B70087424D /* BTFuseViewController.m in Sources */,
+				947FF0F22AC8A3DA003D09BC /* BTFuseAPIResponseFactory.m in Sources */,
+				941862A52A996F7900CCFEE1 /* BTFuseAPIResponse.m in Sources */,
+				94B0A6932AB77790008C291A /* BTFuseAPIServer.m in Sources */,
+				940127192AD78FFD00F76331 /* BTFuseJSONSerializer.m in Sources */,
+				94552C632ACC367600DAE0F4 /* BTFuseLoggerLevel.m in Sources */,
+				9489EBBA2AA65A990087424D /* BTFuseLocalization.m in Sources */,
+				94A886BC2A714F6D0098530D /* BTFuseContext.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94B7A9C82AC89E39003D294D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				947B0CB92AE338850018B6E9 /* BTFuseJSONSerializerTests.m in Sources */,
+				94B7A9CF2AC89E39003D294D /* BTFuseTests.m in Sources */,
+				947FF0D22AC89FA2003D09BC /* BTFuseAPITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		94B7A9D22AC89E39003D294D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 94A886B52A714F6D0098530D /* BTFuse */;
+			targetProxy = 94B7A9D12AC89E39003D294D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9489EBB02AA6445C0087424D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9489EBAF2AA6445C0087424D /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		94A8865E2A702C6C0098530D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = "";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		94A8865F2A702C6C0098530D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = "";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		94A886C02A714F6D0098530D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94552C5C2ACB3A5600DAE0F4 /* BTFuse.xcconfig */;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = AF37P8XHYY;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.breautek.fuse;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		94A886C12A714F6D0098530D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94552C5C2ACB3A5600DAE0F4 /* BTFuse.xcconfig */;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = AF37P8XHYY;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.breautek.fuse;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		94B7A9D42AC89E39003D294D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AF37P8XHYY;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.breautek.fuse.test;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		94B7A9D52AC89E39003D294D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AF37P8XHYY;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.breautek.fuse.test;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		94A886532A702C6C0098530D /* Build configuration list for PBXProject "BTFuse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94A8865E2A702C6C0098530D /* Debug */,
+				94A8865F2A702C6C0098530D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		94A886BF2A714F6D0098530D /* Build configuration list for PBXNativeTarget "BTFuse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94A886C02A714F6D0098530D /* Debug */,
+				94A886C12A714F6D0098530D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		94B7A9D32AC89E39003D294D /* Build configuration list for PBXNativeTarget "BTFuseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94B7A9D42AC89E39003D294D /* Debug */,
+				94B7A9D52AC89E39003D294D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 94A886502A702C6C0098530D /* Project object */;
+}

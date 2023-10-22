@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright 2023 Norman Breau 
+# Copyright 2023 Breautek 
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ assetGitTagAvailable $VERSION
 
 echo $VERSION > VERSION
 
-spushd NBSFuse/configs
+spushd BTFuse/configs
 echo "// This is an auto-generated file, do not edit!" > version.xcconfig
 echo "CURRENT_PROJECT_VERSION = $VERSION" >> version.xcconfig
 echo "MARKETING_VERSION = $VERSION" >> version.xcconfig
@@ -37,7 +37,7 @@ spopd
 ./build.sh
 ./test.sh
 
-git add VERSION NBSFuse/configs/version.xcconfig
+git add VERSION BTFuse/configs/version.xcconfig
 git add VERSION
 git commit -m "iOS Release: $VERSION"
 git push
@@ -45,8 +45,8 @@ git tag -a $VERSION -m "iOS Release: $VERSION"
 git push --tags
 
 gh release create $VERSION \
-    ./dist/NBSFuse.xcframework.zip \
-    ./dist/NBSFuse.xcframework.zip.sha1.txt \
-    ./dist/NBSFuse.framework.dSYM.zip \
-    ./dist/NBSFuse.framework.dSYM.zip.sha1.txt \
+    ./dist/BTFuse.xcframework.zip \
+    ./dist/BTFuse.xcframework.zip.sha1.txt \
+    ./dist/BTFuse.framework.dSYM.zip \
+    ./dist/BTFuse.framework.dSYM.zip.sha1.txt \
     --verify-tag --generate-notes
