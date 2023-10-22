@@ -26,11 +26,11 @@ ios15Check="0"
 ios16Check="0"
 ios17Check="0"
 
-xcodebuild -quiet test -workspace NBSFuse.xcworkspace -scheme NBSFuseTests -enableCodeCoverage YES -destination-timeout 60 -destination "id=$IOS_15"
+xcodebuild -quiet test -workspace BTFuse.xcworkspace -scheme BTFuseTests -enableCodeCoverage YES -destination-timeout 60 -destination "id=$IOS_15"
 ios15Check=$?
-xcodebuild -quiet test -workspace NBSFuse.xcworkspace -scheme NBSFuseTests -enableCodeCoverage YES -destination-timeout 60 -destination "id=$IOS_16"
+xcodebuild -quiet test -workspace BTFuse.xcworkspace -scheme BTFuseTests -enableCodeCoverage YES -destination-timeout 60 -destination "id=$IOS_16"
 ios16Check=$?
-xcodebuild -quiet test -workspace NBSFuse.xcworkspace -scheme NBSFuseTests -enableCodeCoverage YES -destination-timeout 60 -destination "id=$IOS_17"
+xcodebuild -quiet test -workspace BTFuse.xcworkspace -scheme BTFuseTests -enableCodeCoverage YES -destination-timeout 60 -destination "id=$IOS_17"
 ios17Check=$?
 
 if [ "$ios15Check" -ne "0" ]; then
