@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		944112BC2AED44C800309527 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 944112BB2AED44C800309527 /* PrivacyInfo.xcprivacy */; };
 		94552C5F2ACB624400DAE0F4 /* libecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94552C5E2ACB624400DAE0F4 /* libecho.a */; };
 		945A05922AE582C90042C88A /* BTFuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 945A05912AE582C90042C88A /* BTFuse.framework */; };
 		946278442AC8A94A008A89FA /* BTFuseTestViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 946278432AC8A94A008A89FA /* BTFuseTestViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		944112BB2AED44C800309527 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		94552C5E2ACB624400DAE0F4 /* libecho.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libecho.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		945A05912AE582C90042C88A /* BTFuse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BTFuse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		946278432AC8A94A008A89FA /* BTFuseTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseTestViewController.h; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 		947FF0FB2AC8A82E003D09BC = {
 			isa = PBXGroup;
 			children = (
+				944112BB2AED44C800309527 /* PrivacyInfo.xcprivacy */,
 				947FF1072AC8A82E003D09BC /* BTFuseTestTools */,
 				947FF1062AC8A82E003D09BC /* Products */,
 				947FF10F2AC8A83B003D09BC /* Frameworks */,
@@ -179,6 +182,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				944112BC2AED44C800309527 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

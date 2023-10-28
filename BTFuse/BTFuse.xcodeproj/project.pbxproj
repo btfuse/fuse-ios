@@ -17,6 +17,7 @@
 		941862A52A996F7900CCFEE1 /* BTFuseAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 941862A42A996F7900CCFEE1 /* BTFuseAPIResponse.m */; };
 		941862AB2A9FE5F700CCFEE1 /* BTFuseError.h in Headers */ = {isa = PBXBuildFile; fileRef = 941862AA2A9FE5F700CCFEE1 /* BTFuseError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		941862AD2A9FE65E00CCFEE1 /* BTFuseError.m in Sources */ = {isa = PBXBuildFile; fileRef = 941862AC2A9FE65E00CCFEE1 /* BTFuseError.m */; };
+		944112BA2AED442300309527 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 944112B92AED442300309527 /* PrivacyInfo.xcprivacy */; };
 		94552C5D2ACB3A5600DAE0F4 /* BTFuse.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 94552C5C2ACB3A5600DAE0F4 /* BTFuse.xcconfig */; };
 		94552C612ACC32E600DAE0F4 /* BTFuseLoggerLevel.h in Headers */ = {isa = PBXBuildFile; fileRef = 94552C602ACC32E600DAE0F4 /* BTFuseLoggerLevel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94552C632ACC367600DAE0F4 /* BTFuseLoggerLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94552C622ACC367600DAE0F4 /* BTFuseLoggerLevel.m */; };
@@ -70,6 +71,7 @@
 		941862A42A996F7900CCFEE1 /* BTFuseAPIResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseAPIResponse.m; sourceTree = "<group>"; };
 		941862AA2A9FE5F700CCFEE1 /* BTFuseError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseError.h; sourceTree = "<group>"; };
 		941862AC2A9FE65E00CCFEE1 /* BTFuseError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseError.m; sourceTree = "<group>"; };
+		944112B92AED442300309527 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		94552C5C2ACB3A5600DAE0F4 /* BTFuse.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = BTFuse.xcconfig; path = configs/BTFuse.xcconfig; sourceTree = "<group>"; };
 		94552C602ACC32E600DAE0F4 /* BTFuseLoggerLevel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseLoggerLevel.h; sourceTree = "<group>"; usesTabs = 0; };
 		94552C622ACC367600DAE0F4 /* BTFuseLoggerLevel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseLoggerLevel.m; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 		94A8864F2A702C6C0098530D = {
 			isa = PBXGroup;
 			children = (
+				944112B92AED442300309527 /* PrivacyInfo.xcprivacy */,
 				94552C592ACB349A00DAE0F4 /* configurations */,
 				9489EBA62AA640ED0087424D /* localization */,
 				94A886652A702D3A0098530D /* src */,
@@ -346,6 +349,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				944112BA2AED442300309527 /* PrivacyInfo.xcprivacy in Resources */,
 				9489EBAE2AA6445C0087424D /* Localizable.strings in Resources */,
 				94552C5D2ACB3A5600DAE0F4 /* BTFuse.xcconfig in Resources */,
 			);
