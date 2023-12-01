@@ -28,7 +28,7 @@ typedef void (^BTFuseAPIResponse_TaskBlock)(void);
     pthread_mutex_t $workerMutex;
     pthread_t $workerThread;
     NSMutableArray<BTFuseAPIResponse_TaskBlock>* $workerQueue;
-    int $client;
+    BTFuseAPIClient* $client;
     bool $hasSentHeaders;
     bool $isClosed;
     BTFuseContext* $context;
@@ -61,7 +61,7 @@ void* $BTFuseAPIResponse_processTask(void* pdata) {
     return NULL;
 }
 
-- (instancetype) init:(BTFuseContext*) context client:(int) client {
+- (instancetype) init:(BTFuseContext*) context client:(BTFuseAPIClient*) client {
     self = [super init];
     
     $startTime = mach_absolute_time();
@@ -120,10 +120,11 @@ void* $BTFuseAPIResponse_processTask(void* pdata) {
     $status = 0;
     
     BTFuseLogger* logger = [$context getLogger];
-    [logger error: @"Killing %d for reason: %@", $client, message];
+    [logger error: @"Killing %@ for reason: %@", [$client getID], message];
     
     $isClosed = true;
-    close($client);
+    [$client close];
+//    close($client);
     [self $printEndTime];
 }
 
@@ -135,18 +136,20 @@ void* $BTFuseAPIResponse_processTask(void* pdata) {
     kern_return_t kernResult = mach_timebase_info(&timebase);
     
     if (kernResult != KERN_SUCCESS) {
-        [logger info:@"Response (Request %d with status %lu. Time information not available.", $client, $status];
+        [logger info:@"Response (Request %@ with status %lu. Time information not available.", [$client getID], $status];
         return;
     }
     
     double UNIT = 1e-9 * (double)timebase.numer / (double)timebase.denom;
     double elapsedSeconds = (double)elapsed * UNIT;
     
-    [logger info:@"Response (Request %d) closed with status %lu in %fs", $client, $status, elapsedSeconds];
+    [logger info:@"Response (Request %@) closed with status %lu in %fs", [$client getID], $status, elapsedSeconds];
 }
 
 - (ssize_t) $write:(const void*) data length:(size_t) length {
-    return write($client, data, length);
+    NSData* nsdata = [[NSData alloc] initWithBytes: data length: length];
+    return [$client write: nsdata];
+//    return write($client, data, length);
 }
 
 - (void) write:(const void*) sourceData length:(size_t) length {
@@ -251,7 +254,8 @@ void* $BTFuseAPIResponse_processTask(void* pdata) {
             thus retain cycles should be a non-issue here.
          */
         self->$isClosed = true;
-        shutdown(self->$client, SHUT_RDWR);
+        [self->$client close];
+//        shutdown(self->$client, SHUT_RDWR);
         #pragma clang diagnostic pop
         
         [self $printEndTime];

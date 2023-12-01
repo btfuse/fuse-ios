@@ -15,20 +15,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-#import <Foundation/Foundation.h>
-#import <BTFuse/BTFuseContext.h>
-#import <BTFuse/BTFuseAPIResponseFactory.h>
+#ifndef BTFuseAPIClientOutputStream_h
+#define BTFuseAPIClientOutputStream_h
 
-@implementation BTFuseAPIResponseFactory
 
-- (instancetype) init {
-    self = [super init];
-    
-    return self;
-}
+@interface BTFuseAPIClientOutputStream: NSOutputStream
 
-- (BTFuseAPIResponse*) create:(BTFuseContext*) context client:(BTFuseAPIClient*) client {
-    return [[BTFuseAPIResponse alloc] init:context client: client];
-}
+@property (readonly) BOOL hasSpaceAvailable;
+@property (nullable, readonly, copy) NSError* streamError;
+@property (readonly) NSStreamStatus streamStatus;
+
+- (instancetype _Nonnull) init:(nw_connection_t _Nonnull ) connection;
 
 @end
+
+#endif

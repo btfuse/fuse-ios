@@ -34,6 +34,8 @@ FOUNDATION_EXPORT const unsigned char BTFuseVersionString[];
 #import <BTFuse/BTFuseLoggerLevel.h>
 #import <BTFuse/BTFuseAPIResponseFactory.h>
 #import <BTFuse/BTFuseJSONSerializer.h>
+#import <BTFuse/BTFuseAPIClient.h>
+#import <BTFuse/BTFuseIDGenerator.h>
 
 // Core Plugins
 #import <BTFuse/BTFuseRuntime.h>

@@ -16,10 +16,9 @@ limitations under the License.
 */
 
 #import <Foundation/Foundation.h>
-#import <BTFuse/BTFuseContext.h>
-#import <BTFuse/BTFuseAPIResponseFactory.h>
+#import <BTFuse/BTFuseIDGenerator.h>
 
-@implementation BTFuseAPIResponseFactory
+@implementation BTFuseIDGenerator
 
 - (instancetype) init {
     self = [super init];
@@ -27,8 +26,9 @@ limitations under the License.
     return self;
 }
 
-- (BTFuseAPIResponse*) create:(BTFuseContext*) context client:(BTFuseAPIClient*) client {
-    return [[BTFuseAPIResponse alloc] init:context client: client];
+- (NSString*) generate {
+    NSUUID* uuid = [NSUUID UUID];
+    return [uuid UUIDString];
 }
 
 @end

@@ -15,20 +15,17 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-#import <Foundation/Foundation.h>
-#import <BTFuse/BTFuseContext.h>
-#import <BTFuse/BTFuseAPIResponseFactory.h>
+#ifndef BTFuseNWErrorFactory_h
+#define BTFuseNWErrorFactory_h
 
-@implementation BTFuseAPIResponseFactory
+#import <Network/Network.h>
 
-- (instancetype) init {
-    self = [super init];
-    
-    return self;
-}
+@interface BTFuseNWErrorFactory: NSObject
 
-- (BTFuseAPIResponse*) create:(BTFuseContext*) context client:(BTFuseAPIClient*) client {
-    return [[BTFuseAPIResponse alloc] init:context client: client];
-}
+- (instancetype) init NS_UNAVAILABLE;
+
++ (NSError*) create:(nw_error_t) nwError;
 
 @end
+
+#endif

@@ -15,19 +15,26 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-#ifndef BTFuseAPIResponseFactory_h
-#define BTFuseAPIResponseFactory_h
+#ifndef BTFuseAPIServerHeaders_h
+#define BTFuseAPIServerHeaders_h
 
-#import <BTFuse/BTFuseAPIResponse.h>
-#import <BTFuse/BTFuseAPIClient.h>
-
-@class BTFuseContext;
-
-@interface BTFuseAPIResponseFactory: NSObject {}
+@interface BTFuseAPIServerHeaders: NSObject {
+    NSMutableDictionary* $headers;
+    NSString* $method;
+    NSString* $version;
+    NSString* $path;
+}
 
 - (instancetype) init NS_DESIGNATED_INITIALIZER;
-
-- (BTFuseAPIResponse*) create:(BTFuseContext*) context client:(BTFuseAPIClient*) client;
+- (NSString*) getMethod;
+- (NSString*) getPath;
+- (NSString*) getVersion;
+- (NSString*) getHeader:(NSString*) name;
+- (NSDictionary*) getHeaders;
+- (void) setMethod:(NSString*) method;
+- (void) setPath:(NSString*) path;
+- (void) setVersion:(NSString*) version;
+- (void) setHeader:(NSString*) name withValue:(NSString*) value;
 
 @end
 

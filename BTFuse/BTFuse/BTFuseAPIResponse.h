@@ -21,6 +21,7 @@ limitations under the License.
 #import <WebKit/WebKit.h>
 #import <BTFuse/BTFuseError.h>
 #import <mach/mach_time.h>
+#import <BTFuse/BTFuseAPIClient.h>
 
 @class BTFuseContext;
 
@@ -33,7 +34,7 @@ typedef NS_ENUM(NSUInteger, BTFuseAPIResponseStatus) {
 @interface BTFuseAPIResponse: NSObject
 
 - (instancetype) init NS_UNAVAILABLE;
-- (instancetype) init:(BTFuseContext*) context client:(int) client NS_DESIGNATED_INITIALIZER;
+- (instancetype) init:(BTFuseContext*) context client:(BTFuseAPIClient*) client NS_DESIGNATED_INITIALIZER;
 
 // Header APIs
 - (void) setStatus:(NSUInteger) status;

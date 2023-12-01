@@ -17,7 +17,10 @@
 		941862A52A996F7900CCFEE1 /* BTFuseAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 941862A42A996F7900CCFEE1 /* BTFuseAPIResponse.m */; };
 		941862AB2A9FE5F700CCFEE1 /* BTFuseError.h in Headers */ = {isa = PBXBuildFile; fileRef = 941862AA2A9FE5F700CCFEE1 /* BTFuseError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		941862AD2A9FE65E00CCFEE1 /* BTFuseError.m in Sources */ = {isa = PBXBuildFile; fileRef = 941862AC2A9FE65E00CCFEE1 /* BTFuseError.m */; };
+		9435AEE02B0995AC00C1140A /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9435AEDF2B0995AC00C1140A /* Network.framework */; };
 		944112BA2AED442300309527 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 944112B92AED442300309527 /* PrivacyInfo.xcprivacy */; };
+		9443F0AF2B1AA9070056B054 /* BTFuseNWErrorFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9443F0AE2B1AA9070056B054 /* BTFuseNWErrorFactory.h */; };
+		9443F0B12B1AA9550056B054 /* BTFuseNWErrorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9443F0B02B1AA9550056B054 /* BTFuseNWErrorFactory.m */; };
 		94552C5D2ACB3A5600DAE0F4 /* BTFuse.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 94552C5C2ACB3A5600DAE0F4 /* BTFuse.xcconfig */; };
 		94552C612ACC32E600DAE0F4 /* BTFuseLoggerLevel.h in Headers */ = {isa = PBXBuildFile; fileRef = 94552C602ACC32E600DAE0F4 /* BTFuseLoggerLevel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94552C632ACC367600DAE0F4 /* BTFuseLoggerLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94552C622ACC367600DAE0F4 /* BTFuseLoggerLevel.m */; };
@@ -44,6 +47,16 @@
 		94A886BC2A714F6D0098530D /* BTFuseContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A886662A702D6A0098530D /* BTFuseContext.m */; };
 		94A886DC2A7169920098530D /* BTFusePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A886DB2A7169920098530D /* BTFusePlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94A886DE2A716A0C0098530D /* BTFusePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A886DD2A716A0C0098530D /* BTFusePlugin.m */; };
+		94A928412B0C466C00AAC44A /* BTFuseAPIClientInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A928402B0C466C00AAC44A /* BTFuseAPIClientInputStream.m */; };
+		94A928432B0C476F00AAC44A /* BTFuseAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A928422B0C476F00AAC44A /* BTFuseAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94A928452B0C47C400AAC44A /* BTFuseAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A928442B0C47C400AAC44A /* BTFuseAPIClient.m */; };
+		94A928482B0C50DB00AAC44A /* BTFuseAPIClientOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A928472B0C50DB00AAC44A /* BTFuseAPIClientOutputStream.m */; };
+		94A9284B2B13E41B00AAC44A /* BTFuseAPIClientInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A9283F2B0C463700AAC44A /* BTFuseAPIClientInputStream.h */; };
+		94A9284C2B13E41E00AAC44A /* BTFuseAPIClientOutputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A928462B0C500900AAC44A /* BTFuseAPIClientOutputStream.h */; };
+		94A9284F2B13E46300AAC44A /* BTFuseAPIServerHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A9284E2B13E46300AAC44A /* BTFuseAPIServerHeaders.h */; };
+		94A928532B13E4C700AAC44A /* BTFuseAPIServerHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A928522B13E4C700AAC44A /* BTFuseAPIServerHeaders.m */; };
+		94A928552B1A724700AAC44A /* BTFuseIDGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A928542B1A724700AAC44A /* BTFuseIDGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94A928572B1A729000AAC44A /* BTFuseIDGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A928562B1A729000AAC44A /* BTFuseIDGenerator.m */; };
 		94B0A68F2AB776DC008C291A /* BTFuseAPIServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B0A68E2AB776DC008C291A /* BTFuseAPIServer.h */; };
 		94B0A6932AB77790008C291A /* BTFuseAPIServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B0A6922AB77790008C291A /* BTFuseAPIServer.m */; };
 		94B7A9CF2AC89E39003D294D /* BTFuseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7A9CE2AC89E39003D294D /* BTFuseTests.m */; };
@@ -71,7 +84,10 @@
 		941862A42A996F7900CCFEE1 /* BTFuseAPIResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseAPIResponse.m; sourceTree = "<group>"; };
 		941862AA2A9FE5F700CCFEE1 /* BTFuseError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseError.h; sourceTree = "<group>"; };
 		941862AC2A9FE65E00CCFEE1 /* BTFuseError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseError.m; sourceTree = "<group>"; };
+		9435AEDF2B0995AC00C1140A /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = System/Library/Frameworks/Network.framework; sourceTree = SDKROOT; };
 		944112B92AED442300309527 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		9443F0AE2B1AA9070056B054 /* BTFuseNWErrorFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseNWErrorFactory.h; sourceTree = "<group>"; };
+		9443F0B02B1AA9550056B054 /* BTFuseNWErrorFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseNWErrorFactory.m; sourceTree = "<group>"; };
 		94552C5C2ACB3A5600DAE0F4 /* BTFuse.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = BTFuse.xcconfig; path = configs/BTFuse.xcconfig; sourceTree = "<group>"; };
 		94552C602ACC32E600DAE0F4 /* BTFuseLoggerLevel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseLoggerLevel.h; sourceTree = "<group>"; usesTabs = 0; };
 		94552C622ACC367600DAE0F4 /* BTFuseLoggerLevel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseLoggerLevel.m; sourceTree = "<group>"; };
@@ -99,6 +115,16 @@
 		94A886C22A714F6D0098530D /* BTFuse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BTFuse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A886DB2A7169920098530D /* BTFusePlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFusePlugin.h; sourceTree = "<group>"; };
 		94A886DD2A716A0C0098530D /* BTFusePlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFusePlugin.m; sourceTree = "<group>"; };
+		94A9283F2B0C463700AAC44A /* BTFuseAPIClientInputStream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseAPIClientInputStream.h; sourceTree = "<group>"; };
+		94A928402B0C466C00AAC44A /* BTFuseAPIClientInputStream.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseAPIClientInputStream.m; sourceTree = "<group>"; };
+		94A928422B0C476F00AAC44A /* BTFuseAPIClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseAPIClient.h; sourceTree = "<group>"; };
+		94A928442B0C47C400AAC44A /* BTFuseAPIClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseAPIClient.m; sourceTree = "<group>"; };
+		94A928462B0C500900AAC44A /* BTFuseAPIClientOutputStream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseAPIClientOutputStream.h; sourceTree = "<group>"; };
+		94A928472B0C50DB00AAC44A /* BTFuseAPIClientOutputStream.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseAPIClientOutputStream.m; sourceTree = "<group>"; };
+		94A9284E2B13E46300AAC44A /* BTFuseAPIServerHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseAPIServerHeaders.h; sourceTree = "<group>"; };
+		94A928522B13E4C700AAC44A /* BTFuseAPIServerHeaders.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseAPIServerHeaders.m; sourceTree = "<group>"; };
+		94A928542B1A724700AAC44A /* BTFuseIDGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseIDGenerator.h; sourceTree = "<group>"; };
+		94A928562B1A729000AAC44A /* BTFuseIDGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseIDGenerator.m; sourceTree = "<group>"; };
 		94B0A68E2AB776DC008C291A /* BTFuseAPIServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseAPIServer.h; sourceTree = "<group>"; };
 		94B0A6922AB77790008C291A /* BTFuseAPIServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseAPIServer.m; sourceTree = "<group>"; };
 		94B7A9CC2AC89E39003D294D /* BTFuseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BTFuseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9435AEE02B0995AC00C1140A /* Network.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,11 +210,11 @@
 		94A8865B2A702C6C0098530D /* BTFuse */ = {
 			isa = PBXGroup;
 			children = (
+				94A9284A2B13E3FE00AAC44A /* internal */,
 				9489EB9B2AA5507B0087424D /* plugins */,
 				94A8865C2A702C6C0098530D /* BTFuse.h */,
 				94A886632A702D240098530D /* BTFuseContext.h */,
 				94A886682A702F020098530D /* BTFuseSchemeHandler.h */,
-				94B0A68E2AB776DC008C291A /* BTFuseAPIServer.h */,
 				947FF0EF2AC8A375003D09BC /* BTFuseAPIResponseFactory.h */,
 				94A886DB2A7169920098530D /* BTFusePlugin.h */,
 				9418629A2A99564600CCFEE1 /* BTFuseAPIRouter.h */,
@@ -200,6 +227,8 @@
 				94552C602ACC32E600DAE0F4 /* BTFuseLoggerLevel.h */,
 				94552C642ACCD47C00DAE0F4 /* BTFuseLogger.h */,
 				940127162AD78F6200F76331 /* BTFuseJSONSerializer.h */,
+				94A928422B0C476F00AAC44A /* BTFuseAPIClient.h */,
+				94A928542B1A724700AAC44A /* BTFuseIDGenerator.h */,
 			);
 			path = BTFuse;
 			sourceTree = "<group>";
@@ -207,11 +236,11 @@
 		94A886652A702D3A0098530D /* src */ = {
 			isa = PBXGroup;
 			children = (
+				94A928512B13E49100AAC44A /* internal */,
 				9489EB9C2AA5508C0087424D /* plugins */,
 				94A886662A702D6A0098530D /* BTFuseContext.m */,
 				94A8866A2A702F430098530D /* BTFuseSchemeHandler.m */,
 				94A886DD2A716A0C0098530D /* BTFusePlugin.m */,
-				94B0A6922AB77790008C291A /* BTFuseAPIServer.m */,
 				9418629C2A9956F100CCFEE1 /* BTFuseAPIRouter.m */,
 				941862A02A995C4F00CCFEE1 /* BTFuseAPIPacket.m */,
 				941862A42A996F7900CCFEE1 /* BTFuseAPIResponse.m */,
@@ -223,8 +252,34 @@
 				94552C622ACC367600DAE0F4 /* BTFuseLoggerLevel.m */,
 				94552C662ACCD67100DAE0F4 /* BTFuseLogger.m */,
 				940127182AD78FFD00F76331 /* BTFuseJSONSerializer.m */,
+				94A928442B0C47C400AAC44A /* BTFuseAPIClient.m */,
+				94A928562B1A729000AAC44A /* BTFuseIDGenerator.m */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		94A9284A2B13E3FE00AAC44A /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				94A9283F2B0C463700AAC44A /* BTFuseAPIClientInputStream.h */,
+				94A928462B0C500900AAC44A /* BTFuseAPIClientOutputStream.h */,
+				94B0A68E2AB776DC008C291A /* BTFuseAPIServer.h */,
+				94A9284E2B13E46300AAC44A /* BTFuseAPIServerHeaders.h */,
+				9443F0AE2B1AA9070056B054 /* BTFuseNWErrorFactory.h */,
+			);
+			name = internal;
+			sourceTree = "<group>";
+		};
+		94A928512B13E49100AAC44A /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				94B0A6922AB77790008C291A /* BTFuseAPIServer.m */,
+				94A928402B0C466C00AAC44A /* BTFuseAPIClientInputStream.m */,
+				94A928472B0C50DB00AAC44A /* BTFuseAPIClientOutputStream.m */,
+				94A928522B13E4C700AAC44A /* BTFuseAPIServerHeaders.m */,
+				9443F0B02B1AA9550056B054 /* BTFuseNWErrorFactory.m */,
+			);
+			name = internal;
 			sourceTree = "<group>";
 		};
 		94B7A9CD2AC89E39003D294D /* BTFuseTests */ = {
@@ -240,6 +295,7 @@
 		B09295BDA9DD81FE38C25D6F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9435AEDF2B0995AC00C1140A /* Network.framework */,
 				945A05972AE5838D0042C88A /* BTFuseTestTools.framework */,
 			);
 			name = Frameworks;
@@ -258,16 +314,22 @@
 				9489EBA32AA621A70087424D /* BTFuseViewController.h in Headers */,
 				9418629B2A99564600CCFEE1 /* BTFuseAPIRouter.h in Headers */,
 				94A886B92A714F6D0098530D /* BTFuseSchemeHandler.h in Headers */,
+				94A928552B1A724700AAC44A /* BTFuseIDGenerator.h in Headers */,
 				9489EBB82AA659D70087424D /* BTFuseLocalization.h in Headers */,
 				940127172AD78F6200F76331 /* BTFuseJSONSerializer.h in Headers */,
+				9443F0AF2B1AA9070056B054 /* BTFuseNWErrorFactory.h in Headers */,
 				94552C612ACC32E600DAE0F4 /* BTFuseLoggerLevel.h in Headers */,
 				941862AB2A9FE5F700CCFEE1 /* BTFuseError.h in Headers */,
 				947FF0F02AC8A375003D09BC /* BTFuseAPIResponseFactory.h in Headers */,
+				94A9284F2B13E46300AAC44A /* BTFuseAPIServerHeaders.h in Headers */,
+				94A928432B0C476F00AAC44A /* BTFuseAPIClient.h in Headers */,
 				9489EB982AA54FA40087424D /* BTFuseRuntime.h in Headers */,
 				94552C652ACCD47C00DAE0F4 /* BTFuseLogger.h in Headers */,
 				9418629F2A995BDC00CCFEE1 /* BTFuseAPIPacket.h in Headers */,
+				94A9284B2B13E41B00AAC44A /* BTFuseAPIClientInputStream.h in Headers */,
 				94B0A68F2AB776DC008C291A /* BTFuseAPIServer.h in Headers */,
 				941862A32A99617100CCFEE1 /* BTFuseAPIResponse.h in Headers */,
+				94A9284C2B13E41E00AAC44A /* BTFuseAPIClientOutputStream.h in Headers */,
 				94A886B82A714F6D0098530D /* BTFuseContext.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,14 +436,20 @@
 				941862AD2A9FE65E00CCFEE1 /* BTFuseError.m in Sources */,
 				9489EBA12AA61A770087424D /* BTFuseWebviewUIDelegation.m in Sources */,
 				94552C672ACCD67100DAE0F4 /* BTFuseLogger.m in Sources */,
+				9443F0B12B1AA9550056B054 /* BTFuseNWErrorFactory.m in Sources */,
+				94A928532B13E4C700AAC44A /* BTFuseAPIServerHeaders.m in Sources */,
 				94A886BB2A714F6D0098530D /* BTFuseSchemeHandler.m in Sources */,
 				9418629D2A9956F100CCFEE1 /* BTFuseAPIRouter.m in Sources */,
 				9489EB9A2AA54FED0087424D /* BTFuseRuntime.m in Sources */,
+				94A928572B1A729000AAC44A /* BTFuseIDGenerator.m in Sources */,
 				9489EBA52AA623B70087424D /* BTFuseViewController.m in Sources */,
 				947FF0F22AC8A3DA003D09BC /* BTFuseAPIResponseFactory.m in Sources */,
+				94A928412B0C466C00AAC44A /* BTFuseAPIClientInputStream.m in Sources */,
 				941862A52A996F7900CCFEE1 /* BTFuseAPIResponse.m in Sources */,
 				94B0A6932AB77790008C291A /* BTFuseAPIServer.m in Sources */,
+				94A928482B0C50DB00AAC44A /* BTFuseAPIClientOutputStream.m in Sources */,
 				940127192AD78FFD00F76331 /* BTFuseJSONSerializer.m in Sources */,
+				94A928452B0C47C400AAC44A /* BTFuseAPIClient.m in Sources */,
 				94552C632ACC367600DAE0F4 /* BTFuseLoggerLevel.m in Sources */,
 				9489EBBA2AA65A990087424D /* BTFuseLocalization.m in Sources */,
 				94A886BC2A714F6D0098530D /* BTFuseContext.m in Sources */,

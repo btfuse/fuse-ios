@@ -21,18 +21,18 @@ limitations under the License.
 
 @implementation BTFuseAPIPacket {
     NSString* $route;
-    int $socket;
+    BTFuseAPIClient* $client;
     NSDictionary* $headers;
     BTFuseContext* $context;
 }
 
-- (instancetype) init:(BTFuseContext*) context route:(NSString*) route withHeaders:(NSDictionary*) headers withSocket:(int) socket {
+- (instancetype) init:(BTFuseContext*) context route:(NSString*) route headers:(NSDictionary*) headers client:(BTFuseAPIClient*) client {
     self = [super init];
     
     $context = context;
     $route = route;
     $headers = headers;
-    $socket = socket;
+    $client = client;
     
     return self;
 }
@@ -41,8 +41,8 @@ limitations under the License.
     return $route;
 }
 
-- (int) getSocket {
-    return $socket;
+- (BTFuseAPIClient*) getClient {
+    return $client;
 }
 
 - (unsigned long) getContentLength {
@@ -62,13 +62,10 @@ limitations under the License.
 - (NSData*) readAsBinary {
     unsigned long contentLength = [self getContentLength];
     
-    uint8_t buffer[contentLength];
-    if (read($socket, buffer, contentLength) == -1) {
-        [[$context getLogger] error: @"Socket read error"];
-        close($socket);
-    }
+    NSMutableData* buffer = [[NSMutableData alloc] init];
+    [$client read:buffer length: (uint32_t) contentLength];
     
-    return [NSData dataWithBytes:buffer length:contentLength];
+    return buffer;
 }
 
 - (NSDictionary*) readAsJSONObject:(NSError*) error {

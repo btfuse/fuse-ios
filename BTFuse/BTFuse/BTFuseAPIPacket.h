@@ -19,16 +19,17 @@ limitations under the License.
 #define BTFuseAPIPacket_h
 
 #import <Foundation/Foundation.h>
+#import <BTFuse/BTFuseAPIClient.h>
 
 @class BTFuseContext;
 
 @interface BTFuseAPIPacket: NSObject
 
 - (instancetype) init NS_UNAVAILABLE;
-- (instancetype) init:(BTFuseContext*) context route:(NSString*) route withHeaders:(NSDictionary*) headers withSocket:(int) socket NS_DESIGNATED_INITIALIZER;
+- (instancetype) init:(BTFuseContext*) context route:(NSString*) route headers:(NSDictionary*) headers client:(BTFuseAPIClient*) client NS_DESIGNATED_INITIALIZER;
 
 - (NSString*) getRoute;
-- (int) getSocket;
+- (BTFuseAPIClient*) getClient;
 - (unsigned long) getContentLength;
 - (NSString*) getContentType;
 
