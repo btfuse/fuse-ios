@@ -30,15 +30,16 @@ limitations under the License.
 @implementation BTFuseContext {
     NSMutableDictionary<NSString*, BTFusePlugin*>* $pluginMap;
     BTFuseAPIRouter* $apiRouter;
-    __weak BTFuseViewController* $viewController;
     BTFuseAPIResponseFactory* $responseFactory;
     BTFuseLogger* $logger;
     BTFuseAPIServer* $apiServer;
+    id<BTFuseContextDelegate> $contextDelegate;
 }
 
-- (instancetype) init:(BTFuseViewController*) controller {
+- (instancetype) init:(id<BTFuseContextDelegate>) delegate {
     self = [super init];
     
+    $contextDelegate = delegate;
     $logger = [[BTFuseLogger alloc] init: self];
     
     NSBundle* bundle = [NSBundle bundleForClass: [BTFuseContext class]];
@@ -51,36 +52,22 @@ limitations under the License.
     $responseFactory = [[BTFuseAPIResponseFactory alloc] init];
     $apiRouter = [[BTFuseAPIRouter alloc] init: self];
     $pluginMap = [[NSMutableDictionary alloc] init];
-    $viewController = controller;
     
     [self registerPlugin:[[BTFuseRuntime alloc] init: self]];
     
     return self;
 }
 
-- (BTFuseViewController*) getViewController {
-    return $viewController;
-}
-
 - (void) execCallback:(NSString*) callbackID withData:(NSString*) data {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSString* escapedData = [[data stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""] stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
-        NSString* js = [[NSString alloc] initWithFormat:@"window.__btfuse_doCallback(\"%@\",\"%@\");", callbackID, escapedData];
-        WKWebView* webview = [self->$viewController getWebview];
-        [webview evaluateJavaScript:js completionHandler:nil];
-    });
+    [$contextDelegate dispatchToWebview: callbackID withData: data];
 }
 
 - (void) execCallback:(NSString*) callbackID {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSString* js = [[NSString alloc] initWithFormat:@"window.__btfuse_doCallback(\"%@\");", callbackID];
-        WKWebView* webview = [self->$viewController getWebview];
-        [webview evaluateJavaScript:js completionHandler:nil];
-    });
+    [$contextDelegate dispatchToWebview: callbackID];
 }
 
 - (WKWebView*) getWebview {
-    return [$viewController getWebview];
+    return [$contextDelegate getWebview];
 }
 
 - (BTFuseAPIRouter*) getAPIRouter {
@@ -114,6 +101,11 @@ limitations under the License.
 
 - (NSString*) getAPISecret {
     return [$apiServer getSecret];
+}
+
+- (nonnull NSString*) getAPIKeyIdentifier {
+    BTFuseKeyPair* kp = [$apiServer getKeypair];
+    return [kp getIdentifier];
 }
 
 - (BTFuseLogger*) getLogger {

@@ -14,17 +14,32 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-
+ 
 #ifndef BTFuseViewController_h
 #define BTFuseViewController_h
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
+#import <BTFuse/BTFuseContextDelegate.h>
 
 @class BTFuseContext;
 
-@interface BTFuseViewController: UIViewController <WKScriptMessageHandler, WKScriptMessageHandlerWithReply>
+@protocol BTFuseViewControllerDelegate
+    - (void) onContextReady;
+    - (void) onWebviewReady;
+@end
+
+@interface BTFuseViewController: UIViewController <
+    WKScriptMessageHandler,
+    WKScriptMessageHandlerWithReply,
+    BTFuseContextDelegate
+>
+
+- (instancetype) init NS_UNAVAILABLE;
+- (instancetype) initWithCoder:(NSCoder*) coder NS_UNAVAILABLE;
+- (instancetype) initWithNibName:(NSString*) nibNameOrNil bundle:(NSBundle*) nibBundleOrNil NS_UNAVAILABLE;
+- (instancetype) init:(id<BTFuseViewControllerDelegate>) delegate;
 
 - (BTFuseContext*) getContext;
 

@@ -20,8 +20,8 @@ limitations under the License.
 
 @implementation BTFuseTestAPIResponseFactory
 
-- (BTFuseAPIResponse*) create:(BTFuseContext*) context socket:(int) socket {
-    return [[BTFuseTestAPIResponse alloc] init:context client: socket];
+- (BTFuseAPIResponse*) create:(BTFuseContext*) context client:(BTFuseAPIClient*) client {
+    return [[BTFuseTestAPIResponse alloc] init:context client: client];
 }
 
 @end

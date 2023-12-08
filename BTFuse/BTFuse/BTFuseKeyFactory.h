@@ -15,12 +15,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-#ifndef BTFuseTestAPIResponse_h
-#define BTFuseTestAPIResponse_h
+#ifndef BTFuseKeyFactory_h
+#define BTFuseKeyFactory_h
 
-#import <BTFuse/BTFuse.h>
+#import "BTFuseKeyPair.h"
 
-@interface BTFuseTestAPIResponse: BTFuseAPIResponse
+@interface BTFuseKeyFactory: NSObject
+
+- (instancetype) init NS_UNAVAILABLE;
+
++ (instancetype) getInstance;
+
+- (BTFuseKeyPair*) create;
 
 @end
 

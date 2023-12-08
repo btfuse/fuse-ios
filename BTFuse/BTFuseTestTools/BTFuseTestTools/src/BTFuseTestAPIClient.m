@@ -72,13 +72,27 @@ limitations under the License.
     $type = type;
     
     SECRET_HEADER = @"X-Fuse-Secret";
-    API_ENDPOINT_BASE = @"http://localhost";
+    API_ENDPOINT_BASE = @"https://localhost";
     
     return self;
 }
 
 - (NSString*) $getURL {
     return [NSString stringWithFormat:@"%@:%d/api/%@%@", API_ENDPOINT_BASE, $apiPort, $pluginID, $endpoint];
+}
+
+- (void) URLSession:(NSURLSession*) session didReceiveChallenge:(NSURLAuthenticationChallenge*) challenge
+    completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential* _Nullable)) completionHandler
+{
+    // This is a test class, let's just accept all certificates
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+         NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+         completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
+    }
+    else {
+        // Handle other types of challenges here
+        completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
+    }
 }
 
 - (void) execute:(BTFuseTestAPIClientCallback) callback {
@@ -93,7 +107,12 @@ limitations under the License.
         [request setHTTPBody: $data];
     }
     
-    NSURLSession* session = [NSURLSession sharedSession];
+    NSURLSessionConfiguration* configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    
+//    NSURLSession* session = [NSURLSession sharedSession];
+    NSOperationQueue* queue = [[NSOperationQueue alloc] init];
+    NSURLSession* session = [NSURLSession sessionWithConfiguration: configuration delegate: self delegateQueue: queue];
+
     NSURLSessionDataTask* task = [session dataTaskWithRequest: request completionHandler:^(NSData* _Nullable data, NSURLResponse* _Nullable response, NSError* _Nullable error) {
         if (error) {
             callback(error, nil);

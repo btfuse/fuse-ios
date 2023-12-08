@@ -19,13 +19,7 @@ limitations under the License.
 #define BTFuseAPIServer_h
 
 #import <BTFuse/BTFuseContext.h>
-//#include <sys/socket.h>
-//#include <netinet/in.h>
-//#include <arpa/inet.h>
-//#include <unistd.h>
-//#include <stdio.h>
-//#include <stdlib.h>
-//#include <pthread.h>
+#import "BTFuseKeyPair.h"
 
 extern const uint32_t BTFUSEAPISERVER_BUFFER_SIZE;
 
@@ -36,6 +30,7 @@ extern const uint32_t BTFUSEAPISERVER_BUFFER_SIZE;
 - (int) getPort;
 - (NSString*) getSecret;
 - (BTFuseContext*) getContext;
+- (BTFuseKeyPair*) getKeypair;
 
 @end
 

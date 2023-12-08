@@ -255,7 +255,6 @@ void* $BTFuseAPIResponse_processTask(void* pdata) {
          */
         self->$isClosed = true;
         [self->$client close];
-//        shutdown(self->$client, SHUT_RDWR);
         #pragma clang diagnostic pop
         
         [self $printEndTime];

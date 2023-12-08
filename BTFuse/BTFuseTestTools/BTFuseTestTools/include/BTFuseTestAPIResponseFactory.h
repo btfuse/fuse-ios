@@ -21,7 +21,7 @@ limitations under the License.
 #import <BTFuse/BTFuse.h>
 #import <BTFuseTestTools/BTFuseTestAPIResponse.h>
 
-@interface BTFuseTestAPIResponseFactory: BTFuseAPIResponseFactory {}
+@interface BTFuseTestAPIResponseFactory: BTFuseAPIResponseFactory
 
 @end
 

@@ -2,3 +2,4 @@
 xcuserdata
 .DS_Store
 /dist
+/BTFuse/openssl/out

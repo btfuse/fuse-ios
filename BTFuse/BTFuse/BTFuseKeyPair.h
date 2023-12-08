@@ -15,12 +15,23 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-#ifndef BTFuseTestAPIResponse_h
-#define BTFuseTestAPIResponse_h
+#ifndef BTFuseKeyPair_h
+#define BTFuseKeyPair_h
 
-#import <BTFuse/BTFuse.h>
+#import <Security/Security.h>
+#include <openssl/x509.h>
 
-@interface BTFuseTestAPIResponse: BTFuseAPIResponse
+@interface BTFuseKeyPair: NSObject
+
+- (instancetype) init NS_UNAVAILABLE;
+- (instancetype) init:(EVP_PKEY*) key certificate:(X509*) certificate identifier:(NSString*) identifier;
+
+- (SecKeyRef) getPrivate;
+- (SecKeyRef) getPublic;
+- (SecCertificateRef) getCertificate;
+- (SecIdentityRef) getIdentity;
+- (SecTrustRef) getTrust;
+- (NSString*) getIdentifier;
 
 @end
 

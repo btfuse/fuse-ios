@@ -18,17 +18,26 @@ limitations under the License.
 #import <Foundation/Foundation.h>
 #import <BTFuseTestTools/BTFuseTestViewController.h>
 #import <BTFuseTestTools/BTFuseTestAPIResponseFactory.h>
-#import <EchoPlugin.h>
 
-@implementation BTFuseTestViewController
+@implementation BTFuseTestViewController {
+    id<BTFuseTestControllerDelegate> $delegate;
+}
 
-- (instancetype) init {
-    self = [super init];
+- (instancetype) init:(id<BTFuseTestControllerDelegate>) delegate {
+    self = [super init: self];
     
-    [[self getContext] setResponseFactory: [[BTFuseTestAPIResponseFactory alloc] init]];
-    [[self getContext] registerPlugin:[[EchoPlugin alloc] init: [self getContext]]];
+    $delegate = delegate;
     
     return self;
+}
+
+- (void) onContextReady {
+    [[self getContext] setResponseFactory: [[BTFuseTestAPIResponseFactory alloc] init]];
+    [$delegate onContextReady: [self getContext]];
+}
+
+- (void) onWebviewReady {
+    [$delegate onReady];
 }
 
 @end

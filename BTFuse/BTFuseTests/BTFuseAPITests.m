@@ -19,28 +19,37 @@ limitations under the License.
 #import <XCTest/XCTest.h>
 #import <BTFuse/BTFuse.h>
 #import <BTFuseTestTools/BTFuseTestTools.h>
+#import <EchoPlugin.h>
 
-@interface BTFuseAPITests : XCTestCase {
+@interface BTFuseAPITests : XCTestCase <BTFuseTestControllerDelegate> {
     BTFuseTestViewController* $viewController;
     BTFuseTestAPIClientBuilder* $apiBuilder;
+    BTFuseTestSetupCompletionHandler $onSetupComplete;
 }
 
 @end
 
 @implementation BTFuseAPITests
 
-- (void) setUp {
-    $viewController = [[BTFuseTestViewController alloc] init];
-    [$viewController loadViewIfNeeded];
-    
-    BTFuseContext* context = [$viewController getContext];
-    
+- (void) onContextReady:(BTFuseContext*) context {
     $apiBuilder = [[BTFuseTestAPIClientBuilder alloc] init];
+    
+    [context registerPlugin: [[EchoPlugin alloc] init: context]];
     
     $apiBuilder.apiPort = @([context getAPIPort]);
     $apiBuilder.apiSecret = [context getAPISecret];
     $apiBuilder.pluginID = @"echo";
     $apiBuilder.contentType = @"text/plain";
+}
+
+- (void) onReady {
+    $onSetupComplete(NULL);
+}
+
+- (void) setUpWithCompletionHandler:(BTFuseTestSetupCompletionHandler) completion {
+    $viewController = [[BTFuseTestViewController alloc] init: self];
+    [$viewController loadViewIfNeeded];
+    $onSetupComplete = completion;
 }
 
 - (void) tearDown {

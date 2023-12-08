@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		944112BC2AED44C800309527 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 944112BB2AED44C800309527 /* PrivacyInfo.xcprivacy */; };
-		94552C5F2ACB624400DAE0F4 /* libecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94552C5E2ACB624400DAE0F4 /* libecho.a */; };
 		945A05922AE582C90042C88A /* BTFuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 945A05912AE582C90042C88A /* BTFuse.framework */; };
 		946278442AC8A94A008A89FA /* BTFuseTestViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 946278432AC8A94A008A89FA /* BTFuseTestViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		946278462AC8A987008A89FA /* BTFuseTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946278452AC8A987008A89FA /* BTFuseTestViewController.m */; };
@@ -16,6 +15,7 @@
 		9462784E2AC8B1AF008A89FA /* BTFuseTestAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9462784D2AC8B1AF008A89FA /* BTFuseTestAPIResponse.m */; };
 		946278502AC8B1D1008A89FA /* BTFuseTestAPIResponseFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9462784F2AC8B1D1008A89FA /* BTFuseTestAPIResponseFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		946278522AC8B3EE008A89FA /* BTFuseTestAPIResponseFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 946278512AC8B3EE008A89FA /* BTFuseTestAPIResponseFactory.m */; };
+		94668BFE2B22C5B100976FC1 /* BTFuseTestUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 94668BFD2B22C5B100976FC1 /* BTFuseTestUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		947FF1092AC8A82E003D09BC /* BTFuseTestTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 947FF1082AC8A82E003D09BC /* BTFuseTestTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94D499BB2AC9CFEE009917A7 /* BTFuseTestAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 94D499BA2AC9CFEE009917A7 /* BTFuseTestAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94D499BD2AC9D254009917A7 /* BTFuseTestAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D499BC2AC9D254009917A7 /* BTFuseTestAPIClient.m */; };
@@ -31,6 +31,7 @@
 		9462784D2AC8B1AF008A89FA /* BTFuseTestAPIResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseTestAPIResponse.m; sourceTree = "<group>"; };
 		9462784F2AC8B1D1008A89FA /* BTFuseTestAPIResponseFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseTestAPIResponseFactory.h; sourceTree = "<group>"; };
 		946278512AC8B3EE008A89FA /* BTFuseTestAPIResponseFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseTestAPIResponseFactory.m; sourceTree = "<group>"; };
+		94668BFD2B22C5B100976FC1 /* BTFuseTestUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseTestUtils.h; sourceTree = "<group>"; };
 		947FF1052AC8A82E003D09BC /* BTFuseTestTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BTFuseTestTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		947FF1082AC8A82E003D09BC /* BTFuseTestTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseTestTools.h; sourceTree = "<group>"; };
 		94D499BA2AC9CFEE009917A7 /* BTFuseTestAPIClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseTestAPIClient.h; sourceTree = "<group>"; };
@@ -42,7 +43,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94552C5F2ACB624400DAE0F4 /* libecho.a in Frameworks */,
 				945A05922AE582C90042C88A /* BTFuse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,6 +57,7 @@
 				9462784B2AC8B154008A89FA /* BTFuseTestAPIResponse.h */,
 				9462784F2AC8B1D1008A89FA /* BTFuseTestAPIResponseFactory.h */,
 				94D499BA2AC9CFEE009917A7 /* BTFuseTestAPIClient.h */,
+				94668BFD2B22C5B100976FC1 /* BTFuseTestUtils.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -119,6 +120,7 @@
 				946278502AC8B1D1008A89FA /* BTFuseTestAPIResponseFactory.h in Headers */,
 				9462784C2AC8B154008A89FA /* BTFuseTestAPIResponse.h in Headers */,
 				94D499BB2AC9CFEE009917A7 /* BTFuseTestAPIClient.h in Headers */,
+				94668BFE2B22C5B100976FC1 /* BTFuseTestUtils.h in Headers */,
 				946278442AC8A94A008A89FA /* BTFuseTestViewController.h in Headers */,
 				947FF1092AC8A82E003D09BC /* BTFuseTestTools.h in Headers */,
 			);
@@ -256,7 +258,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -314,7 +316,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -337,10 +339,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../../plugins/echo/ios/echo\"";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -369,10 +371,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../../plugins/echo/ios/echo\"";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

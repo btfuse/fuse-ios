@@ -15,12 +15,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-#ifndef BTFuseTestAPIResponse_h
-#define BTFuseTestAPIResponse_h
+#ifndef BTFuseWebviewNavigationDelegate_h
+#define BTFuseWebviewNavigationDelegate_h
 
-#import <BTFuse/BTFuse.h>
+#import <WebKit/WebKit.h>
 
-@interface BTFuseTestAPIResponse: BTFuseAPIResponse
+@class BTFuseContext;
+
+
+@interface BTFuseWebviewNavigationDelegate: NSObject <WKNavigationDelegate>
+
+- (instancetype) init NS_UNAVAILABLE;
+- (instancetype) init:(BTFuseContext*) context NS_DESIGNATED_INITIALIZER;
 
 @end
 

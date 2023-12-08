@@ -20,6 +20,7 @@ limitations under the License.
 #import <BTFuse/BTFuseViewController.h>
 #import <BTFuse/BTFuseSchemeHandler.h>
 #import <BTFuse/BTFuseWebviewUIDelegation.h>
+#import "BTFuseWebviewNavigationDelegate.h"
 #import "BTFuseAPIServer.h"
 #import <BTFuse/BTFuseLogger.h>
 #import <BTFuse/BTFuseLoggerLevel.h>
@@ -28,56 +29,92 @@ limitations under the License.
     BTFuseContext* $context;
     WKWebView* $webview;
     BTFuseWebviewUIDelegation* $webviewUIDelegation;
+    BTFuseWebviewNavigationDelegate* $webviewNavigationDelegation;
+    id<BTFuseViewControllerDelegate> $delegate;
 }
 
-- (instancetype) init {
+- (instancetype) init:(id<BTFuseViewControllerDelegate>) delegate {
     self = [super init];
-    $context = [[BTFuseContext alloc] init: self];
+    
+    $delegate = delegate;
+    $webview = nil;
+    $context = nil;
+    $webviewUIDelegation = nil;
+    $webviewNavigationDelegation = nil;
+    
     return self;
+}
+
+- (void) dispatchToWebview:(NSString*) callbackID {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString* js = [[NSString alloc] initWithFormat:@"window.__btfuse_doCallback(\"%@\");", callbackID];
+        [self->$webview evaluateJavaScript:js completionHandler:nil];
+    });
+}
+
+- (void) dispatchToWebview:(NSString*) callbackID withData:(NSString*) data {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString* escapedData = [[data stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""] stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
+        NSString* js = [[NSString alloc] initWithFormat:@"window.__btfuse_doCallback(\"%@\",\"%@\");", callbackID, escapedData];
+        [self->$webview evaluateJavaScript:js completionHandler:nil];
+    });
 }
 
 - (void) viewDidLoad {
     [super viewDidLoad];
     
-    $webviewUIDelegation = [[BTFuseWebviewUIDelegation alloc] init];
-    
-    WKWebViewConfiguration* configuration = [[WKWebViewConfiguration alloc] init];
-    [configuration.userContentController addScriptMessageHandlerWithReply: self contentWorld: WKContentWorld.pageWorld name:@"getAPIPort"];
-    [configuration.userContentController addScriptMessageHandlerWithReply: self contentWorld: WKContentWorld.pageWorld name:@"getAPISecret"];
-    [configuration.userContentController addScriptMessageHandler: self name:@"log"];
-    [configuration.userContentController addScriptMessageHandler: self name:@"setLogCallback"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        self->$context = [[BTFuseContext alloc] init: self];
+        
+        [self->$delegate onContextReady];
+        
+        dispatch_async(dispatch_get_main_queue(), ^ {
+            self->$webviewUIDelegation = [[BTFuseWebviewUIDelegation alloc] init];
+            self->$webviewNavigationDelegation = [[BTFuseWebviewNavigationDelegate alloc] init: self->$context];
+            
+            WKWebViewConfiguration* configuration = [[WKWebViewConfiguration alloc] init];
+            [configuration.userContentController addScriptMessageHandlerWithReply: self contentWorld: WKContentWorld.pageWorld name:@"getAPIPort"];
+            [configuration.userContentController addScriptMessageHandlerWithReply: self contentWorld: WKContentWorld.pageWorld name:@"getAPISecret"];
+            [configuration.userContentController addScriptMessageHandler: self name:@"log"];
+            [configuration.userContentController addScriptMessageHandler: self name:@"setLogCallback"];
 
-    NSString* fuseBuildTag = @"Release";
-    #ifdef DEBUG
-        fuseBuildTag = @"Debug";
-    #endif
-    // TODO: Pull Version information somehow
-    configuration.applicationNameForUserAgent = [NSString stringWithFormat:@"FuseRuntime (%@ %@ Build", @"0.0.0", fuseBuildTag];
+            NSString* fuseBuildTag = @"Release";
+            #ifdef DEBUG
+                fuseBuildTag = @"Debug";
+            #endif
+            // TODO: Pull Version information somehow
+            configuration.applicationNameForUserAgent = [NSString stringWithFormat:@"FuseRuntime (%@ %@ Build", @"0.0.0", fuseBuildTag];
 
-    //TODO: pass the configuration object to a overridable method to give a chance for application-level configuration
-    [configuration setURLSchemeHandler: [
-        [BTFuseSchemeHandler alloc] init: $context]
-        forURLScheme: @"BTfuse"
-    ];
-    
-    $webview = [[WKWebView alloc] initWithFrame: CGRectZero configuration: configuration];
-    $webview.UIDelegate = $webviewUIDelegation;
-    
-    [self addChildViewController: $webviewUIDelegation];
-    [self.view addSubview: $webviewUIDelegation.view];
-    
-    // Calculate or determine the desired frame
-    CGRect webviewFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    
-    // Set the frame for the WKWebView
-    $webview.frame = webviewFrame;
-    
-    // Add the WKWebView as a subview
-    [self.view addSubview:$webview];
-    
-    NSURL* url = [NSURL URLWithString:@"BTfuse://localhost/assets/index.html"];
-    NSURLRequest* request = [NSURLRequest requestWithURL:url];
-    [$webview loadRequest:request];
+            //TODO: pass the configuration object to a overridable method to give a chance for application-level configuration
+            [configuration setURLSchemeHandler: [
+                [BTFuseSchemeHandler alloc] init: self->$context]
+                forURLScheme: @"BTfuse"
+            ];
+            
+            self->$webview = [[WKWebView alloc] initWithFrame: CGRectZero configuration: configuration];
+            self->$webview.UIDelegate = self->$webviewUIDelegation;
+            self->$webview.navigationDelegate = self->$webviewNavigationDelegation;
+            
+            [self addChildViewController: self->$webviewUIDelegation];
+            [self.view addSubview: self->$webviewUIDelegation.view];
+            [self->$webviewUIDelegation didMoveToParentViewController: self];
+            
+            // Calculate or determine the desired frame
+            CGRect webviewFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+            
+            // Set the frame for the WKWebView
+            self->$webview.frame = webviewFrame;
+            
+            [self->$delegate onWebviewReady];
+            
+            // Add the WKWebView as a subview
+            [self.view addSubview: self->$webview];
+            
+            NSURL* url = [NSURL URLWithString:@"BTfuse://localhost/assets/index.html"];
+            NSURLRequest* request = [NSURLRequest requestWithURL:url];
+            [self->$webview loadRequest:request];
+        });
+    });
 }
 
 

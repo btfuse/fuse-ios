@@ -20,7 +20,17 @@ limitations under the License.
 
 #import <BTFuse/BTFuse.h>
 
-@interface BTFuseTestViewController: BTFuseViewController {}
+@protocol BTFuseTestControllerDelegate
+
+- (void) onContextReady:(BTFuseContext*) context;
+- (void) onReady;
+
+@end
+
+@interface BTFuseTestViewController: BTFuseViewController <BTFuseViewControllerDelegate>
+
+- (instancetype) init NS_UNAVAILABLE;
+- (instancetype) init:(id<BTFuseTestControllerDelegate>) delegate NS_DESIGNATED_INITIALIZER;
 
 @end
 

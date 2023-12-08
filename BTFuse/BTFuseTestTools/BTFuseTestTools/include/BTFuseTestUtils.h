@@ -15,13 +15,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-#ifndef BTFuseTestAPIResponse_h
-#define BTFuseTestAPIResponse_h
+#ifndef BTFuseTestUtils_h
+#define BTFuseTestUtils_h
 
-#import <BTFuse/BTFuse.h>
-
-@interface BTFuseTestAPIResponse: BTFuseAPIResponse
-
-@end
+typedef void (^BTFuseTestSetupCompletionHandler)(NSError* _Nullable);
 
 #endif

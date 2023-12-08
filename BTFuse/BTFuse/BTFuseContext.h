@@ -21,6 +21,7 @@ limitations under the License.
 #import <Foundation/Foundation.h>
 #import <WebKit/WebKit.h>
 #import <BTFuse/BTFuseAPIResponseFactory.h>
+#import <BTFuse/BTFuseContextDelegate.h>
 
 @class BTFuseViewController;
 @class BTFusePlugin;
@@ -30,17 +31,20 @@ limitations under the License.
 @interface BTFuseContext: NSObject
 
 - (nonnull instancetype) init NS_UNAVAILABLE;
-- (nonnull instancetype) init:(nonnull BTFuseViewController*) controller NS_DESIGNATED_INITIALIZER;
+//- (nonnull instancetype) init NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype) init:(nonnull id<BTFuseContextDelegate>) delegate;
+//- (nonnull instancetype) init:(nonnull BTFuseViewController*) controller NS_DESIGNATED_INITIALIZER;
 - (nonnull BTFuseAPIResponseFactory*) getResponseFactory;
 - (void) setResponseFactory:(nonnull BTFuseAPIResponseFactory*) factory;
-- (nonnull WKWebView*) getWebview;
-- (nonnull BTFuseViewController*) getViewController;
+- (nullable WKWebView*) getWebview;
+//- (nonnull BTFuseViewController*) getViewController;
 - (void) registerPlugin:(nonnull BTFusePlugin*)plugin;
 - (nonnull BTFusePlugin*) getPlugin:(nonnull NSString*)pluginID;
 - (nonnull BTFuseAPIRouter*) getAPIRouter;
 - (void) execCallback:(nonnull NSString*) callbackID withData:(nonnull NSString*) data;
 - (void) execCallback:(nonnull NSString*) callbackID;
 - (int) getAPIPort;
+- (nonnull NSString*) getAPIKeyIdentifier;
 - (nonnull NSString*) getAPISecret;
 - (nonnull BTFuseLogger*) getLogger;
 

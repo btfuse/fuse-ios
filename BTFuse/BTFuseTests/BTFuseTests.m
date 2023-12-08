@@ -19,16 +19,23 @@ limitations under the License.
 #import <BTFuse/BTFuse.h>
 #import <BTFuseTestTools/BTFuseTestTools.h>
 
-@interface BTFuseTests : XCTestCase {
+@interface BTFuseTests : XCTestCase <BTFuseTestControllerDelegate>  {
     BTFuseTestViewController* $viewController;
+    BTFuseTestSetupCompletionHandler $onSetupComplete;
 }
     
 @end
 
 @implementation BTFuseTests
 
-- (void) setUp {
-    $viewController = [[BTFuseTestViewController alloc] init];
+- (void) onContextReady:(BTFuseContext*) context {}
+- (void) onReady {
+    $onSetupComplete(NULL);
+}
+
+- (void) setUpWithCompletionHandler:(BTFuseTestSetupCompletionHandler) completion {
+    $onSetupComplete = completion;
+    $viewController = [[BTFuseTestViewController alloc] init: self];
     [$viewController loadViewIfNeeded];
 }
 

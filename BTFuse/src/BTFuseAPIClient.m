@@ -31,10 +31,13 @@ limitations under the License.
     BTFuseAPIServerHeaders* $headers;
     nw_connection_state_t $connState;
     dispatch_queue_t $clientQueue;
+    dispatch_semaphore_t $isReady;
 }
 
 - (instancetype) init:(nw_connection_t) connection {
     self = [super init];
+    
+    $isReady = dispatch_semaphore_create(0);
     
     BTFuseIDGenerator* idgen = [[BTFuseIDGenerator alloc] init];
     $ident = [idgen generate];
@@ -55,6 +58,10 @@ limitations under the License.
         }
         
         self->$connState = state;
+        
+        if (state == nw_connection_state_ready) {
+            dispatch_semaphore_signal(self->$isReady);
+        }
     });
     
     nw_connection_start(connection);
@@ -75,6 +82,8 @@ limitations under the License.
 
 - (void) start:(void (^)(NSError* error)) completionBlock {
     dispatch_async($clientQueue, ^{
+        dispatch_semaphore_wait(self->$isReady, DISPATCH_TIME_FOREVER);
+        
         self->$headers = [self $parseHeaders];
         
         NSError* error = nil;

@@ -14,14 +14,19 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+ 
+#ifndef BTFuseContextDelegate_h
+#define BTFuseContextDelegate_h
 
-#ifndef BTFuseTestAPIResponse_h
-#define BTFuseTestAPIResponse_h
+#import <WebKit/WebKit.h>
 
-#import <BTFuse/BTFuse.h>
+@protocol BTFuseContextDelegate
 
-@interface BTFuseTestAPIResponse: BTFuseAPIResponse
+- (void) dispatchToWebview:(nonnull NSString*) callbackID withData:(nonnull NSString*) data;
+- (void) dispatchToWebview:(nonnull NSString*) callbackID;
+- (nonnull WKWebView*) getWebview;
 
 @end
+
 
 #endif

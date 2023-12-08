@@ -30,7 +30,7 @@ limitations under the License.
 
 typedef void (^BTFuseTestAPIClientCallback)(NSError* _Nullable error, BTFuseTestAPIClientResponse* _Nullable response);
 
-@interface BTFuseTestAPIClient: NSObject
+@interface BTFuseTestAPIClient: NSObject <NSURLSessionDelegate>
 - (nonnull instancetype) init NS_UNAVAILABLE;
 - (nonnull instancetype) init:(nonnull NSString*) pluginID
     secret:(nonnull NSString*) secret

@@ -27,4 +27,4 @@ FOUNDATION_EXPORT const unsigned char BTFuseTestToolsVersionString[];
 #import <BTFuseTestTools/BTFuseTestAPIResponse.h>
 #import <BTFuseTestTools/BTFuseTestAPIResponseFactory.h>
 #import <BTFuseTestTools/BTFuseTestAPIClient.h>
-
+#import <BTFuseTestTools/BTFuseTestUtils.h>
