@@ -32,6 +32,7 @@ limitations under the License.
 - (SecIdentityRef) getIdentity;
 - (SecTrustRef) getTrust;
 - (NSString*) getIdentifier;
+- (X509*) getX509;
 
 @end
 

@@ -44,7 +44,6 @@ limitations under the License.
     
     EVP_PKEY* key = EVP_RSA_gen(2048);
     
-//    EVP_PKEY* privateKey = EVP_PKEY_new();
     if (!key) {
         NSLog(@"Error generating keypair");
         return nil;

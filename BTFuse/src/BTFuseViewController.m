@@ -70,7 +70,7 @@ limitations under the License.
         
         dispatch_async(dispatch_get_main_queue(), ^ {
             self->$webviewUIDelegation = [[BTFuseWebviewUIDelegation alloc] init];
-            self->$webviewNavigationDelegation = [[BTFuseWebviewNavigationDelegate alloc] init: self->$context];
+            self->$webviewNavigationDelegation = [self->$context createWebviewNavigationDelegate];
             
             WKWebViewConfiguration* configuration = [[WKWebViewConfiguration alloc] init];
             [configuration.userContentController addScriptMessageHandlerWithReply: self contentWorld: WKContentWorld.pageWorld name:@"getAPIPort"];

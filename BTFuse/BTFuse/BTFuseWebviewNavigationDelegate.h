@@ -19,14 +19,14 @@ limitations under the License.
 #define BTFuseWebviewNavigationDelegate_h
 
 #import <WebKit/WebKit.h>
+#import "BTFuseKeyPair.h"
 
 @class BTFuseContext;
-
 
 @interface BTFuseWebviewNavigationDelegate: NSObject <WKNavigationDelegate>
 
 - (instancetype) init NS_UNAVAILABLE;
-- (instancetype) init:(BTFuseContext*) context NS_DESIGNATED_INITIALIZER;
+- (instancetype) init:(BTFuseContext*) context keypair:(BTFuseKeyPair*) keypair NS_DESIGNATED_INITIALIZER;
 
 @end
 

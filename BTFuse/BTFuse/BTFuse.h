@@ -28,7 +28,7 @@ FOUNDATION_EXPORT const unsigned char BTFuseVersionString[];
 #import <BTFuse/BTFuseAPIResponse.h>
 #import <BTFuse/BTFuseError.h>
 #import <BTFuse/BTFuseWebviewUIDelegation.h>
-#import <BTFuse/BTFuseWebviewNavigationDelegate.h>
+//#import <BTFuse/BTFuseWebviewNavigationDelegate.h>
 #import <BTFuse/BTFuseViewController.h>
 #import <BTFuse/BTFuseLocalization.h>
 #import <BTFuse/BTFuseLogger.h>

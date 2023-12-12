@@ -26,6 +26,7 @@ limitations under the License.
 #import <BTFuse/BTFuseViewController.h>
 #import <BTFuse/BTFuseAPIServer.h>
 #import <BTFuse/BTFuse.h>
+#import "BTFuseWebviewNavigationDelegate.h"
 
 @implementation BTFuseContext {
     NSMutableDictionary<NSString*, BTFusePlugin*>* $pluginMap;
@@ -110,6 +111,10 @@ limitations under the License.
 
 - (BTFuseLogger*) getLogger {
     return $logger;
+}
+
+- (nonnull id<WKNavigationDelegate>) createWebviewNavigationDelegate {
+    return [[BTFuseWebviewNavigationDelegate alloc] init: self keypair: [$apiServer getKeypair]];
 }
 
 @end

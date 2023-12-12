@@ -23,12 +23,14 @@ limitations under the License.
 
 @implementation BTFuseWebviewNavigationDelegate {
     __weak BTFuseContext* $context;
+    BTFuseKeyPair* $keypair;
 }
 
-- (instancetype) init:(BTFuseContext*) context {
+- (instancetype) init:(BTFuseContext*) context keypair:(BTFuseKeyPair*) keypair {
     self = [super init];
     
     $context = context;
+    $keypair = keypair;
     
     return self;
 }
@@ -122,13 +124,39 @@ limitations under the License.
         }
         
         NSString* keyIdentifier = [self->$context getAPIKeyIdentifier];
-        if ([keyIdentifier isEqualToString: certUID]) {
-            NSURLCredential* credential = [NSURLCredential credentialForTrust:serverTrust];
-            completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
-        }
-        else {
+        if (![keyIdentifier isEqualToString: certUID]) {
             completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
+            return;
         }
+        
+        X509_STORE* x509Store = X509_STORE_new();
+        if (!x509Store) {
+            completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
+            return;
+        }
+        
+        X509_STORE_CTX* ctx = X509_STORE_CTX_new();
+        if (!ctx) {
+            X509_STORE_free(x509Store);
+            completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
+            return;
+        }
+        
+        X509_STORE_add_cert(x509Store, [self->$keypair getX509]);
+        X509_STORE_CTX_init(ctx, x509Store, x509, NULL);
+        
+        int verificationResult = X509_verify_cert(ctx);
+        
+        X509_STORE_CTX_free(ctx);
+        X509_STORE_free(x509Store);
+        
+        if (verificationResult <= 0) {
+            completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
+            return;
+        }
+        
+        NSURLCredential* credential = [NSURLCredential credentialForTrust:serverTrust];
+        completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
     });
 }
 

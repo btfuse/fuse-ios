@@ -47,6 +47,7 @@ limitations under the License.
 - (nonnull NSString*) getAPIKeyIdentifier;
 - (nonnull NSString*) getAPISecret;
 - (nonnull BTFuseLogger*) getLogger;
+- (nonnull id<WKNavigationDelegate>) createWebviewNavigationDelegate;
 
 @end
 

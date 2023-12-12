@@ -192,4 +192,8 @@ limitations under the License.
     return $identifier;
 }
 
+- (X509*) getX509 {
+    return $certificate;
+}
+
 @end

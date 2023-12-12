@@ -33,7 +33,7 @@
 		94552C672ACCD67100DAE0F4 /* BTFuseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 94552C662ACCD67100DAE0F4 /* BTFuseLogger.m */; };
 		945A05982AE5838D0042C88A /* BTFuseTestTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 945A05972AE5838D0042C88A /* BTFuseTestTools.framework */; };
 		94668BD32B1EBBB300976FC1 /* libopenssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94668BD22B1EBBB300976FC1 /* libopenssl.a */; settings = {ATTRIBUTES = (Required, ); }; };
-		94668BEC2B202EDA00976FC1 /* BTFuseWebviewNavigationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 94668BEB2B202EDA00976FC1 /* BTFuseWebviewNavigationDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94668BEC2B202EDA00976FC1 /* BTFuseWebviewNavigationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 94668BEB2B202EDA00976FC1 /* BTFuseWebviewNavigationDelegate.h */; };
 		94668BEE2B202F3200976FC1 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94668BED2B202F3200976FC1 /* WebKit.framework */; };
 		94668BF02B202F4900976FC1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94668BEF2B202F4900976FC1 /* UIKit.framework */; };
 		94668BF22B202F7400976FC1 /* BTFuseWebviewNavigationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94668BF12B202F7400976FC1 /* BTFuseWebviewNavigationDelegate.m */; };
@@ -258,7 +258,6 @@
 				940127162AD78F6200F76331 /* BTFuseJSONSerializer.h */,
 				94A928422B0C476F00AAC44A /* BTFuseAPIClient.h */,
 				94A928542B1A724700AAC44A /* BTFuseIDGenerator.h */,
-				94668BEB2B202EDA00976FC1 /* BTFuseWebviewNavigationDelegate.h */,
 				94668BFB2B22B76000976FC1 /* BTFuseContextDelegate.h */,
 			);
 			path = BTFuse;
@@ -285,7 +284,6 @@
 				940127182AD78FFD00F76331 /* BTFuseJSONSerializer.m */,
 				94A928442B0C47C400AAC44A /* BTFuseAPIClient.m */,
 				94A928562B1A729000AAC44A /* BTFuseIDGenerator.m */,
-				94668BF12B202F7400976FC1 /* BTFuseWebviewNavigationDelegate.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -300,6 +298,7 @@
 				9443F0AE2B1AA9070056B054 /* BTFuseNWErrorFactory.h */,
 				9443F0B22B1BC9120056B054 /* BTFuseKeyFactory.h */,
 				9443F0B42B1BC9280056B054 /* BTFuseKeyPair.h */,
+				94668BEB2B202EDA00976FC1 /* BTFuseWebviewNavigationDelegate.h */,
 			);
 			name = internal;
 			sourceTree = "<group>";
@@ -314,6 +313,7 @@
 				9443F0B02B1AA9550056B054 /* BTFuseNWErrorFactory.m */,
 				9443F0B62B1BC98D0056B054 /* BTFuseKeyPair.m */,
 				9443F0B82B1BC9A90056B054 /* BTFuseKeyFactory.m */,
+				94668BF12B202F7400976FC1 /* BTFuseWebviewNavigationDelegate.m */,
 			);
 			name = internal;
 			sourceTree = "<group>";
