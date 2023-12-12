@@ -26,7 +26,6 @@
 		9443F0B72B1BC98D0056B054 /* BTFuseKeyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 9443F0B62B1BC98D0056B054 /* BTFuseKeyPair.m */; };
 		9443F0B92B1BC9A90056B054 /* BTFuseKeyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9443F0B82B1BC9A90056B054 /* BTFuseKeyFactory.m */; };
 		9443F0BB2B1BCEE10056B054 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9443F0BA2B1BCEE10056B054 /* Security.framework */; };
-		94552C5D2ACB3A5600DAE0F4 /* BTFuse.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 94552C5C2ACB3A5600DAE0F4 /* BTFuse.xcconfig */; };
 		94552C612ACC32E600DAE0F4 /* BTFuseLoggerLevel.h in Headers */ = {isa = PBXBuildFile; fileRef = 94552C602ACC32E600DAE0F4 /* BTFuseLoggerLevel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94552C632ACC367600DAE0F4 /* BTFuseLoggerLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94552C622ACC367600DAE0F4 /* BTFuseLoggerLevel.m */; };
 		94552C652ACCD47C00DAE0F4 /* BTFuseLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 94552C642ACCD47C00DAE0F4 /* BTFuseLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -425,7 +424,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1510;
 				TargetAttributes = {
 					94B7A9CB2AC89E39003D294D = {
 						CreatedOnToolsVersion = 15.0;
@@ -458,7 +457,6 @@
 			files = (
 				944112BA2AED442300309527 /* PrivacyInfo.xcprivacy in Resources */,
 				9489EBAE2AA6445C0087424D /* Localizable.strings in Resources */,
-				94552C5D2ACB3A5600DAE0F4 /* BTFuse.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,7 +666,7 @@
 			baseConfigurationReference = 94552C5C2ACB3A5600DAE0F4 /* BTFuse.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = AF37P8XHYY;
@@ -705,7 +703,7 @@
 			baseConfigurationReference = 94552C5C2ACB3A5600DAE0F4 /* BTFuse.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = AF37P8XHYY;
