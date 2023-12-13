@@ -19,7 +19,7 @@ source build-tools/DirectoryTools.sh
 
 assertMac "Mac is required for publishing"
 assertGitRepo
-assertGitCleanRepo
+assertCleanRepo
 
 VERSION="$1"
 
