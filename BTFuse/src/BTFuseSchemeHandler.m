@@ -24,6 +24,7 @@ limitations under the License.
 #import <BTFuse/BTFuseAPIResponse.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <BTFuse/BTFuseLogger.h>
+#import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 
 NSString* const SCHEME = @"btfuse";
 NSString* const HOST = @"localhost";
@@ -75,8 +76,9 @@ NSString* const HOST = @"localhost";
         NSData* content = [NSData dataWithContentsOfFile:assetPath];
         
         NSString* fileExtension = [requestURL pathExtension];
-        NSString* UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)fileExtension, NULL);
-        NSString* contentType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass((__bridge CFStringRef)UTI, kUTTagClassMIMEType);
+        UTType* uti = [UTType typeWithIdentifier:(NSString*) fileExtension];
+        
+        NSString* contentType = [uti preferredMIMEType];
         
         if (content) {
             NSURLResponse* response = [[NSURLResponse alloc] initWithURL:requestURL MIMEType: contentType expectedContentLength:content.length textEncodingName:@"utf-8"];

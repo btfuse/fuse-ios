@@ -72,6 +72,7 @@
 		94B0A6932AB77790008C291A /* BTFuseAPIServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B0A6922AB77790008C291A /* BTFuseAPIServer.m */; };
 		94B7A9CF2AC89E39003D294D /* BTFuseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7A9CE2AC89E39003D294D /* BTFuseTests.m */; };
 		94B7A9D02AC89E39003D294D /* BTFuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A886C22A714F6D0098530D /* BTFuse.framework */; platformFilter = ios; };
+		94DF9FB72B293C9C00757EA7 /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94DF9FB62B293C9C00757EA7 /* UniformTypeIdentifiers.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +153,7 @@
 		94B0A6922AB77790008C291A /* BTFuseAPIServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseAPIServer.m; sourceTree = "<group>"; };
 		94B7A9CC2AC89E39003D294D /* BTFuseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BTFuseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94B7A9CE2AC89E39003D294D /* BTFuseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseTests.m; sourceTree = "<group>"; };
+		94DF9FB62B293C9C00757EA7 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94DF9FB72B293C9C00757EA7 /* UniformTypeIdentifiers.framework in Frameworks */,
 				94668BF02B202F4900976FC1 /* UIKit.framework in Frameworks */,
 				94668BEE2B202F3200976FC1 /* WebKit.framework in Frameworks */,
 				94668BD32B1EBBB300976FC1 /* libopenssl.a in Frameworks */,
@@ -330,6 +333,7 @@
 		B09295BDA9DD81FE38C25D6F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				94DF9FB62B293C9C00757EA7 /* UniformTypeIdentifiers.framework */,
 				94668BFF2B22CC1800976FC1 /* libecho.a */,
 				94668BEF2B202F4900976FC1 /* UIKit.framework */,
 				94668BED2B202F3200976FC1 /* WebKit.framework */,
