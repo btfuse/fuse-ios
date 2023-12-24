@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:testapp/testapp.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:BTFuse/openssl/openssl.xcodeproj">
    </FileRef>
    <FileRef
@@ -11,12 +14,9 @@
       location = "container:"
       name = "plugins">
       <FileRef
-         location = "container:../plugins/echo/ios/echo.xcodeproj">
+         location = "group:echo/echo.xcodeproj">
       </FileRef>
    </Group>
-   <FileRef
-      location = "container:../testapp/ios/testapp.xcodeproj">
-   </FileRef>
    <FileRef
       location = "container:./BTFuse/BTFuse.xcodeproj">
    </FileRef>
