@@ -32,6 +32,11 @@ source build-tools/Checksum.sh
 
 assertMac "Mac is required to build Fuse iOS"
 
+if [ -z "$BTFUSE_CODESIGN_IDENTITY" ]; then
+    echo "BTFUSE_CODESIGN_IDENTITY environment variable is required."
+    exit 2
+fi
+
 echo "Building Fuse iOS Framework $(cat ./VERSION)..."
 
 rm -rf dist
@@ -56,6 +61,14 @@ assertLastCall
 
 iosBuild=$(echo "$(xcodebuild -workspace BTFuse.xcworkspace -scheme BTFuse -configuration Release -sdk iphoneos -showBuildSettings | grep "CONFIGURATION_BUILD_DIR")" | cut -d'=' -f2 | xargs)
 simBuild=$(echo "$(xcodebuild -workspace BTFuse.xcworkspace -scheme BTFuse -configuration Debug -sdk iphonesimulator -showBuildSettings | grep "CONFIGURATION_BUILD_DIR")" | cut -d'=' -f2 | xargs)
+
+echo "Signing iOS build..."
+codesign -s $BTFUSE_CODESIGN_IDENTITY --deep $iosBuild/BTFuse.framework
+assertLastCall
+
+echo "Verifying iOS Build"
+codesign -dvvvv $iosBuild/BTFuse.framework
+assertLastCall
 
 cp -r $iosBuild/BTFuse.framework.dSYM ./dist/
 
