@@ -133,4 +133,8 @@ limitations under the License.
     [self presentViewController: alertController animated: true completion: nil];
 }
 
+- (void) webViewDidClose:(WKWebView*) webView {
+    NSLog(@"Webview closed!");
+}
+
 @end

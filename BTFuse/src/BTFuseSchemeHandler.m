@@ -76,9 +76,17 @@ NSString* const HOST = @"localhost";
         NSData* content = [NSData dataWithContentsOfFile:assetPath];
         
         NSString* fileExtension = [requestURL pathExtension];
-        UTType* uti = [UTType typeWithIdentifier:(NSString*) fileExtension];
+        UTType* uti = [UTType typeWithFilenameExtension: fileExtension];
         
-        NSString* contentType = [uti preferredMIMEType];
+        NSString* contentType = nil;
+        
+        if (uti == nil) {
+            [logger warn: @"Could not discover MIME type for extension \"%@\". The webview will likely fail.", fileExtension];
+            contentType = @"application/octet-stream";
+        }
+        else {
+            contentType = [uti preferredMIMEType];
+        }
         
         if (content) {
             NSURLResponse* response = [[NSURLResponse alloc] initWithURL:requestURL MIMEType: contentType expectedContentLength:content.length textEncodingName:@"utf-8"];

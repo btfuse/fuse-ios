@@ -110,7 +110,7 @@ limitations under the License.
             // Add the WKWebView as a subview
             [self.view addSubview: self->$webview];
             
-            NSURL* url = [NSURL URLWithString:@"BTfuse://localhost/assets/index.html"];
+            NSURL* url = [NSURL URLWithString:@"btfuse://localhost/assets/index.html"];
             NSURLRequest* request = [NSURLRequest requestWithURL:url];
             [self->$webview loadRequest:request];
         });
