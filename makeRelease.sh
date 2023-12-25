@@ -49,4 +49,8 @@ gh release create $VERSION \
     ./dist/BTFuse.xcframework.zip.sha1.txt \
     ./dist/BTFuse.framework.dSYM.zip \
     ./dist/BTFuse.framework.dSYM.zip.sha1.txt \
+    ./dist/BTFuseTestTools.xcframework.zip \
+    ./dist/BTFuseTestTools.xcframework.zip.sha1.txt \
+    ./dist/BTFuseTestTools.framework.dSYM.zip \
+    ./dist/BTFuseTestTools.framework.dSYM.zip.sha1.txt \
     --verify-tag --generate-notes
