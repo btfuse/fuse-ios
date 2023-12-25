@@ -3,3 +3,6 @@ xcuserdata
 .DS_Store
 /dist
 /BTFuse/openssl/out
+/testapp/testapp/assets/**/*.js
+/testapp/testapp/assets/index.html
+/testapp/testapp/assets/largeFile.txt

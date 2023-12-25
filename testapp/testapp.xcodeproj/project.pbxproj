@@ -208,7 +208,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\ncd ../../fuse-test-app\npwd\n\n./build.sh ios\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n../scripts/build.sh ./testapp/assets\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
