@@ -9,8 +9,7 @@ on:
 
 jobs:
   Instrumented:
-    runs-on: self-hosted
-    environment: Development
+    runs-on: [self-hosted, macOS]
     steps:
     - name: Checkout
       uses: actions/checkout@v4
