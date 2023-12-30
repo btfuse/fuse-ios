@@ -1,0 +1,28 @@
+
+name: iOS Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  Instrumented:
+    runs-on: self-hosted
+    environment: Development
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        submodules: True
+    - name: Build Core
+      run: xcodebuild -quiet build -workspace BTFuse.xcworkspace -scheme BTFuse -configuration Debug -destination "generic/platform=iOS Simulator"
+    - name: Build Test Tools
+      run: xcodebuild -quiet build -workspace BTFuse.xcworkspace -scheme BTFuseTestTools -configuration Debug -destination "generic/platform=iOS Simulator"
+    - name: iOS 15
+      run: xcodebuild -quiet test -workspace BTFuse.xcworkspace -scheme BTFuseTests -enableCodeCoverage YES -destination-timeout 60 -destination "id=${{vars.SIM_IOS_15}}"
+    - name: iOS 16
+      run: xcodebuild -quiet test -workspace BTFuse.xcworkspace -scheme BTFuseTests -enableCodeCoverage YES -destination-timeout 60 -destination "id=${{vars.SIM_IOS_16}}"
+    - name: iOS 17
+      run: xcodebuild -quiet test -workspace BTFuse.xcworkspace -scheme BTFuseTests -enableCodeCoverage YES -destination-timeout 60 -destination "id=${{vars.SIM_IOS_17}}"
