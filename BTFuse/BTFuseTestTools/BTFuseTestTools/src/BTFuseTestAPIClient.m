@@ -29,6 +29,10 @@ limitations under the License.
     return self;
 }
 
+- (bool) isError {
+    return [self.status integerValue] >= 400;
+}
+
 @end
 
 @implementation BTFuseTestAPIClientBuilder

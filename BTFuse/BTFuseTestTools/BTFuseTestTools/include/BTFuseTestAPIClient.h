@@ -26,6 +26,8 @@ limitations under the License.
 - (nonnull instancetype) init NS_UNAVAILABLE;
 - (nonnull instancetype) initWithCode:(nonnull NSNumber*) code data:(nonnull NSData*) data NS_DESIGNATED_INITIALIZER;
 
+- (bool) isError;
+
 @end
 
 typedef void (^BTFuseTestAPIClientCallback)(NSError* _Nullable error, BTFuseTestAPIClientResponse* _Nullable response);
