@@ -72,6 +72,7 @@
 		94B0A6932AB77790008C291A /* BTFuseAPIServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B0A6922AB77790008C291A /* BTFuseAPIServer.m */; };
 		94B7A9CF2AC89E39003D294D /* BTFuseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7A9CE2AC89E39003D294D /* BTFuseTests.m */; };
 		94B7A9D02AC89E39003D294D /* BTFuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A886C22A714F6D0098530D /* BTFuse.framework */; platformFilter = ios; };
+		94C3AF282B6867B8006AD040 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 94C3AF272B6867B8006AD040 /* LICENSE */; };
 		94DF9FB72B293C9C00757EA7 /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94DF9FB62B293C9C00757EA7 /* UniformTypeIdentifiers.framework */; };
 /* End PBXBuildFile section */
 
@@ -153,6 +154,7 @@
 		94B0A6922AB77790008C291A /* BTFuseAPIServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseAPIServer.m; sourceTree = "<group>"; };
 		94B7A9CC2AC89E39003D294D /* BTFuseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BTFuseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94B7A9CE2AC89E39003D294D /* BTFuseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseTests.m; sourceTree = "<group>"; };
+		94C3AF272B6867B8006AD040 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		94DF9FB62B293C9C00757EA7 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -218,6 +220,7 @@
 		94A8864F2A702C6C0098530D = {
 			isa = PBXGroup;
 			children = (
+				94C3AF272B6867B8006AD040 /* LICENSE */,
 				944112B92AED442300309527 /* PrivacyInfo.xcprivacy */,
 				94552C592ACB349A00DAE0F4 /* configurations */,
 				9489EBA62AA640ED0087424D /* localization */,
@@ -459,6 +462,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94C3AF282B6867B8006AD040 /* LICENSE in Resources */,
 				944112BA2AED442300309527 /* PrivacyInfo.xcprivacy in Resources */,
 				9489EBAE2AA6445C0087424D /* Localizable.strings in Resources */,
 			);
