@@ -54,3 +54,5 @@ gh release create $VERSION \
     ./dist/BTFuseTestTools.framework.dSYM.zip \
     ./dist/BTFuseTestTools.framework.dSYM.zip.sha1.txt \
     --verify-tag --generate-notes
+
+./podPublish.sh

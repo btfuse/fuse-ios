@@ -6,3 +6,5 @@ xcuserdata
 /testapp/testapp/assets/**/*.js
 /testapp/testapp/assets/index.html
 /testapp/testapp/assets/largeFile.txt
+/BTFuse.podspec
+/BTFuseTestTools.podspec

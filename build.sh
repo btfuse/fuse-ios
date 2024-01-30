@@ -111,3 +111,19 @@ spushd dist
     sha1_compute BTFuseTestTools.xcframework.zip
     sha1_compute BTFuseTestTools.framework.dSYM.zip
 spopd
+
+VERSION=$(cat ./VERSION)
+FUSE_CHECKSUM=$(cat ./dist/BTFuse.xcframework.zip.sha1.txt)
+TESTTOOLS_CHECKSUM=$(cat ./dist/BTFuseTestTools.xcframework.zip.sha1.txt)
+
+btfusePodSpecTemplate=$(<BTFuse.podspec.template)
+btfuseTestToolsPodSpecTemplate=$(<BTFuseTestTools.podspec.template)
+
+btfusePodSpecTemplate=${btfusePodSpecTemplate//\$VERSION\$/$VERSION}
+btfusePodSpecTemplate=${btfusePodSpecTemplate//\$CHECKSUM\$/$FUSE_CHECKSUM}
+btfuseTestToolsPodSpecTemplate=${btfuseTestToolsPodSpecTemplate//\$VERSION\$/$VERSION}
+btfuseTestToolsPodSpecTemplate=${btfuseTestToolsPodSpecTemplate//\$CHECKSUM\$/$TESTTOOLS_CHECKSUM}
+
+# Write the final result to BTFuse.podspec
+echo "$btfusePodSpecTemplate" > BTFuse.podspec
+echo "$btfuseTestToolsPodSpecTemplate" > BTFuseTestTools.podspec
