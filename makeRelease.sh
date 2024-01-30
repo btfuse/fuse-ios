@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Copyright 2023 Breautek 
 
@@ -29,9 +29,9 @@ assetGitTagAvailable $VERSION
 echo $VERSION > VERSION
 
 spushd BTFuse/configs
-echo "// This is an auto-generated file, do not edit!" > version.xcconfig
-echo "CURRENT_PROJECT_VERSION = $VERSION" >> version.xcconfig
-echo "MARKETING_VERSION = $VERSION" >> version.xcconfig
+    echo "// This is an auto-generated file, do not edit!" > version.xcconfig
+    echo "CURRENT_PROJECT_VERSION = $VERSION" >> version.xcconfig
+    echo "MARKETING_VERSION = $VERSION" >> version.xcconfig
 spopd
 
 ./build.sh

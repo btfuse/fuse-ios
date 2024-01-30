@@ -1,5 +1,5 @@
 
-#!/bin/sh
+#!/bin/bash
 
 # Copyright 2023 Breautek 
 
