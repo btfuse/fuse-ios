@@ -29,6 +29,7 @@ limitations under the License.
 @implementation BTFuseTests
 
 - (void) onContextReady:(BTFuseContext*) context {}
+- (void) onBeforeWebviewLoad {}
 - (void) onReady {
     $onSetupComplete(NULL);
 }

@@ -28,6 +28,7 @@ limitations under the License.
 @protocol BTFuseViewControllerDelegate
     - (void) onContextReady;
     - (void) onWebviewReady;
+    - (void) onBeforeWebviewLoad;
 @end
 
 @interface BTFuseViewController: UIViewController <
@@ -44,6 +45,13 @@ limitations under the License.
 - (BTFuseContext*) getContext;
 
 - (WKWebView*) getWebview;
+
+- (UIView*) getLayout;
+
+/**
+* Convenience method for attaching the views and controller configuration.
+*/
+- (void) attach:(UIViewController*) controller;
 
 @end
 

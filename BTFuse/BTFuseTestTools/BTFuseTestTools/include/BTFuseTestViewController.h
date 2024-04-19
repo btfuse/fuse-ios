@@ -23,6 +23,7 @@ limitations under the License.
 @protocol BTFuseTestControllerDelegate
 
 - (void) onContextReady:(BTFuseContext*) context;
+- (void) onBeforeWebviewLoad;
 - (void) onReady;
 
 @end

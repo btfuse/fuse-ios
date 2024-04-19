@@ -18,6 +18,7 @@ limitations under the License.
 #ifndef BTFuseContextDelegate_h
 #define BTFuseContextDelegate_h
 
+#import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 
 @protocol BTFuseContextDelegate
@@ -25,6 +26,7 @@ limitations under the License.
 - (void) dispatchToWebview:(nonnull NSString*) callbackID withData:(nonnull NSString*) data;
 - (void) dispatchToWebview:(nonnull NSString*) callbackID;
 - (nonnull WKWebView*) getWebview;
+- (nonnull UIView*) getLayout;
 
 @end
 

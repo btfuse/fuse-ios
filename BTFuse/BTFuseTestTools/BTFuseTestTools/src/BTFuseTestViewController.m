@@ -40,4 +40,8 @@ limitations under the License.
     [$delegate onReady];
 }
 
+- (void) onBeforeWebviewLoad {
+    [$delegate onBeforeWebviewLoad];
+}
+
 @end

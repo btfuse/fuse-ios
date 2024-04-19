@@ -32,14 +32,13 @@ limitations under the License.
     }
 }
 
+- (void) onBeforeWebviewLoad {}
+
 - (void) viewDidLoad {
     [super viewDidLoad];
     
     $fuseController = [[BTFuseViewController alloc] init: self];
-    
-    [self addChildViewController: $fuseController];
-    [self.view addSubview: $fuseController.view];
-    [$fuseController didMoveToParentViewController: self];
+    [$fuseController attach: self];
 }
 
 

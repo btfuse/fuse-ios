@@ -42,6 +42,8 @@ limitations under the License.
     $apiBuilder.contentType = @"text/plain";
 }
 
+- (void) onBeforeWebviewLoad {}
+
 - (void) onReady {
     $onSetupComplete(NULL);
 }

@@ -110,6 +110,7 @@ limitations under the License.
             // Add the WKWebView as a subview
             [self.view addSubview: self->$webview];
             
+            [self->$delegate onBeforeWebviewLoad];
             NSURL* url = [NSURL URLWithString:@"btfuse://localhost/assets/index.html"];
             NSURLRequest* request = [NSURLRequest requestWithURL:url];
             [self->$webview loadRequest:request];
@@ -117,9 +118,19 @@ limitations under the License.
     });
 }
 
+- (void) attach:(UIViewController*) controller {
+    [controller addChildViewController: self];
+    [controller.view addSubview: self.view];
+    [self didMoveToParentViewController: controller];
+}
+
 
 - (WKWebView*) getWebview {
     return $webview;
+}
+
+- (UIView*) getLayout {
+    return self.view;
 }
 
 - (BTFuseContext*) getContext {

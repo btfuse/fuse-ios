@@ -67,6 +67,10 @@ limitations under the License.
     [$contextDelegate dispatchToWebview: callbackID];
 }
 
+- (UIView*) getLayout {
+    return [$contextDelegate getLayout];
+}
+
 - (WKWebView*) getWebview {
     return [$contextDelegate getWebview];
 }

@@ -19,6 +19,7 @@ limitations under the License.
 #define BTFuseContext_H
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 #import <BTFuse/BTFuseAPIResponseFactory.h>
 #import <BTFuse/BTFuseContextDelegate.h>
@@ -37,6 +38,7 @@ limitations under the License.
 - (nonnull BTFuseAPIResponseFactory*) getResponseFactory;
 - (void) setResponseFactory:(nonnull BTFuseAPIResponseFactory*) factory;
 - (nullable WKWebView*) getWebview;
+- (nonnull UIView*) getLayout;
 //- (nonnull BTFuseViewController*) getViewController;
 - (void) registerPlugin:(nonnull BTFusePlugin*)plugin;
 - (nonnull BTFusePlugin*) getPlugin:(nonnull NSString*)pluginID;
