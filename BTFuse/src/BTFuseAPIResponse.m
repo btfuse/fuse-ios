@@ -20,14 +20,11 @@ limitations under the License.
 #import <BTFuse/BTFuseAPIResponse.h>
 #import <BTFuse/BTFuseLogger.h>
 #include <sys/socket.h>
-#include <pthread.h>
 
 typedef void (^BTFuseAPIResponse_TaskBlock)(void);
 
 @implementation BTFuseAPIResponse {
-    pthread_mutex_t $workerMutex;
-    pthread_t $workerThread;
-    NSMutableArray<BTFuseAPIResponse_TaskBlock>* $workerQueue;
+    dispatch_queue_t $workerQueue;
     BTFuseAPIClient* $client;
     bool $hasSentHeaders;
     bool $isClosed;
@@ -39,77 +36,27 @@ typedef void (^BTFuseAPIResponse_TaskBlock)(void);
     uint64_t $startTime;
 }
 
-void* $BTFuseAPIResponse_processTask(void* pdata) {
-    BTFuseAPIResponse* res = (__bridge BTFuseAPIResponse*)pdata;
-    
-    pthread_mutex_t* workerMutex = [res __getWorkerMutex];
-    
-    while (true) {
-        if (![res isClosed]) {
-            pthread_mutex_lock(workerMutex);
-        }
-        else {
-            break;
-        }
-        
-        while ([res __hasTaskAvailable]) {
-            BTFuseAPIResponse_TaskBlock task = [res __getNextTask];
-            task();
-        }
-    }
-    
-    return NULL;
-}
-
 - (instancetype) init:(BTFuseContext*) context client:(BTFuseAPIClient*) client {
     self = [super init];
     
     $startTime = mach_absolute_time();
-    
+    $workerQueue = dispatch_queue_create("BTFuseAPIResponse_WorkerQueue", DISPATCH_QUEUE_SERIAL);
     $context = context;
-    BTFuseLogger* logger = [$context getLogger];
     
     $client = client;
-    if (pthread_mutex_init(&$workerMutex, NULL) != 0) {
-        [logger error:@"Worker Mutex Init Failure"];
-        return nil;
-    }
-    
-    $workerQueue = [[NSMutableArray alloc] init];
     $isClosed = false;
     $hasSentHeaders = false;
     $status = BTFuseAPIResponseStatusOk;
     $contentLength = 0;
     $contentType = @"application/octet-stream";
     
-    pthread_create(&self->$workerThread, NULL, &$BTFuseAPIResponse_processTask, (__bridge void *)(self));
-    
     return self;
 }
 
-- (pthread_mutex_t*) __getWorkerMutex {
-    return &$workerMutex;
-}
-
-- (bool) __hasTaskAvailable {
-    @synchronized ($workerQueue) {
-        return [$workerQueue count] > 0;
-    }
-}
-
 - (void) __addNetworkingTask:(BTFuseAPIResponse_TaskBlock) task {
-    @synchronized ($workerQueue) {
-        [$workerQueue addObject:task];
-        pthread_mutex_unlock(&$workerMutex);
-    }
-}
-
-- (BTFuseAPIResponse_TaskBlock) __getNextTask {
-    @synchronized ($workerQueue) {
-        BTFuseAPIResponse_TaskBlock task = [$workerQueue firstObject];
-        [$workerQueue removeObjectAtIndex: 0];
-        return task;
-    }
+    dispatch_async($workerQueue, ^{
+        task();
+    });
 }
 
 - (void) $kill:(NSString*) message {
@@ -124,7 +71,6 @@ void* $BTFuseAPIResponse_processTask(void* pdata) {
     
     $isClosed = true;
     [$client close];
-//    close($client);
     [self $printEndTime];
 }
 
@@ -149,7 +95,6 @@ void* $BTFuseAPIResponse_processTask(void* pdata) {
 - (ssize_t) $write:(const void*) data length:(size_t) length {
     NSData* nsdata = [[NSData alloc] initWithBytes: data length: length];
     return [$client write: nsdata];
-//    return write($client, data, length);
 }
 
 - (void) write:(const void*) sourceData length:(size_t) length {
