@@ -111,7 +111,7 @@ limitations under the License.
             [self.view addSubview: self->$webview];
             
             [self->$delegate onBeforeWebviewLoad];
-            NSURL* url = [NSURL URLWithString:@"btfuse://localhost/assets/index.html"];
+            NSURL* url = [NSURL URLWithString: [NSString stringWithFormat: @"btfuse://%@/assets/index.html", [self->$context getHost]]];
             NSURLRequest* request = [NSURLRequest requestWithURL:url];
             [self->$webview loadRequest:request];
         });

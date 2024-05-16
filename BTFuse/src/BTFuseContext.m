@@ -121,4 +121,8 @@ limitations under the License.
     return [[BTFuseWebviewNavigationDelegate alloc] init: self keypair: [$apiServer getKeypair]];
 }
 
+- (nonnull NSString*) getHost {
+    return @"localhost";
+}
+
 @end
