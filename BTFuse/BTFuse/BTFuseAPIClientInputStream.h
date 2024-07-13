@@ -26,6 +26,7 @@ limitations under the License.
 @property (readonly) BOOL hasBytesAvailable;
 @property (readonly) NSStreamStatus streamStatus;
 @property (nullable, readonly, copy) NSError* streamError;
+@property (nullable, atomic, weak) id<NSStreamDelegate> delegate;
 
 - (instancetype _Nonnull) init:(nw_connection_t _Nonnull) connection;
 

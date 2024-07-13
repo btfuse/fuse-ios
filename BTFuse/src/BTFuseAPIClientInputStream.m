@@ -30,11 +30,13 @@ limitations under the License.
     NSStreamStatus _streamStatus;
     NSError* _streamError;
     dispatch_queue_t $readQueue;
+    id<NSStreamDelegate> _delegate;
 }
 
 @synthesize hasBytesAvailable;
 @synthesize streamStatus;
 @synthesize streamError;
+@synthesize delegate;
 
 - (instancetype) init:(nw_connection_t) connection {
 
