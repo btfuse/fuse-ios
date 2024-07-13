@@ -82,6 +82,7 @@ limitations under the License.
             #ifdef DEBUG
                 fuseBuildTag = @"Debug";
             #endif
+            
             // TODO: Pull Version information somehow
             configuration.applicationNameForUserAgent = [NSString stringWithFormat:@"FuseRuntime (%@ %@ Build", @"0.0.0", fuseBuildTag];
 
@@ -180,5 +181,15 @@ limitations under the License.
     
     replyHandler(nil, @"Unhandled Script");
 }
+
+//- (void) encodeRestorableStateWithCoder:(NSCoder*) coder {
+//    [super encodeRestorableStateWithCoder: coder];
+//    [$context encodeRestorableStateWithCoder: coder];
+//}
+//
+//- (void) decodeRestorableStateWithCoder:(NSCoder*) coder {
+//    [super decodeRestorableStateWithCoder: coder];
+//    [$context decodeRestorableStateWithCoder: coder];
+//}
 
 @end

@@ -44,6 +44,9 @@ typedef void (^BTFusePluginAPIHandle)(BTFuseAPIPacket* packet, BTFuseAPIResponse
 
 - (BTFuseContext*) getContext;
 
+- (void) encodeRestorableStateWithCoder:(NSCoder*) coder;
+- (void) decodeRestorableStateWithCoder:(NSCoder*) coder;
+
 @end
 
 #endif

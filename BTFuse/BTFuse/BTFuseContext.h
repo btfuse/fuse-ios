@@ -52,6 +52,11 @@ limitations under the License.
 - (nonnull id<WKNavigationDelegate>) createWebviewNavigationDelegate;
 - (nonnull NSString*) getHost;
 
+- (void) application:(nonnull UIApplication*) application willEncodeRestorableStateWithCoder:(nonnull NSCoder*) coder;
+- (void) application:(nonnull UIApplication*) application didDecodeRestorableStateWithCoder:(nonnull NSCoder*) coder;
+//- (void) encodeRestorableStateWithCoder:(nonnull NSCoder*) coder;
+//- (void) decodeRestorableStateWithCoder:(nonnull NSCoder*) coder;
+
 @end
 
 #endif

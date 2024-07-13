@@ -26,6 +26,8 @@
 		9443F0B72B1BC98D0056B054 /* BTFuseKeyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 9443F0B62B1BC98D0056B054 /* BTFuseKeyPair.m */; };
 		9443F0B92B1BC9A90056B054 /* BTFuseKeyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9443F0B82B1BC9A90056B054 /* BTFuseKeyFactory.m */; };
 		9443F0BB2B1BCEE10056B054 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9443F0BA2B1BCEE10056B054 /* Security.framework */; };
+		944AE0ED2BF81D270008772F /* BTFuseInstanceStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 944AE0EC2BF81D270008772F /* BTFuseInstanceStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		944AE0EF2BF81DE30008772F /* BTFuseInstanceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 944AE0EE2BF81DE30008772F /* BTFuseInstanceStore.m */; };
 		94552C612ACC32E600DAE0F4 /* BTFuseLoggerLevel.h in Headers */ = {isa = PBXBuildFile; fileRef = 94552C602ACC32E600DAE0F4 /* BTFuseLoggerLevel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94552C632ACC367600DAE0F4 /* BTFuseLoggerLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94552C622ACC367600DAE0F4 /* BTFuseLoggerLevel.m */; };
 		94552C652ACCD47C00DAE0F4 /* BTFuseLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 94552C642ACCD47C00DAE0F4 /* BTFuseLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -106,6 +108,8 @@
 		9443F0B62B1BC98D0056B054 /* BTFuseKeyPair.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseKeyPair.m; sourceTree = "<group>"; };
 		9443F0B82B1BC9A90056B054 /* BTFuseKeyFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseKeyFactory.m; sourceTree = "<group>"; };
 		9443F0BA2B1BCEE10056B054 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		944AE0EC2BF81D270008772F /* BTFuseInstanceStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseInstanceStore.h; sourceTree = "<group>"; };
+		944AE0EE2BF81DE30008772F /* BTFuseInstanceStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseInstanceStore.m; sourceTree = "<group>"; };
 		94552C5C2ACB3A5600DAE0F4 /* BTFuse.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = BTFuse.xcconfig; path = configs/BTFuse.xcconfig; sourceTree = "<group>"; };
 		94552C602ACC32E600DAE0F4 /* BTFuseLoggerLevel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseLoggerLevel.h; sourceTree = "<group>"; usesTabs = 0; };
 		94552C622ACC367600DAE0F4 /* BTFuseLoggerLevel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseLoggerLevel.m; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				9489EB972AA54FA40087424D /* BTFuseRuntime.h */,
+				944AE0EC2BF81D270008772F /* BTFuseInstanceStore.h */,
 			);
 			path = plugins;
 			sourceTree = "<group>";
@@ -205,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				9489EB992AA54FED0087424D /* BTFuseRuntime.m */,
+				944AE0EE2BF81DE30008772F /* BTFuseInstanceStore.m */,
 			);
 			path = plugins;
 			sourceTree = "<group>";
@@ -381,6 +387,7 @@
 				94B0A68F2AB776DC008C291A /* BTFuseAPIServer.h in Headers */,
 				941862A32A99617100CCFEE1 /* BTFuseAPIResponse.h in Headers */,
 				94A9284C2B13E41E00AAC44A /* BTFuseAPIClientOutputStream.h in Headers */,
+				944AE0ED2BF81D270008772F /* BTFuseInstanceStore.h in Headers */,
 				94A886B82A714F6D0098530D /* BTFuseContext.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,7 +438,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					94B7A9CB2AC89E39003D294D = {
 						CreatedOnToolsVersion = 15.0;
@@ -487,6 +494,7 @@
 				941862AD2A9FE65E00CCFEE1 /* BTFuseError.m in Sources */,
 				9489EBA12AA61A770087424D /* BTFuseWebviewUIDelegation.m in Sources */,
 				94552C672ACCD67100DAE0F4 /* BTFuseLogger.m in Sources */,
+				944AE0EF2BF81DE30008772F /* BTFuseInstanceStore.m in Sources */,
 				9443F0B12B1AA9550056B054 /* BTFuseNWErrorFactory.m in Sources */,
 				94A928532B13E4C700AAC44A /* BTFuseAPIServerHeaders.m in Sources */,
 				94A886BB2A714F6D0098530D /* BTFuseSchemeHandler.m in Sources */,
@@ -547,6 +555,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -613,6 +622,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

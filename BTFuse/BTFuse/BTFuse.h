@@ -41,3 +41,4 @@ FOUNDATION_EXPORT const unsigned char BTFuseVersionString[];
 
 // Core Plugins
 #import <BTFuse/BTFuseRuntime.h>
+#import <BTFuse/BTFuseInstanceStore.h>

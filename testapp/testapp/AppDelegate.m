@@ -45,5 +45,12 @@ limitations under the License.
     // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 }
 
+- (void) application:(UIApplication*) application willEncodeRestorableStateWithCoder:(nonnull NSCoder*) coder {
+    NSLog(@"ON ENCODE RESTORE STATE");
+}
+
+- (void) application:(UIApplication*) application didDecodeRestorableStateWithCoder:(nonnull NSCoder*) coder {
+    NSLog(@"ON DECODE RESTORE STATE");
+}
 
 @end

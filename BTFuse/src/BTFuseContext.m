@@ -125,4 +125,22 @@ limitations under the License.
     return @"localhost";
 }
 
+- (void) application:(nonnull UIApplication*) application willEncodeRestorableStateWithCoder:(nonnull NSCoder*) coder {
+    @synchronized ($pluginMap) {
+        for (NSString* key in $pluginMap) {
+            BTFusePlugin* plugin = $pluginMap[key];
+            [plugin encodeRestorableStateWithCoder: coder];
+        }
+    }
+}
+
+- (void) application:(nonnull UIApplication*) application didDecodeRestorableStateWithCoder:(nonnull NSCoder*) coder {
+    @synchronized ($pluginMap) {
+        for (NSString* key in $pluginMap) {
+            BTFusePlugin* plugin = $pluginMap[key];
+            [plugin decodeRestorableStateWithCoder: coder];
+        }
+    }
+}
+
 @end

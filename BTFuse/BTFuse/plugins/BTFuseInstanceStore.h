@@ -15,23 +15,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-#ifndef BTFuseRuntime_h
-#define BTFuseRuntime_h
+#ifndef BTFuseInstanceStore_h
+#define BTFuseInstanceStore_h
 
-#import <Foundation/Foundation.h>
 #import <BTFuse/BTFusePlugin.h>
 
-@interface BTFuseRuntime : BTFusePlugin
-
-@property (atomic, strong) NSMutableArray* $pauseHandlers;
-@property (atomic, strong) NSMutableArray* $resumeHandlers;
+@interface BTFuseInstanceStore : BTFusePlugin
 
 - (NSString*) getID;
-
-- (NSDictionary*) getInfo;
-
-- (void) onPause;
-- (void) onResume;
 
 @end
 

@@ -68,4 +68,8 @@ limitations under the License.
 
 - (void) initHandles {}
 
+- (void) encodeRestorableStateWithCoder:(NSCoder*) coder {}
+
+- (void) decodeRestorableStateWithCoder:(NSCoder*) coder {}
+
 @end
