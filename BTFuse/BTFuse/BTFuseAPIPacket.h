@@ -30,12 +30,31 @@ limitations under the License.
 
 - (NSString*) getRoute;
 - (BTFuseAPIClient*) getClient;
-- (unsigned long) getContentLength;
+- (uint64_t) getContentLength;
 - (NSString*) getContentType;
 
+/**
+    Reads the packet as a string.
+    Do not call on the main thread.
+ */
 - (NSString*) readAsString;
+
+/**
+    Reads the packet as binary.
+    Do not call on the main thread.
+ */
 - (NSData*) readAsBinary;
+
+/**
+    Reads the packet as a JSON/Dictionary object.
+    Do not call on the main thread.
+ */
 - (NSDictionary*) readAsJSONObject:(NSError*) error;
+
+/**
+    Reads the packet as an array.
+    Do not call on the main thread.
+ */
 - (NSArray*) readAsJSONArray:(NSError*) error;
 
 @end

@@ -106,7 +106,7 @@ limitations under the License.
     }];
     
     [self attachHandler:@"/threadtest" callback:^(BTFuseAPIPacket* packet, BTFuseAPIResponse* response) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             [self doEcho: [packet readAsBinary] withResponse:response];
         });
     }];

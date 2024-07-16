@@ -18,12 +18,16 @@ limitations under the License.
 #import <BTFuse/BTFuseAPIPacket.h>
 #import <BTFuse/BTFuseContext.h>
 #import <BTFuse/BTFuseLogger.h>
+#import <BTFuse/BTFuseStreamReader.h>
+
+const uint32_t BTFUSE_API_PACKET_BUFFER_SIZE = 1024 * 1024 * 4;
 
 @implementation BTFuseAPIPacket {
     NSString* $route;
     BTFuseAPIClient* $client;
     NSDictionary* $headers;
     BTFuseContext* $context;
+    BTFuseStreamReader* $reader;
 }
 
 - (instancetype) init:(BTFuseContext*) context route:(NSString*) route headers:(NSDictionary*) headers client:(BTFuseAPIClient*) client {
@@ -33,6 +37,7 @@ limitations under the License.
     $route = route;
     $headers = headers;
     $client = client;
+    $reader = [[BTFuseStreamReader alloc] init: [$client getInputStream]];
     
     return self;
 }
@@ -45,7 +50,7 @@ limitations under the License.
     return $client;
 }
 
-- (unsigned long) getContentLength {
+- (uint64_t) getContentLength {
     NSString* value = [$headers valueForKey: @"Content-Length"];
     return value.longLongValue;
 }
@@ -60,12 +65,49 @@ limitations under the License.
 }
 
 - (NSData*) readAsBinary {
-    unsigned long contentLength = [self getContentLength];
+    uint64_t contentLength = [self getContentLength];
+    uint64_t totalBytesRead = 0;
     
-    NSMutableData* buffer = [[NSMutableData alloc] init];
-    [$client read:buffer length: (uint32_t) contentLength];
+    NSMutableData* data = [[NSMutableData alloc] init];
     
-    return buffer;
+    uint32_t chunkSize = BTFUSE_API_PACKET_BUFFER_SIZE;
+    if (chunkSize > contentLength) {
+        chunkSize = (uint32_t) contentLength;
+    }
+    
+    uint8_t buffer[chunkSize];
+    int64_t bytesRead = 0;
+    
+    while (true) {
+        uint64_t totalBytesToRead = contentLength - totalBytesRead;
+        if (totalBytesToRead == 0) {
+            break;
+        }
+        
+        uint32_t bytesToRead = 0;
+        if (totalBytesToRead > UINT32_MAX) {
+            bytesToRead = UINT32_MAX;
+        }
+        else {
+            bytesToRead = (uint32_t) totalBytesToRead;
+        }
+        
+        if (bytesToRead > chunkSize) {
+            bytesToRead = chunkSize;
+        }
+        
+        bytesRead = [$reader read: buffer maxBytes: bytesToRead];
+        
+        if (bytesRead == -1) {
+            NSLog(@"Socket Read Error");
+            return nil;
+        }
+        
+        totalBytesRead += bytesRead;
+        [data appendBytes: buffer length: bytesRead];
+    }
+    
+    return data;
 }
 
 - (NSDictionary*) readAsJSONObject:(NSError*) error {
