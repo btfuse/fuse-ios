@@ -148,10 +148,30 @@ limitations under the License.
 
 - (void) setHasBytesAvailable:(BOOL) hasBytesAvailable {
     _hasBytesAvailable = hasBytesAvailable;
+    if (hasBytesAvailable && self.delegate != nil) {
+        [self.delegate stream: self handleEvent: NSStreamEventHasBytesAvailable];
+    }
 }
 
 - (void) setStreamStatus:(NSStreamStatus) status {
     _streamStatus = status;
+    if (self.delegate != nil) {
+        switch (status) {
+            case NSStreamStatusNotOpen:
+            case NSStreamStatusOpening:
+            case NSStreamStatusReading:
+            case NSStreamStatusWriting:
+            case NSStreamStatusClosed:
+            case NSStreamStatusError:
+                break;
+            case NSStreamStatusOpen:
+                [self.delegate stream: self handleEvent: NSStreamEventOpenCompleted];
+                break;
+            case NSStreamStatusAtEnd:
+                [self.delegate stream: self handleEvent: NSStreamEventEndEncountered];
+                break;
+        }
+    }
 }
 
 - (NSStreamStatus) streamStatus {
@@ -160,6 +180,9 @@ limitations under the License.
 
 - (void) setStreamError:(NSError*) streamError {
     _streamError = streamError;
+    if (self.delegate != nil) {
+        [self.delegate stream: self handleEvent: NSStreamEventErrorOccurred];
+    }
 }
 
 - (NSError*) streamError {

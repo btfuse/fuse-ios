@@ -16,7 +16,7 @@ limitations under the License.
 */
 
 #import "EchoPlugin.h"
-#import <BTFuse/BTFuseContext.h>
+#import <BTFuse/BTFuse.h>
 
 @implementation EchoPlugin
 
@@ -30,6 +30,28 @@ limitations under the License.
     [self attachHandler:@"/echo" callback:^void(BTFuseAPIPacket* packet, BTFuseAPIResponse* response) {
         NSData* message = [packet readAsBinary];
         [weakSelf doEcho: message withResponse:response];
+    }];
+    
+    [self attachHandler:@"/echoWithReader" callback:^void(BTFuseAPIPacket* packet, BTFuseAPIResponse* response) {
+        BTFuseStreamReader* reader = [[BTFuseStreamReader alloc] init: [[packet getClient] getInputStream]];
+        
+        NSMutableData* data = [[NSMutableData alloc] init];
+        
+        const int BUFFER_SIZE = 8;
+        
+        uint8_t buffer[BUFFER_SIZE];
+        uint64_t bytesRead = 0;
+        bool didError = false;
+        while ((bytesRead = [reader read: buffer maxBytes: BUFFER_SIZE])) {
+            if (bytesRead == -1) {
+                didError = true;
+                break;
+            }
+            
+            [data appendBytes: buffer length: bytesRead];
+        }
+        
+        [response sendData: data];
     }];
     
     [self attachHandler:@"/big" callback:^(BTFuseAPIPacket* packet, BTFuseAPIResponse* response) {

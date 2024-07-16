@@ -96,4 +96,23 @@ limitations under the License.
     [self waitForExpectationsWithTimeout:30.0 handler:nil];
 }
 
+- (void) testStreamReader {
+    $apiBuilder.endpoint = @"/echoWithReader";
+    $apiBuilder.data = [@"Hello Test!" dataUsingEncoding:NSUTF8StringEncoding];
+    BTFuseTestAPIClient* client = [$apiBuilder build];
+    
+    XCTestExpectation* expectation = [self expectationWithDescription:@"testSimpleEchoRequest"];
+    
+    [client execute:^(NSError * _Nullable error, BTFuseTestAPIClientResponse * _Nullable response) {
+        XCTAssertNil(error, @"Error should be nil");
+        
+        NSString* payload = [[NSString alloc] initWithData:response.data encoding:NSUTF8StringEncoding];
+        XCTAssertTrue([payload isEqualToString:@"Hello Test!"], @"Payload should echo input");
+        
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:30.0 handler:nil];
+}
+
 @end

@@ -51,6 +51,8 @@
 		9489EBAE2AA6445C0087424D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9489EBB02AA6445C0087424D /* Localizable.strings */; };
 		9489EBB82AA659D70087424D /* BTFuseLocalization.h in Headers */ = {isa = PBXBuildFile; fileRef = 9489EBB72AA659D70087424D /* BTFuseLocalization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9489EBBA2AA65A990087424D /* BTFuseLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 9489EBB92AA65A990087424D /* BTFuseLocalization.m */; };
+		949DEED72C45FB1C00DEDD84 /* BTFuseStreamReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 949DEED62C45FB1C00DEDD84 /* BTFuseStreamReader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		949DEED92C45FB6C00DEDD84 /* BTFuseStreamReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 949DEED82C45FB6C00DEDD84 /* BTFuseStreamReader.m */; };
 		94A886B72A714F6D0098530D /* BTFuse.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A8865C2A702C6C0098530D /* BTFuse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94A886B82A714F6D0098530D /* BTFuseContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A886632A702D240098530D /* BTFuseContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94A886B92A714F6D0098530D /* BTFuseSchemeHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A886682A702F020098530D /* BTFuseSchemeHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -132,6 +134,8 @@
 		9489EBAF2AA6445C0087424D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9489EBB72AA659D70087424D /* BTFuseLocalization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseLocalization.h; sourceTree = "<group>"; };
 		9489EBB92AA65A990087424D /* BTFuseLocalization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseLocalization.m; sourceTree = "<group>"; };
+		949DEED62C45FB1C00DEDD84 /* BTFuseStreamReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseStreamReader.h; sourceTree = "<group>"; };
+		949DEED82C45FB6C00DEDD84 /* BTFuseStreamReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseStreamReader.m; sourceTree = "<group>"; };
 		94A8865C2A702C6C0098530D /* BTFuse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuse.h; sourceTree = "<group>"; };
 		94A886632A702D240098530D /* BTFuseContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFuseContext.h; sourceTree = "<group>"; };
 		94A886662A702D6A0098530D /* BTFuseContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFuseContext.m; sourceTree = "<group>"; };
@@ -264,6 +268,7 @@
 				94A928422B0C476F00AAC44A /* BTFuseAPIClient.h */,
 				94A928542B1A724700AAC44A /* BTFuseIDGenerator.h */,
 				94668BFB2B22B76000976FC1 /* BTFuseContextDelegate.h */,
+				949DEED62C45FB1C00DEDD84 /* BTFuseStreamReader.h */,
 			);
 			path = BTFuse;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 				940127182AD78FFD00F76331 /* BTFuseJSONSerializer.m */,
 				94A928442B0C47C400AAC44A /* BTFuseAPIClient.m */,
 				94A928562B1A729000AAC44A /* BTFuseIDGenerator.m */,
+				949DEED82C45FB6C00DEDD84 /* BTFuseStreamReader.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -365,6 +371,7 @@
 				9489EBB82AA659D70087424D /* BTFuseLocalization.h in Headers */,
 				940127172AD78F6200F76331 /* BTFuseJSONSerializer.h in Headers */,
 				9443F0AF2B1AA9070056B054 /* BTFuseNWErrorFactory.h in Headers */,
+				949DEED72C45FB1C00DEDD84 /* BTFuseStreamReader.h in Headers */,
 				9443F0B32B1BC9120056B054 /* BTFuseKeyFactory.h in Headers */,
 				9443F0B52B1BC9280056B054 /* BTFuseKeyPair.h in Headers */,
 				94552C612ACC32E600DAE0F4 /* BTFuseLoggerLevel.h in Headers */,
@@ -493,6 +500,7 @@
 				9418629D2A9956F100CCFEE1 /* BTFuseAPIRouter.m in Sources */,
 				9489EB9A2AA54FED0087424D /* BTFuseRuntime.m in Sources */,
 				94A928572B1A729000AAC44A /* BTFuseIDGenerator.m in Sources */,
+				949DEED92C45FB6C00DEDD84 /* BTFuseStreamReader.m in Sources */,
 				9489EBA52AA623B70087424D /* BTFuseViewController.m in Sources */,
 				94668BF22B202F7400976FC1 /* BTFuseWebviewNavigationDelegate.m in Sources */,
 				947FF0F22AC8A3DA003D09BC /* BTFuseAPIResponseFactory.m in Sources */,
