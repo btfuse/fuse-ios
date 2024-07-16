@@ -22,8 +22,6 @@ const char* BTFUSE_FILESYSTEM_READER_QUEUE = "com.breautek.btfuse.Reader";
 
 @implementation BTFuseStreamReader {
     NSInputStream* $stream;
-//    dispatch_queue_t $streamQueue;
-    BOOL $isRunning;
     dispatch_semaphore_t $readSemaphore;
     NSError* $error;
 }
@@ -33,21 +31,8 @@ const char* BTFUSE_FILESYSTEM_READER_QUEUE = "com.breautek.btfuse.Reader";
     
     $stream = stream;
     $stream.delegate = self;
-    $isRunning = false;
     $error = nil;
     $readSemaphore = dispatch_semaphore_create(0);
-    
-//    $streamQueue = dispatch_queue_create(BTFUSE_FILESYSTEM_READER_QUEUE, DISPATCH_QUEUE_SERIAL);
-    
-//    dispatch_async($streamQueue, ^{
-//        self->$isRunning = true;
-//        
-//        [self->$stream scheduleInRunLoop: [NSRunLoop currentRunLoop] forMode: NSDefaultRunLoopMode];
-//        
-//        while (self->$isRunning) {
-//            [[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode beforeDate: [NSDate distantFuture]];
-//        }
-//    });
     
     return self;
 }
@@ -65,11 +50,8 @@ const char* BTFUSE_FILESYSTEM_READER_QUEUE = "com.breautek.btfuse.Reader";
         case NSStreamEventErrorOccurred:
             NSLog(@"Stream encountered an error: %@", [stream streamError].localizedDescription);
             $error = [stream streamError];
-            $isRunning = false;
             break;
         case NSStreamEventEndEncountered:
-            $isRunning = false;
-            break;
         default: break;
     }
 }
