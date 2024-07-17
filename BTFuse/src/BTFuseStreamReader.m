@@ -43,21 +43,22 @@ const char* BTFUSE_FILESYSTEM_READER_QUEUE = "com.breautek.btfuse.Reader";
     }
     
     switch (event) {
-        case NSStreamEventOpenCompleted: break;
         case NSStreamEventHasBytesAvailable:
+        case NSStreamEventEndEncountered:
             dispatch_semaphore_signal($readSemaphore);
             break;
         case NSStreamEventErrorOccurred:
             NSLog(@"Stream encountered an error: %@", [stream streamError].localizedDescription);
             $error = [stream streamError];
+            dispatch_semaphore_signal($readSemaphore);
             break;
-        case NSStreamEventEndEncountered:
+        case NSStreamEventOpenCompleted:
         default: break;
     }
 }
 
 - (int64_t) read:(uint8_t*) buffer maxBytes:(uint32_t) max {
-    if (!$stream.hasBytesAvailable) {
+    if (!$stream.hasBytesAvailable && $stream.streamStatus != NSStreamEventEndEncountered) {
         dispatch_semaphore_wait($readSemaphore, DISPATCH_TIME_FOREVER);
     }
     
