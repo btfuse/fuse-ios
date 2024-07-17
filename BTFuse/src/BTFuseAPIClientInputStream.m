@@ -39,9 +39,9 @@ limitations under the License.
 @synthesize delegate;
 
 - (instancetype) init:(nw_connection_t) connection {
-
+    self = [super init];
     $buffer = [[NSMutableData alloc] initWithCapacity: BTFUSEAPISERVER_BUFFER_SIZE];
-    self = [super initWithData: $buffer];
+    
     $readQueue = dispatch_queue_create("com.breautek.fuse.BTFuseAPIInputStream_ReadQueue", DISPATCH_QUEUE_SERIAL);
     
     self.streamStatus = NSStreamStatusNotOpen;
@@ -52,6 +52,7 @@ limitations under the License.
     self.streamStatus = NSStreamStatusOpening;
     
     dispatch_async($readQueue, ^{
+        self.streamStatus = NSStreamStatusOpen;
         [self $readData];
     });
     
@@ -113,17 +114,20 @@ limitations under the License.
 }
 
 - (NSInteger) read:(uint8_t*) buffer maxLength:(NSUInteger) len {
+    streamStatus = NSStreamStatusReading;
+    
     if (![self hasBytesAvailable]) {
         dispatch_semaphore_wait($readSemaphore, DISPATCH_TIME_FOREVER);
     }
     
     NSUInteger bytesRead = len;
-    NSUInteger bufLength = [$buffer length];
-    if (bytesRead > bufLength) {
-        bytesRead = bufLength;
-    }
     
-    @synchronized ($buffer) {
+    @synchronized (self->$buffer) {
+        NSUInteger bufLength = [$buffer length];
+        if (bytesRead > bufLength) {
+            bytesRead = bufLength;
+        }
+        
         [$buffer getBytes: buffer length: bytesRead];
         
         NSRange expiredRange = NSMakeRange(0, bytesRead);
@@ -134,6 +138,9 @@ limitations under the License.
         
         [self setHasBytesAvailable: newLength > 0];
     }
+    
+    streamStatus = NSStreamStatusOpen;
+    
     
     return bytesRead;
 }
@@ -185,12 +192,20 @@ limitations under the License.
     }
 }
 
+- (void) setDelegate:(id<NSStreamDelegate>) delegate {
+    _delegate = delegate;
+}
+
+- (id<NSStreamDelegate>) delegate {
+    return _delegate;
+}
+
 - (NSError*) streamError {
     return _streamError;
 }
 
 - (void) close {
-    [self setStreamStatus: NSStreamStatusClosed];
+    self->streamStatus = NSStreamStatusClosed;
 }
 
 @end
