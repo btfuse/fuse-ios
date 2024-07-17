@@ -46,7 +46,7 @@ limitations under the License.
     
     $connection = connection;
     
-    nw_connection_set_state_changed_handler(connection, ^(nw_connection_state_t state, nw_error_t  _Nullable nwError) {
+    nw_connection_set_state_changed_handler(connection, ^(nw_connection_state_t state, nw_error_t _Nullable nwError) {
         if (nwError != nil) {
             NSError* error = [BTFuseNWErrorFactory create: nwError];
         
@@ -151,7 +151,6 @@ limitations under the License.
     BTFuseAPIServerHeaders* headers = [[BTFuseAPIServerHeaders alloc] init];
     
     NSInputStream* input = $input;
-    
     
     NSString* initialLine = [self $readLine: input];
     if (initialLine == nil) {
