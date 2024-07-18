@@ -26,6 +26,11 @@ ios15Check="0"
 ios16Check="0"
 ios17Check="0"
 
+echo "Using the following simulators:"
+echo "iOS 15: $IOS_15"
+echo "iOS 16: $IOS_16"
+echo "iOS 17: $IOS_17"
+
 xcodebuild -quiet test -workspace BTFuse.xcworkspace -scheme BTFuseTests -enableCodeCoverage YES -destination-timeout 60 -destination "id=$IOS_15"
 ios15Check=$?
 xcodebuild -quiet test -workspace BTFuse.xcworkspace -scheme BTFuseTests -enableCodeCoverage YES -destination-timeout 60 -destination "id=$IOS_16"
