@@ -32,9 +32,11 @@ source build-tools/Checksum.sh
 
 assertMac "Mac is required to build Fuse iOS"
 
-if [ -z "$BTFUSE_CODESIGN_IDENTITY" ]; then
-    echo "BTFUSE_CODESIGN_IDENTITY environment variable is required."
-    exit 2
+if [ "$CI" != "true" ]; then
+    if [ -z "$BTFUSE_CODESIGN_IDENTITY" ]; then
+        echo "BTFUSE_CODESIGN_IDENTITY environment variable is required."
+        exit 2
+    fi
 fi
 
 echo "Building Fuse iOS Framework $(cat ./VERSION)..."
@@ -72,23 +74,21 @@ simBuild=$(echo "$(xcodebuild -workspace BTFuse.xcworkspace -scheme BTFuse -conf
 iosTestToolsBuild=$(echo "$(xcodebuild -workspace BTFuse.xcworkspace -scheme BTFuseTestTools -configuration Release -sdk iphoneos -showBuildSettings | grep -E '^\s*CONFIGURATION_BUILD_DIR =' | awk -F '= ' '{print $2}' | xargs)")
 simTestToolsBuild=$(echo "$(xcodebuild -workspace BTFuse.xcworkspace -scheme BTFuseTestTools -configuration Debug -sdk iphonesimulator -showBuildSettings | grep -E '^\s*CONFIGURATION_BUILD_DIR =' | awk -F '= ' '{print $2}' | xargs)")
 
-# OpenSSL dependency seems to modify their git working state on builds, which will prevent our release scripts, so
-# so we will clean their checkout after builds
-# spushd third_party/openssl/cloudflare-quiche
-#     git checkout -- .
-# spopd
+if [ "$CI" == "true" ]; then
+    echo "Skipping CodeSign (CI Build)"
+else
+    echo "Signing iOS build..."
+    codesign -s $BTFUSE_CODESIGN_IDENTITY --deep $iosBuild/BTFuse.framework
+    assertLastCall
+    codesign -s $BTFUSE_CODESIGN_IDENTITY --deep $iosTestToolsBuild/BTFuseTestTools.framework
+    assertLastCall
 
-echo "Signing iOS build..."
-codesign -s $BTFUSE_CODESIGN_IDENTITY --deep $iosBuild/BTFuse.framework
-assertLastCall
-codesign -s $BTFUSE_CODESIGN_IDENTITY --deep $iosTestToolsBuild/BTFuseTestTools.framework
-assertLastCall
-
-echo "Verifying iOS Build"
-codesign -dvvvv $iosBuild/BTFuse.framework
-assertLastCall
-codesign -dvvvv $iosTestToolsBuild/BTFuseTestTools.framework
-assertLastCall
+    echo "Verifying iOS Build"
+    codesign -dvvvv $iosBuild/BTFuse.framework
+    assertLastCall
+    codesign -dvvvv $iosTestToolsBuild/BTFuseTestTools.framework
+    assertLastCall
+fi
 
 cp -r $iosBuild/BTFuse.framework.dSYM ./dist/
 cp -r $iosTestToolsBuild/BTFuseTestTools.framework.dSYM ./dist
