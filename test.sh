@@ -70,7 +70,7 @@ else
 
     xcrun simctl boot $SIM > /dev/null
 
-    xcodebuild -quiet test -workspace BTFuse.xcworkspace -scheme BTFuseTests -enableCodeCoverage YES -destination-timeout 60 -destination "id=$IOS_15"
+    xcodebuild -quiet test -workspace BTFuse.xcworkspace -scheme BTFuseTests -enableCodeCoverage YES -destination-timeout 60 -destination "id=$SIM"
     testResult=$?
 
     if [ "$testResult" -ne "0" ]; then
