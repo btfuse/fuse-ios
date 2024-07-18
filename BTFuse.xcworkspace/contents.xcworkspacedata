@@ -5,9 +5,6 @@
       location = "group:testapp/testapp.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:BTFuse/openssl/openssl.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "container:./BTFuse/BTFuseTestTools/BTFuseTestTools.xcodeproj">
    </FileRef>
    <Group
