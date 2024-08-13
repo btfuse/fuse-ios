@@ -1,0 +1,27 @@
+
+name: iOS 18
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Build and analyse default scheme using xcodebuild command
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: True
+      - name: Install CocoaPods
+        run: gem install cocoapods -v 1.15.2
+      - name: Pod Install
+        run: pod install --repo-update
+      - name: Build
+        run: ./build.sh
+      - name: Test iOS 18.0
+        run: ./test.sh "Fuse iOS 18.0" "18.0" "iPhone 15"
