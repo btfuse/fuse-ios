@@ -75,6 +75,7 @@ else
 
     if [ "$testResult" -ne "0" ]; then
         echo "$SIM_VERSION tests failed."
+        exit $testResult
     else
         echo "$SIM_VERSION tests passed."
     fi
