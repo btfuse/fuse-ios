@@ -1,5 +1,5 @@
 
-name: iOS Tests
+name: iOS 17
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Build and analyse default scheme using xcodebuild command
+    name: Test iOS 17
     runs-on: macos-latest
 
     steps:
