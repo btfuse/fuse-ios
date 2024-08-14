@@ -10,9 +10,12 @@ on:
 jobs:
   build:
     name: Test iOS 17
-    runs-on: macos-latest
+    runs-on: macos-14
 
     steps:
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: 15.4
       - name: Checkout
         uses: actions/checkout@v4
         with:
