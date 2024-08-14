@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: Test iOS 17
-    runs-on: macos-14-arm64
+    runs-on: macos-14
 
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
