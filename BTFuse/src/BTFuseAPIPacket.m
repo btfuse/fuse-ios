@@ -110,14 +110,14 @@ const uint32_t BTFUSE_API_PACKET_BUFFER_SIZE = 1024 * 1024 * 4;
     return data;
 }
 
-- (NSDictionary*) readAsJSONObject:(NSError*) error {
+- (NSDictionary*) readAsJSONObject:(NSError**) error {
     NSData* data = [self readAsBinary];
-    return [NSJSONSerialization JSONObjectWithData: data options:NSJSONReadingMutableContainers error: &error];
+    return [NSJSONSerialization JSONObjectWithData: data options:NSJSONReadingMutableContainers error: error];
 }
 
-- (NSArray*) readAsJSONArray:(NSError*) error {
+- (NSArray*) readAsJSONArray:(NSError**) error {
     NSData* data = [self readAsBinary];
-    return [NSJSONSerialization JSONObjectWithData: data options:NSJSONReadingMutableContainers error: &error];
+    return [NSJSONSerialization JSONObjectWithData: data options:NSJSONReadingMutableContainers error: error];
 }
 
 @end

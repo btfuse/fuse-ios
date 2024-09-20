@@ -49,13 +49,13 @@ limitations under the License.
     Reads the packet as a JSON/Dictionary object.
     Do not call on the main thread.
  */
-- (NSDictionary*) readAsJSONObject:(NSError*) error;
+- (NSDictionary*) readAsJSONObject:(NSError**) error;
 
 /**
     Reads the packet as an array.
     Do not call on the main thread.
  */
-- (NSArray*) readAsJSONArray:(NSError*) error;
+- (NSArray*) readAsJSONArray:(NSError**) error;
 
 @end
 
