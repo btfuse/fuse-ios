@@ -28,6 +28,9 @@ limitations under the License.
 #import <BTFuse/BTFuse.h>
 #import "BTFuseWebviewNavigationDelegate.h"
 
+/**
+    BTFuseContext is the main context file representing the runtime environment.
+ */
 @implementation BTFuseContext {
     NSMutableDictionary<NSString*, BTFusePlugin*>* $pluginMap;
     BTFuseAPIRouter* $apiRouter;

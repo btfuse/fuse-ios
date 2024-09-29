@@ -9,3 +9,6 @@ xcuserdata
 /BTFuse.podspec
 /BTFuseTestTools.podspec
 /Pods
+*.docc-build
+*.profraw
+
